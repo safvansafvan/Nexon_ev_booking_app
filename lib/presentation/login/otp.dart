@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../controller/const.dart';
+import '../../controller/const/const.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});

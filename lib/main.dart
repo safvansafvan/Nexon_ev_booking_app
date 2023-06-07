@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/login.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) => SplashProvider(),
-          )
+            
+          ),
+          ChangeNotifierProvider(create: (context) => LoginProvider(),)
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

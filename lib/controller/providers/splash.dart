@@ -9,7 +9,7 @@ class SplashProvider with ChangeNotifier {
     Navigator.pushReplacement(
       ctx,
       MaterialPageRoute(
-        builder: (context) => const LoginPage(),
+        builder: (context) =>  LoginPage(),
       ),
     );
     notifyListeners();

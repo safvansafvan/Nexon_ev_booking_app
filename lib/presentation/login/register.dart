@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/const.dart';
+import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/login/login.dart';
 import 'package:bookingapp/presentation/login/otp.dart';
 import 'package:flutter/material.dart';
@@ -113,7 +113,7 @@ class RegisterScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const LoginPage();
+                              return  LoginPage();
                             },
                           ),
                         );
