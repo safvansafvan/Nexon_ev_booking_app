@@ -41,6 +41,7 @@ class RegisterScreen extends StatelessWidget {
                     SizedBox(
                       height: screenHeight * 0.05,
                     ),
+                    
                     TextFormField(
                       decoration: InputDecoration(
                         hintText: "Name",
