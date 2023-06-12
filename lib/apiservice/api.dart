@@ -9,10 +9,10 @@ class ApiServices {
   // POST METHOD
   static Future<Object> postMethod({
     required String url,
-    required Map data,
     required BuildContext context,
     Function? function,
     Map<String, String>? headers,
+    Map? data,
   }) async {
     try {
       final response =

@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  final formKey = GlobalKey<FormState>();
+  final formKeySignUp = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final providerLogin = context.watch<LoginProvider>();
@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                         top: screenHeight.height * 0.03, left: 10, right: 10),
                     child: Form(
-                      key: formKey,
+                      key: formKeySignUp,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
@@ -42,17 +42,21 @@ class LoginPage extends StatelessWidget {
                               controller: providerLogin.emailController,
                               hintText: "Email",
                               keyType: TextInputType.emailAddress,
-                              size: screenHeight,
+                              isEmail: true,
+                             size: screenHeight,
                               prefixIcon: const Icon(Icons.person_outline)),
                           SizedBox(
                             height: screenHeight.height * 0.02,
                           ),
                           TextFormCommon(
+
                               controller: providerLogin.passwordCntrlr,
                               hintText: "Password",
                               keyType: TextInputType.number,
+                              isObs: true,
+                              isPassword: true,
                               size: screenHeight,
-                              prefixIcon: const Icon(Icons.password_rounded)),
+                              prefixIcon: const Icon(Icons.password_rounded),),
                           Padding(
                             padding: const EdgeInsets.all(7),
                             child: Text(
@@ -79,7 +83,7 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () async {
-                                  if (formKey.currentState!.validate()) {
+                                  if (formKeySignUp.currentState!.validate()) {
                                     providerLogin.getLoginStatus(context);
                                   }
                                 },

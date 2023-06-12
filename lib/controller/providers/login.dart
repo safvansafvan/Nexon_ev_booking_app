@@ -4,12 +4,11 @@ import 'package:bookingapp/apiservice/api.dart';
 import 'package:bookingapp/apiservice/status.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
-import 'package:bookingapp/model/login.dart';
+import 'package:bookingapp/model/authentication/login.dart';
 import 'package:bookingapp/presentation/home/home.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class LoginProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
@@ -61,7 +60,7 @@ class LoginProvider extends ChangeNotifier {
   getLoginStatus(context) async {
     setLoading(true);
 
-    String url = Urls.baseUrl  + Urls.login;
+    String url = Urls.baseUrl + Urls.login;
     Map<dynamic, dynamic> body = {
       "email": emailController.text.trim(),
       "password": passwordCntrlr.text.trim()
@@ -75,7 +74,7 @@ class LoginProvider extends ChangeNotifier {
       log("11111111");
       final data = await setUserData(response.response as UserLoginModel);
       final accessToken = data!.token;
-      final userId = data.result. id;
+      final userId = data.result.id;
       final userName = data.result.username;
       final userEmail = data.result.email;
       setLoginStatus(
@@ -87,7 +86,7 @@ class LoginProvider extends ChangeNotifier {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) =>  MyHomePage(),
+          builder: (context) => MyHomePage(),
         ),
         (route) => false,
       );
@@ -141,12 +140,10 @@ class LoginProvider extends ChangeNotifier {
     if (statusCode == 401 || statusCode == 500) {
       log("snackbar: Invalid username or passeord");
       return snakBarWiget(
-          context: context,
-          title: "Invalid Username or password",
-         clr : kred);
+          context: context, title: "Invalid Username or password", clr: kred);
     }
     return snakBarWiget(
-        context: context, title: "No internet connection",clr : kred);
+        context: context, title: "No internet connection", clr: kred);
   }
 }
 

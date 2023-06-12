@@ -8,7 +8,9 @@ import '../../controller/const/const.dart';
 TextEditingController _passController = TextEditingController();
 TextEditingController get passController => _passController;
 
-class TextFormCommon  extends StatelessWidget {
+FocusNode focusNode = FocusNode();
+
+class TextFormCommon extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final TextInputType keyType;
@@ -19,24 +21,26 @@ class TextFormCommon  extends StatelessWidget {
   final bool isObs;
   final Size size;
   final dynamic prefixIcon;
-  const TextFormCommon({
-    super.key,
-    required this.prefixIcon,
-    required this.controller,
-    required this.hintText,
-    required this.keyType,
-    required this.size,
-    this.isPassword = false,
-    this.isEmail = false,
-    this.isPhone = false,
-    this.isUser = false,
-    this.isObs = false,
-  });
+  final dynamic maxlength;
+  const TextFormCommon(
+      {super.key,
+      required this.prefixIcon,
+      required this.controller,
+      required this.hintText,
+      required this.keyType,
+      required this.size,
+      this.isPassword = false,
+      this.isEmail = false,
+      this.isPhone = false,
+      this.isUser = false,
+      this.isObs = false,
+      this.maxlength});
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<LoginProvider>().passwordVisibility;
     return TextFormField(
+      maxLength: maxlength,
       controller: controller,
       keyboardType: keyType,
       validator: (value) {
@@ -53,7 +57,6 @@ class TextFormCommon  extends StatelessWidget {
           }
         }
         if (isPassword) {
-          
           if (value == null || value.isEmpty) {
             return "Password is required";
           }
@@ -81,11 +84,9 @@ class TextFormCommon  extends StatelessWidget {
                     : const Icon(Icons.visibility),
               )
             : const SizedBox(),
-        counterStyle:  TextStyle(color: kBlack),
+        counterStyle: TextStyle(color: kBlack),
         hintText: hintText,
-       
         border: OutlineInputBorder(
-        
           borderRadius: BorderRadius.circular(10),
         ),
       ),

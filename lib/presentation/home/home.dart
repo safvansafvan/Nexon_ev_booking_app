@@ -1,8 +1,10 @@
 import 'package:bookingapp/presentation/booking/car_booking.dart';
+import 'package:bookingapp/presentation/login/login.dart';
 import 'package:bookingapp/presentation/map/location.dart';
 import 'package:bookingapp/presentation/test_drive_booking/test_booking.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -12,19 +14,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    TestDriveBooking(),
-    BookingWidget(),
-    MapWidget(),
-  ];
+  // final List<Widget> _screens = [
+  //   TestDriveBooking(),
+  //   BookingWidget(),
+  //   MapWidget(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Your App'),
       ),
-      body: _screens[_currentIndex],
+      body: InkWell( 
+        onTap: ()async {
+          final SharedPreferences prefs=await SharedPreferences.getInstance();
+          prefs.remove("isLoggedIn");
+          prefs.remove("USER_NAME");
+          prefs.remove("USER_EMAIL");
+         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage(),), (route) => false);
+        },
+        child: Center(child: Text("logout"))),
       bottomNavigationBar: GNav(
         backgroundColor: Colors.white,
         color: Colors.black,
