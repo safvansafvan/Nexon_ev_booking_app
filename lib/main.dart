@@ -1,6 +1,7 @@
 import 'package:bookingapp/controller/providers/login.dart';
 import 'package:bookingapp/controller/providers/signup.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
+import 'package:bookingapp/controller/providers/verifyotp.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SignupProvider(),
+        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => OtpProvider(),
+        // ),
+        ChangeNotifierProvider(
+          create: (context) => VerifyOtpProvider(),
         ),
       ],
       child: MaterialApp(

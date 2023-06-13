@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../../controller/const/const.dart';
 
-TextEditingController _passController = TextEditingController();
-TextEditingController get passController => _passController;
+// TextEditingController _passController = TextEditingController();
+// TextEditingController get passController => _passController;
 
 FocusNode focusNode = FocusNode();
 

@@ -22,20 +22,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
+    setState(() {});
     return Scaffold(
       appBar: AppBar(
         title: Text('Your App'),
       ),
-      body: InkWell( 
-        onTap: ()async {
-          final SharedPreferences prefs=await SharedPreferences.getInstance();
-          prefs.remove("isLoggedIn");
-          prefs.remove("USER_NAME");
-          prefs.remove("USER_EMAIL");
-         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage(),), (route) => false);
-        },
-        child: Center(child: Text("logout"))),
+      body: InkWell(
+          onTap: () async {
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
+            prefs.remove("isLoggedIn");
+            prefs.remove("USER_NAME");
+            prefs.remove("USER_EMAIL");
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                ),
+                (route) => false);
+          },
+          child: Center(child: Text("logout"))),
       bottomNavigationBar: GNav(
         backgroundColor: Colors.white,
         color: Colors.black,
@@ -62,19 +68,25 @@ class _MyHomePageState extends State<MyHomePage> {
           });
           switch (index) {
             case 0:
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TestDriveBooking();
-              },));
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return TestDriveBooking();
+                },
+              ));
               break;
             case 1:
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return BookingWidget();
-              },));
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return BookingWidget();
+                },
+              ));
               break;
             case 2:
-             Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return MapWidget();
-              },));
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return MapWidget();
+                },
+              ));
               break;
           }
         },

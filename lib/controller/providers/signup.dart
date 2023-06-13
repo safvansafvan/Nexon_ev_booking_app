@@ -6,10 +6,10 @@ import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/authentication/otp.dart';
 import 'package:bookingapp/model/authentication/signup.dart';
-import 'package:bookingapp/presentation/login/otp.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../presentation/login/otp_verify.dart';
 
 class SignupProvider extends ChangeNotifier {
   TextEditingController usernameController = TextEditingController();
@@ -17,7 +17,7 @@ class SignupProvider extends ChangeNotifier {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -31,15 +31,12 @@ class SignupProvider extends ChangeNotifier {
   SignupError? _signupError;
   SignupError? get signupError => _signupError;
 
-  OtpError? _otpError;
-  OtpError? get otpError => _otpError;
-
-  setLoading(bool isLoading) async {
+  setLoading(bool isLoading) {
     _isLoading = isLoading;
     notifyListeners();
   }
 
-  setOtpLoading(bool isLoading) async {
+  setOtpLoading(bool isLoading) {
     _isOtpLoading = isLoading;
     notifyListeners();
   }
@@ -54,6 +51,8 @@ class SignupProvider extends ChangeNotifier {
     return errorResponse(_signupError!, context);
   }
 
+  OtpError? _otpError;
+  OtpError? get otpError => _otpError;
   setOtpError(OtpError otpError, context) {
     _otpError = otpError;
     return errorResponseOtp(_otpError!, context);
@@ -121,7 +120,6 @@ class SignupProvider extends ChangeNotifier {
     if (response is Success) {
       log("success");
       navigator.push(
-        // await getSignupStatus(context);
         MaterialPageRoute(
           builder: (context) => const OtpScreen(),
         ),
@@ -138,8 +136,9 @@ class SignupProvider extends ChangeNotifier {
     setLoading(false);
   }
 
-  getotpButtonClick(context) async {
+  signUpButtonClick(context) async {
     await getOtpStatus(context);
+    // await getSignupStatus(context);
     clearController();
   }
 

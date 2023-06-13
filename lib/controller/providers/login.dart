@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordCntrlr = TextEditingController();
+  // GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
 
   String? _userName;
   String? get userName => _userName;
