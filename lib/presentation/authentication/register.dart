@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/providers/otp_provider.dart';
 import 'package:bookingapp/controller/providers/otpverify_signup.dart';
 import 'package:bookingapp/presentation/authentication/login.dart';
 import 'package:bookingapp/presentation/authentication/widget/text_form_field.dart';
@@ -105,7 +106,7 @@ class RegisterScreen extends StatelessWidget {
                         // if (signUpProvider.formKey2.currentState!
                         //     .validate()) {
                         await context
-                            .read<OtpVerificationAndSignupProvider>()
+                            .read<OtpProvider>()
                             .signUpButtonClick(context);
                       },
                       child: Text(

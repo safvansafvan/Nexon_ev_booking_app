@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/providers/login.dart';
+import 'package:bookingapp/controller/providers/otp_provider.dart';
 import 'package:bookingapp/controller/providers/otpverify_signup.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';
@@ -27,9 +28,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => OtpVerificationAndSignupProvider(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => OtpProvider(),
-        // ),
+        ChangeNotifierProvider(
+          create: (context) => OtpProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
