@@ -7,4 +7,6 @@ class Urls {
   static String signup = "/signup";
   static String otp = "/otp";
   static String verify = "/verify";
+  static String continueWithGoogle = "/login-with-google";
+  static String otpVerificationAndSignup = "/verify-and-signup";
 }

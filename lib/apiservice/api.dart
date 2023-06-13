@@ -18,7 +18,7 @@ class ApiServices {
       final response =
           await http.post(Uri.parse(url), body: data, headers: headers);
       log("+++++++++++${response.statusCode}++++++++++");
-      log(response.body.toString());
+      log("apiService${response.body.toString()}");
       if (response.statusCode == 201 || response.statusCode == 200) {
         return Success(
             response: function == null ? null : function(response.body));

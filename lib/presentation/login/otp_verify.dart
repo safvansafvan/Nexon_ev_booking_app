@@ -1,8 +1,8 @@
-import 'package:bookingapp/controller/providers/verifyotp.dart';
 import 'package:bookingapp/presentation/widget/otp_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../controller/const/const.dart';
+import '../../controller/providers/otpverify_signup.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -10,7 +10,7 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final otpVerifyProvider =
-        Provider.of<VerifyOtpProvider>(context, listen: false);
+        Provider.of<OtpVerificationAndSignupProvider>(context, listen: false);
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
@@ -69,8 +69,8 @@ class OtpScreen extends StatelessWidget {
                           // if (otpVerifyProvider.globelKey3.currentState!
                           //     .validate()) {
                           await context
-                              .read<VerifyOtpProvider>()
-                              .getOtpVerifyButtonClick(context);
+                              .read<OtpVerificationAndSignupProvider>()
+                              .getOtpVerificationAndSignupStatus(context);
                         },
                         child: Text(
                           'Verify',

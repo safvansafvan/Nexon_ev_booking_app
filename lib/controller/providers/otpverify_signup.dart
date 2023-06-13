@@ -11,13 +11,18 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../presentation/login/otp_verify.dart';
 
-class SignupProvider extends ChangeNotifier {
+class OtpVerificationAndSignupProvider extends ChangeNotifier {
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   // GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
+
+  TextEditingController otpNumone = TextEditingController();
+  TextEditingController otpNumTwo = TextEditingController();
+  TextEditingController otpNumThree = TextEditingController();
+  TextEditingController otpNumFour = TextEditingController();
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -58,33 +63,37 @@ class SignupProvider extends ChangeNotifier {
     return errorResponseOtp(_otpError!, context);
   }
 
-  UserSignUpModel? _userData;
-  UserSignUpModel? get userData => _userData;
+  OtpVerificationAndSignUpMode? _userData;
+  OtpVerificationAndSignUpMode? get userData => _userData;
 
-  Future<UserSignUpModel?> setUserData(UserSignUpModel userData) async {
+  Future<OtpVerificationAndSignUpMode?> setUserData(
+      OtpVerificationAndSignUpMode userData) async {
     _userData = userData;
     return _userData;
   }
 
-  getSignupStatus(context) async {
+  getOtpVerificationAndSignupStatus(context) async {
+    String joinedOtp =
+        otpNumone.text + otpNumTwo.text + otpNumThree.text + otpNumFour.text;
     setLoading(true);
-    String url = Urls.baseUrl + Urls.signup;
-    Map<dynamic, dynamic> body = {
+    String url = Urls.baseUrl + Urls.otpVerificationAndSignup;
+    Map<String, dynamic> body = {
       "username": usernameController.text.trim(),
       "email": emailController.text.trim(),
       "password": passwordController.text.trim(),
       "phone": phoneController.text.trim(),
+      "otp": joinedOtp.trim()
     };
     final response = await ApiServices.postMethod(
-      url: url,
-      data: body,
-      context: context,
-      function: userSignUpModelFromJson,
-    );
+        url: url,
+        data: body,
+        context: context,
+        function: otpVerificationAndSignUpModeFromJson);
     if (response is Success) {
       log("succes");
       log("${response.response}");
-      final data = await setUserData(response.response as UserSignUpModel);
+      final data =
+          await setUserData(response.response as OtpVerificationAndSignUpMode);
       final accessToken = data!.token;
       final userId = data.result!.id;
       final userName = data.result!.username;
@@ -138,7 +147,6 @@ class SignupProvider extends ChangeNotifier {
 
   signUpButtonClick(context) async {
     await getOtpStatus(context);
-    // await getSignupStatus(context);
     clearController();
   }
 

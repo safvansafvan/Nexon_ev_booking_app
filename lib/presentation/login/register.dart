@@ -1,5 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/signup.dart';
+import 'package:bookingapp/controller/providers/otpverify_signup.dart';
 import 'package:bookingapp/presentation/login/login.dart';
 import 'package:bookingapp/presentation/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,8 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final signUpProvider = Provider.of<SignupProvider>(context, listen: false);
+    final signUpProvider =
+        Provider.of<OtpVerificationAndSignupProvider>(context, listen: false);
     var screenHeight = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -110,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                         // if (signUpProvider.formKey2.currentState!
                         //     .validate()) {
                         await context
-                            .read<SignupProvider>()
+                            .read<OtpVerificationAndSignupProvider>()
                             .signUpButtonClick(context);
                       },
                       child: Text(
