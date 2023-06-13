@@ -1,7 +1,7 @@
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/otpverify_signup.dart';
-import 'package:bookingapp/presentation/login/login.dart';
-import 'package:bookingapp/presentation/widget/text_form_field.dart';
+import 'package:bookingapp/presentation/authentication/login.dart';
+import 'package:bookingapp/presentation/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,8 +29,8 @@ class RegisterScreen extends StatelessWidget {
                       style: textStyleFuc(
                           weight: FontWeight.w900, color: kBlack, size: 25),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: screenHeight.height * 0.01,
                     ),
                     const Text("Sign up this page for accessing cars")
                   ],
@@ -54,9 +54,7 @@ class RegisterScreen extends StatelessWidget {
                       Icons.person_outline,
                     ),
                   ),
-                  SizedBox(
-                    height: screenHeight.height * 0.03,
-                  ),
+                  commonHeight,
                   TextFormCommon(
                     controller: signUpProvider.emailController,
                     hintText: "Email",
@@ -67,9 +65,7 @@ class RegisterScreen extends StatelessWidget {
                       Icons.email_outlined,
                     ),
                   ),
-                  SizedBox(
-                    height: screenHeight.height * 0.03,
-                  ),
+                  commonHeight,
                   TextFormCommon(
                     controller: signUpProvider.phoneController,
                     hintText: "Phone",
@@ -81,9 +77,7 @@ class RegisterScreen extends StatelessWidget {
                       Icons.numbers_outlined,
                     ),
                   ),
-                  SizedBox(
-                    height: screenHeight.height * 0.03,
-                  ),
+                  commonHeight,
                   TextFormCommon(
                     controller: signUpProvider.passwordController,
                     hintText: "Password",
@@ -130,7 +124,7 @@ class RegisterScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return LoginPage();
+                            return const LoginPage();
                           },
                         ),
                       );

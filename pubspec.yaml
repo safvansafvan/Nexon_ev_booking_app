@@ -74,6 +74,7 @@ flutter:
     - assets/splash_b.webp
     - assets/nexon.jpeg
     - assets/nexonOt.webp
+    - assets/nexon.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

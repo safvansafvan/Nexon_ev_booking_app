@@ -2,13 +2,7 @@ import 'package:bookingapp/controller/providers/login.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../controller/const/const.dart';
-
-// TextEditingController _passController = TextEditingController();
-// TextEditingController get passController => _passController;
-
-FocusNode focusNode = FocusNode();
+import '../../../controller/const/const.dart';
 
 class TextFormCommon extends StatelessWidget {
   final TextEditingController controller;

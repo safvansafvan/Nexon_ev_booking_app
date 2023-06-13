@@ -1,7 +1,8 @@
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/login.dart';
-import 'package:bookingapp/presentation/login/register.dart';
-import 'package:bookingapp/presentation/widget/text_form_field.dart';
+import 'package:bookingapp/presentation/authentication/register.dart';
+import 'package:bookingapp/presentation/authentication/widget/image_widget.dart';
+import 'package:bookingapp/presentation/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -43,9 +44,7 @@ class LoginPage extends StatelessWidget {
                             isEmail: true,
                             size: screenHeight,
                             prefixIcon: const Icon(Icons.person_outline)),
-                        SizedBox(
-                          height: screenHeight.height * 0.02,
-                        ),
+                        commonHeight,
                         TextFormCommon(
                           controller: providerLogin.passwordCntrlr,
                           hintText: "Password",
@@ -73,51 +72,39 @@ class LoginPage extends StatelessWidget {
                           height: screenHeight.height * 0.07,
                           color: const Color.fromARGB(255, 241, 239, 239),
                           child: OutlinedButton(
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius: radiusTen),
-                                ),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(borderRadius: radiusTen),
                               ),
-                              onPressed: () async {
-                                // if (providerLogin.formKey1.currentState!
-                                //     .validate()) {
-                                providerLogin.getLoginStatus(context);
-                              },
-                              child: Text(
-                                'Login',
-                                style: textStyleFuc(
-                                    weight: FontWeight.w500,
-                                    color: null,
-                                    size: 16),
-                              )),
+                            ),
+                            onPressed: () async {
+                              // if (providerLogin.formKey1.currentState!
+                              //     .validate()) {
+                              providerLogin.getLoginStatus(context);
+                            },
+                            child: Text(
+                              'Login',
+                              style: textStyleFuc(
+                                  weight: FontWeight.w500,
+                                  color: null,
+                                  size: 16),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: screenHeight.height * 0.05,
                         ),
-                        Container(
-                          height: 200,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: radiusTen,
-                            image: const DecorationImage(
-                              colorFilter: ColorFilter.mode(
-                                Color.fromARGB(255, 241, 239, 239),
-                                BlendMode.darken,
-                              ),
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/nexon.jpeg"),
-                            ),
-                          ),
-                        ),
+                        const ImageWidget(image: "assets/nexon.webp"),
                         SizedBox(
                           height: screenHeight.height * 0.03,
                         ),
                         Container(
                           height: screenHeight.height * 0.07,
                           decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 241, 239, 239),
-                              borderRadius: radiusTen),
+                            color: const Color.fromARGB(255, 241, 239, 239),
+                            borderRadius: radiusTen,
+                            border: Border.all(color: kBlack38),
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -139,9 +126,7 @@ class LoginPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: screenHeight.height * 0.02,
-                        ),
+                        commonHeight,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

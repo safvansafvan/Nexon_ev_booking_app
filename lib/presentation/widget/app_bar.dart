@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -10,8 +8,6 @@ class AppBarWidget extends StatelessWidget {
   //  final IconData trailing;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      
-    );
+    return const ListTile();
   }
 }

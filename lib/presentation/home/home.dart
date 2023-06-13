@@ -1,13 +1,18 @@
+import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/booking/car_booking.dart';
-import 'package:bookingapp/presentation/login/login.dart';
+import 'package:bookingapp/presentation/authentication/login.dart';
 import 'package:bookingapp/presentation/map/location.dart';
 import 'package:bookingapp/presentation/test_drive_booking/test_booking.dart';
+import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -25,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your App'),
+        title: const Text('Your App'),
       ),
       body: InkWell(
           onTap: () async {
@@ -34,21 +39,24 @@ class _MyHomePageState extends State<MyHomePage> {
             prefs.remove("isLoggedIn");
             prefs.remove("USER_NAME");
             prefs.remove("USER_EMAIL");
+            // ignore: use_build_context_synchronously
+            snakBarWiget(context: context, title: "Logout Success", clr: kred);
+            // ignore: use_build_context_synchronously
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const LoginPage(),
                 ),
                 (route) => false);
           },
-          child: Center(child: Text("logout"))),
+          child: const Center(child: Text("logout"))),
       bottomNavigationBar: GNav(
         backgroundColor: Colors.white,
         color: Colors.black,
         gap: 8,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         selectedIndex: _currentIndex,
-        tabs: [
+        tabs: const [
           GButton(
             icon: Icons.home_outlined,
             text: "Home",
@@ -70,21 +78,21 @@ class _MyHomePageState extends State<MyHomePage> {
             case 0:
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return TestDriveBooking();
+                  return const TestDriveBooking();
                 },
               ));
               break;
             case 1:
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return BookingWidget();
+                  return const BookingWidget();
                 },
               ));
               break;
             case 2:
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return MapWidget();
+                  return const MapWidget();
                 },
               ));
               break;

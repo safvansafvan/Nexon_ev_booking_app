@@ -1,25 +1,22 @@
-
-
-
 import 'package:flutter/material.dart';
 
-var kwhite=Colors.white;
-var kBlack=Colors.black;
-
-var kred=Colors.red;
-var kblue=Colors.blueAccent;
-
-
+var kwhite = Colors.white;
+var kBlack = Colors.black;
+var kBlack38 = Colors.black38;
+var kred = Colors.red;
+var kblue = Colors.blueAccent;
+var kGreen = const Color.fromARGB(255, 139, 180, 92);
 
 //fuction
 
- textStyleFuc({required  weight,required  color,required double size}){
-     return TextStyle(fontSize: size,fontWeight: weight,color: color);
+textStyleFuc({required weight, required color, required double size}) {
+  return TextStyle(fontSize: size, fontWeight: weight, color: color);
 }
 
-//radius  
+//radius
 
-  var radiusTen=BorderRadius.circular(11);
+var radiusTen = BorderRadius.circular(11);
 
-  
-           
+var commonHeight = const SizedBox(
+  height: 20,
+);

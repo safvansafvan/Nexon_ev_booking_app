@@ -60,7 +60,6 @@ class LoginProvider extends ChangeNotifier {
 
   getLoginStatus(context) async {
     setLoading(true);
-
     String url = Urls.baseUrl + Urls.login;
     Map<dynamic, dynamic> body = {
       "email": emailController.text.trim(),
@@ -84,10 +83,11 @@ class LoginProvider extends ChangeNotifier {
           userName: userName,
           userEmail: userEmail);
       clearController();
+      snakBarWiget(context: context, title: "Login Success", clr: kGreen);
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => MyHomePage(),
+          builder: (context) => const MyHomePage(),
         ),
         (route) => false,
       );

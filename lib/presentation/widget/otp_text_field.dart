@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import '../../controller/const/const.dart';
 
 class OtpTextField extends StatelessWidget {
-  const OtpTextField({super.key, required this.controller});
+  const OtpTextField({super.key, this.controller});
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class OtpTextField extends StatelessWidget {
       child: TextFormField(
         validator: (value) {
           if (value!.isEmpty) {
-            return "required";
+            return "No";
           }
           return null;
         },
