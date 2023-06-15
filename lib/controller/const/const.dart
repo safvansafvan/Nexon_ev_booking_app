@@ -20,3 +20,9 @@ var radiusTen = BorderRadius.circular(11);
 var commonHeight = const SizedBox(
   height: 20,
 );
+var kheight30 = const SizedBox(
+  height: 30,
+);
+var kHeightFive = const SizedBox(
+  height: 5,
+);

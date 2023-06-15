@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/providers/continue_with_google.dart';
+import 'package:bookingapp/controller/providers/forgot_password.dart';
 import 'package:bookingapp/controller/providers/login.dart';
 import 'package:bookingapp/controller/providers/otp_provider.dart';
 import 'package:bookingapp/controller/providers/otpverify_signup.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ContinueWithGoogleProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ForgotPasswordProvider(),
         ),
       ],
       child: MaterialApp(

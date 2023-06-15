@@ -19,7 +19,7 @@ class ApiServices {
     Map<String, String>? headers,
     Map? data,
   }) async {
-    log(data.toString(), name: "error");
+    log(data.toString(), name: "send");
     try {
       final response =
           await http.post(Uri.parse(url), body: data, headers: headers);

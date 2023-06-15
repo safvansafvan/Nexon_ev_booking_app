@@ -1,7 +1,6 @@
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/forgot_password.dart';
 import 'package:bookingapp/controller/providers/login.dart';
-import 'package:bookingapp/presentation/authentication/forgot_otp.dart';
+import 'package:bookingapp/presentation/authentication/forgot_password/forgot_otp.dart';
 import 'package:bookingapp/presentation/authentication/register.dart';
 import 'package:bookingapp/presentation/authentication/widget/image_widget.dart';
 import 'package:bookingapp/presentation/authentication/widget/text_form_field.dart';
@@ -65,9 +64,12 @@ class LoginPage extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
                                   builder: (context) =>
-                                      ForgotPasswordWidget()));
+                                      const ForgotPasswordWidget(),
+                                ),
+                              );
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(7),

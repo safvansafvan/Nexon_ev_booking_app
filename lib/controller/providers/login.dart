@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:bookingapp/apiservice/api.dart';
 import 'package:bookingapp/apiservice/status.dart';
 import 'package:bookingapp/controller/const/const.dart';

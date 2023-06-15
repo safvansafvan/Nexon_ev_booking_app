@@ -78,6 +78,8 @@ flutter:
     - assets/nexon.jpeg
     - assets/nexonOt.webp
     - assets/nexon.webp
+    - assets/nexonEvB.png
+    - assets/nexon_black_back.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

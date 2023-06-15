@@ -9,4 +9,6 @@ class Urls {
   static String verify = "/verify";
   static String continueWithGoogle = "/login-with-google";
   static String otpVerificationAndSignup = "/verify-and-signup";
+  static String forgotPassword = "/forgot-password";
+  static String verifyAndForgot = "/verify-and-forgot";
 }
