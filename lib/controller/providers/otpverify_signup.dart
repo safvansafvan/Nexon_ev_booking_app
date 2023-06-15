@@ -11,7 +11,7 @@ class OtpVerificationAndSignupProvider extends ChangeNotifier {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  // GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;

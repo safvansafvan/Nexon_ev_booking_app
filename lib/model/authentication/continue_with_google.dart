@@ -1,23 +1,21 @@
-// To parse this JSON data, do
-//
-//     final continueWithGoogle = continueWithGoogleFromJson(jsonString);
+import 'dart:convert';
 
-// import 'dart:convert';
+// ignore: non_constant_identifier_names
+ContinueWithGoogleModel ContinueWithGoogleModelFromJson(String str) =>
+    ContinueWithGoogleModel.fromJson(json.decode(str));
 
-// ContinueWithGoogle continueWithGoogleFromJson(String str) =>
-//     ContinueWithGoogle.fromJson(json.decode(str));
+// ignore: non_constant_identifier_names
+String ContinueWithGoogleModelToJson(ContinueWithGoogleModel data) =>
+    json.encode(data.toJson());
 
-// String continueWithGoogleToJson(ContinueWithGoogle data) =>
-//     json.encode(data.toJson());
-
-class ContinueWithGoogle {
+class ContinueWithGoogleModel {
   bool? auth;
   String? token;
   Result? result;
   String? status;
   String? message;
 
-  ContinueWithGoogle({
+  ContinueWithGoogleModel({
     this.auth,
     this.token,
     this.result,
@@ -25,8 +23,8 @@ class ContinueWithGoogle {
     this.message,
   });
 
-  factory ContinueWithGoogle.fromJson(Map<String, dynamic> json) =>
-      ContinueWithGoogle(
+  factory ContinueWithGoogleModel.fromJson(Map<String, dynamic> json) =>
+      ContinueWithGoogleModel(
         auth: json["auth"],
         token: json["token"],
         result: json["result"] == null ? null : Result.fromJson(json["result"]),

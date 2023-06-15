@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:bookingapp/apiservice/api.dart';
 import 'package:bookingapp/apiservice/status.dart';
 import 'package:bookingapp/controller/const/const.dart';
@@ -8,7 +7,6 @@ import 'package:bookingapp/model/authentication/otp.dart';
 import 'package:bookingapp/presentation/authentication/otp_verify.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../presentation/widget/snack_bar.dart';
 import 'otpverify_signup.dart';
 
@@ -17,6 +15,8 @@ class OtpProvider extends ChangeNotifier {
   TextEditingController otpNumTwo = TextEditingController();
   TextEditingController otpNumThree = TextEditingController();
   TextEditingController otpNumFour = TextEditingController();
+
+  GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
 
   otp() {
     String joinedOtp =
@@ -95,7 +95,6 @@ class OtpProvider extends ChangeNotifier {
     await getOtpStatus(context);
     Provider.of<OtpVerificationAndSignupProvider>(context, listen: false)
         .clearController();
-    clearController();
   }
 
   Map<String, dynamic> otpDataBody(context) {

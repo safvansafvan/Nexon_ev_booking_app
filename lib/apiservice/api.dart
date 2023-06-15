@@ -19,7 +19,7 @@ class ApiServices {
     Map<String, String>? headers,
     Map? data,
   }) async {
-    log(data.toString(), name: "alsdkfjalsdkfjalsdkfj");
+    log(data.toString(), name: "error");
     try {
       final response =
           await http.post(Uri.parse(url), body: data, headers: headers);
@@ -84,13 +84,14 @@ class ApiServices {
   }
 
   //post methord for otpVerify and signup user
-  static void otpPostMethod(
-      {required String url,
-      required BuildContext context,
-      Function? function,
-      Map<String, String>? headers,
-      Map? data,
-      String? otp}) async {
+  static void otpPostMethod({
+    required String url,
+    required BuildContext context,
+    Function? function,
+    Map<String, String>? headers,
+    Map? data,
+  }) async {
+    final navigator = Navigator.of(context);
     try {
       final response =
           await http.post(Uri.parse(url), body: data, headers: headers);
@@ -100,12 +101,11 @@ class ApiServices {
           name: "statusssssssss");
       String status = otpVerificationAndSignUpMode.status.toString();
       if (status == "success") {
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const MyHomePage(),
-            ));
+        navigator.pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(),
+          ),
+        );
       } else if (status == "failed") {
         log("status is failed from otp ");
         // ignore: use_build_context_synchronously
@@ -116,9 +116,77 @@ class ApiServices {
     } catch (e) {
       log(e.toString(), name: "error loggggggggggggggggggg");
       snakBarWiget(context: context, title: "Invalid Otp", clr: kred);
-
-      // return Failures(code: 500, errrorResponse: "Unknown error");
     }
     return null;
   }
 }
+
+// /// checking
+// ///
+// ///
+
+// final GoogleSignIn _googleSignIn = GoogleSignIn(
+//     scopes: ['email'], // Add additional scopes as needed
+//     signInOption: SignInOption.standard);
+// Future<bool> isGoogleSignInAllowed() async {
+//   GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+
+//   try {
+//     // Check if the user is signed in with Google
+//     bool isSignedIn = await googleSignIn.isSignedIn();
+//     return isSignedIn;
+//   } catch (e) {
+//     // Handle any errors that occur during the check
+//     log('Error checking Google sign-in permission: $e');
+//     return false;
+//   }
+// }
+
+// Future<void> signInWithGoogle(context) async {
+//   try {
+//     bool googleSignInAllowed = await isGoogleSignInAllowed();
+//     // if (googleSignInAllowed) {
+//     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+//     final GoogleSignInAuthentication googleAuth =
+//         await googleUser!.authentication;
+
+//     final String email = googleUser.email;
+//     final String username = googleUser.displayName ?? '';
+
+//     // Send the data to the backend API
+//     final url = Urls.baseUrl + Urls.continueWithGoogle;
+//     final response = await http.post(Uri.parse(url), body: {
+//       'email': email,
+//       'username': username,
+//     });
+//     log(email);
+
+//     if (response.statusCode == 200) {
+//       // Login successful
+//       final responseData = jsonDecode(response.body);
+//       final token = responseData['token'];
+//       log("succcccccc");
+//       // Store the token securely
+//       final storage = await SharedPreferences.getInstance();
+//       await storage.setString('token', token);
+
+//       // Navigate to the desired screen
+//       Navigator.of(context).pushReplacement(
+//         MaterialPageRoute(
+//           builder: (context) => MyHomePage(),
+//         ),
+//       );
+//     } else {
+//       // Login failed
+//       final errorMessage = jsonDecode(response.body)['message'];
+//       log('Login failed: $errorMessage');
+//       // Display an error message to the user or handle the failure accordingly
+//     }
+//     // } else {
+//     log("User has not grand persmission to google signin!");
+//     // }
+//   } catch (error) {
+//     log('Error: $error', name: "catch");
+//     // Display an error message to the user or handle the failure accordingly
+//   }
+// }

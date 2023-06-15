@@ -27,7 +27,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {});
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your App'),
@@ -36,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onTap: () async {
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
-            prefs.remove("isLoggedIn");
+            prefs.remove("isLoggedin");
             prefs.remove("USER_NAME");
             prefs.remove("USER_EMAIL");
             // ignore: use_build_context_synchronously
