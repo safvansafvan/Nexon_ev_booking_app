@@ -54,9 +54,6 @@ class TextFormCommon extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return "Password is required";
           }
-          if (value.length < 6) {
-            return "Enter six charector";
-          }
         }
 
         if (isEmail) {

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
 import '../../controller/providers/continue_with_google.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,14 +16,13 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerLogin = context.watch<LoginProvider>();
-    final providerContinueWithGoogle =
-        context.watch<ContinueWithGoogleProvider>();
     var screenHeight = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
-        child: providerLogin.isLoading || providerContinueWithGoogle.isLoading
+      body: SafeArea(child:
+          Consumer<ContinueWithGoogleProvider>(builder: (context, value, _) {
+        return value.isLoading || providerLogin.isLoading
             ? Center(
-                child: LottieBuilder.asset("assets/ui-loader.json"),
+                child: Lottie.asset("assets/ui-loader.json"),
               )
             : Form(
                 key: providerLogin.formKey1,
@@ -56,7 +54,7 @@ class LoginPage extends StatelessWidget {
                           TextFormCommon(
                             controller: providerLogin.passwordCntrlr,
                             hintText: "Password",
-                            keyType: TextInputType.number,
+                            keyType: TextInputType.name,
                             isObs: true,
                             isPassword: true,
                             size: screenHeight,
@@ -120,9 +118,8 @@ class LoginPage extends StatelessWidget {
                             height: screenHeight.height * 0.03,
                           ),
                           InkWell(
-                            onTap: () {
-                              Provider.of<ContinueWithGoogleProvider>(context,
-                                      listen: false)
+                            onTap: () async {
+                              await value
                                   .continueWithGoogleButtonClick(context);
                             },
                             child: Container(
@@ -188,8 +185,8 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-      ),
+              );
+      })),
     );
   }
 }

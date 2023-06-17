@@ -24,21 +24,7 @@ class OtpProvider extends ChangeNotifier {
     return joinedOtp;
   }
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  bool _isOtpLoading = false;
-  bool get isOtpLoading => _isOtpLoading;
-
-  setLoading(bool isLoading) {
-    _isLoading = isLoading;
-    notifyListeners();
-  }
-
-  setOtpLoading(bool isOtpLoading) {
-    _isOtpLoading = isOtpLoading;
-    notifyListeners();
-  }
+  bool isLoading = false;
 
   OtpError? _otpError;
   OtpError? get otpError => _otpError;
@@ -49,7 +35,7 @@ class OtpProvider extends ChangeNotifier {
 
   getOtpStatus(context) async {
     final navigator = Navigator.of(context);
-    setLoading(true);
+    isLoading = true;
     String url = Urls.baseUrl + Urls.otp;
     final response = await ApiServices.postMethod(
         url: url,
@@ -59,7 +45,7 @@ class OtpProvider extends ChangeNotifier {
 
     if (response is Success) {
       log("success");
-      navigator.push(
+      return navigator.push(
         MaterialPageRoute(
           builder: (context) => const OtpScreen(),
         ),
@@ -68,12 +54,11 @@ class OtpProvider extends ChangeNotifier {
     if (response is Failures) {
       log("${response.code}");
       log("failed");
-      await setLoading(false);
       OtpError otpError =
           OtpError(code: response.code, message: response.errrorResponse);
       await setOtpError(otpError, context);
     }
-    setLoading(false);
+    isLoading = false;
   }
 
   clearController() {
@@ -93,8 +78,9 @@ class OtpProvider extends ChangeNotifier {
 
   signUpButtonClick(context) async {
     await getOtpStatus(context);
-    Provider.of<OtpVerificationAndSignupProvider>(context, listen: false)
-        .clearController();
+    // Provider.of<OtpVerificationAndSignupProvider>(context, listen: false)
+    //     .clearController();
+    notifyListeners();
   }
 
   Map<String, dynamic> otpDataBody(context) {

@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onTap: () async {
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
-            prefs.remove("isLoggedin");
+            prefs.remove("isLoggedIn");
             prefs.remove("USER_NAME");
             prefs.remove("USER_EMAIL");
             // ignore: use_build_context_synchronously

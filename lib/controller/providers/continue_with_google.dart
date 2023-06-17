@@ -10,16 +10,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../presentation/widget/snack_bar.dart';
 
-class ContinueWithGoogleProvider with ChangeNotifier {
+class ContinueWithGoogleProvider extends ChangeNotifier {
   // GoogleSignIn? _googleSignIn;
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  setLoading(bool isLoading) {
-    _isLoading = isLoading;
-    notifyListeners();
-  }
+  bool isLoading = false;
 
   ContinueWithGoogleModel? _userData;
   ContinueWithGoogleModel? get userData => _userData;
@@ -30,29 +24,23 @@ class ContinueWithGoogleProvider with ChangeNotifier {
     return _userData;
   }
 
-  void continueWithGoogleButtonClick(context) async {
+  continueWithGoogleButtonClick(context) async {
     final GoogleSignIn googleSignIn = GoogleSignIn(
       scopes: ['email'],
       signInOption: SignInOption.standard,
     );
-    if (googleSignIn.currentUser == null) {
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      if (googleUser != null) {
-        final String email = googleUser.email;
-        final String username = googleUser.displayName ?? "Unknown Name";
-        continueWithGoogle(context, email, username);
-      }
-    } else {
-      await googleSignIn.signOut();
-      continueWithGoogleButtonClick(context);
+
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    if (googleUser != null) {
+      final String email = googleUser.email;
+      final String username = googleUser.displayName ?? "Unknown Name";
+      await continueWithGoogle(context, email, username);
     }
     notifyListeners();
   }
 
   Future<void> continueWithGoogle(context, email, username) async {
-    // final GoogleSignInAuthentication googleAuth =
-    //     await googleUser!.authentication;
-
+    isLoading = true;
     final url = Urls.baseUrl + Urls.continueWithGoogle;
     Map<String, dynamic> body = {"email": email, "username": username};
     final response =
@@ -67,26 +55,40 @@ class ContinueWithGoogleProvider with ChangeNotifier {
         ),
       );
       snakBarWiget(context: context, title: "Login Success", clr: kGreen);
+      isLoading = false;
+      final data =
+          await setUserData(response.response as ContinueWithGoogleModel);
+      final accessToken = data!.token;
+      final userId = data.result!.id;
+      final userName = data.result!.username;
+      final userEmail = data.result?.email;
+      setLoginStatus(
+          accessToken: accessToken!,
+          userId: userId!,
+          userName: userName!,
+          userEmail: userEmail!);
     }
+
     if (response is Failures) {
+      isLoading = false;
       log("failed");
       log("$response");
       snakBarWiget(context: context, title: "Login Failed", clr: kred);
     }
-    notifyListeners();
+    isLoading = false;
   }
-}
 
-setLoginStatus({
-  required String accessToken,
-  required String userId,
-  required String userName,
-  required String userEmail,
-}) async {
-  final status = await SharedPreferences.getInstance();
-  await status.setBool("isLoggedIn", true);
-  await status.setString("ACCESS_TOKEN", accessToken);
-  await status.setString("USER_ID", userId);
-  await status.setString("USER_NAME", userName);
-  await status.setString("USER_EMAIL", userEmail);
+  setLoginStatus({
+    required String accessToken,
+    required String userId,
+    required String userName,
+    required String userEmail,
+  }) async {
+    final status = await SharedPreferences.getInstance();
+    await status.setBool("isLoggedIn", true);
+    await status.setString("ACCESS_TOKEN", accessToken);
+    await status.setString("USER_ID", userId);
+    await status.setString("USER_NAME", userName);
+    await status.setString("USER_EMAIL", userEmail);
+  }
 }

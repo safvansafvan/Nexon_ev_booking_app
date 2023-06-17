@@ -26,8 +26,7 @@ class LoginProvider extends ChangeNotifier {
   bool _passwordVisibility = true;
   bool get passwordVisibility => _passwordVisibility;
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
+  bool isLoading = false;
 
   UserLoginModel? _userData;
   UserLoginModel? get userData => _userData;
@@ -47,20 +46,15 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  setLoading(bool loading) {
-    _isLoading = loading;
-    notifyListeners();
-  }
-
   showPassword() {
     _passwordVisibility = !passwordVisibility;
     notifyListeners();
   }
 
   getLoginStatus(context) async {
-    setLoading(true);
+    isLoading = true;
     String url = Urls.baseUrl + Urls.login;
-    Map<dynamic, dynamic> body = {
+    Map<String, dynamic> body = {
       "email": emailController.text.trim(),
       "password": passwordCntrlr.text.trim()
     };
@@ -76,13 +70,9 @@ class LoginProvider extends ChangeNotifier {
       final userId = data.result.id;
       final userName = data.result.username;
       final userEmail = data.result.email;
-      setLoginStatus(
-          accessToken: accessToken,
-          userId: userId,
-          userName: userName,
-          userEmail: userEmail);
-      clearController();
+
       snakBarWiget(context: context, title: "Login Success", clr: kGreen);
+      isLoading = false;
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -90,15 +80,21 @@ class LoginProvider extends ChangeNotifier {
         ),
         (route) => false,
       );
+
+      setLoginStatus(
+          accessToken: accessToken,
+          userId: userId,
+          userName: userName,
+          userEmail: userEmail);
     }
     if (response is Failures) {
-      setLoading(false);
       Error loginError =
           Error(code: response.code, message: response.responseMsg);
       setLoginError(loginError, context);
       log("failed");
     }
-    setLoading(false);
+    isLoading = false;
+    clearController();
   }
 
   // save the value of access token and make sure the user already login or not
@@ -138,7 +134,7 @@ class LoginProvider extends ChangeNotifier {
   errorResponses(Error loginError, BuildContext context) {
     final statusCode = loginError.code;
     if (statusCode == 401 || statusCode == 500) {
-      log("snackbar: Invalid username or passeord");
+      log("snackbar: Invalid username or password");
       return snakBarWiget(
           context: context, title: "Invalid Username or password", clr: kred);
     }
