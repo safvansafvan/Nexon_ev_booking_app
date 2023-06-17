@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/providers/continue_with_google.dart';
 import 'package:bookingapp/presentation/booking/car_booking.dart';
 import 'package:bookingapp/presentation/authentication/login.dart';
 import 'package:bookingapp/presentation/map/location.dart';
@@ -6,6 +7,7 @@ import 'package:bookingapp/presentation/test_drive_booking/test_booking.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -35,6 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
           onTap: () async {
             final SharedPreferences prefs =
                 await SharedPreferences.getInstance();
+            // ignore: use_build_context_synchronously
+            Provider.of<ContinueWithGoogleProvider>(context, listen: false)
+                .logout();
             prefs.remove("isLoggedIn");
             prefs.remove("USER_NAME");
             prefs.remove("USER_EMAIL");

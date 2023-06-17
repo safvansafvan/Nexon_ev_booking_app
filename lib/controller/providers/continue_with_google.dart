@@ -24,12 +24,11 @@ class ContinueWithGoogleProvider extends ChangeNotifier {
     return _userData;
   }
 
+  final GoogleSignIn googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+    signInOption: SignInOption.standard,
+  );
   continueWithGoogleButtonClick(context) async {
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      scopes: ['email'],
-      signInOption: SignInOption.standard,
-    );
-
     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
     if (googleUser != null) {
       final String email = googleUser.email;
@@ -37,6 +36,10 @@ class ContinueWithGoogleProvider extends ChangeNotifier {
       await continueWithGoogle(context, email, username);
     }
     notifyListeners();
+  }
+
+  logout() async {
+    await googleSignIn.signOut();
   }
 
   Future<void> continueWithGoogle(context, email, username) async {
