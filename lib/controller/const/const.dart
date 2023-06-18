@@ -17,6 +17,10 @@ textStyleFuc({required weight, required color, required double size}) {
 
 var radiusTen = BorderRadius.circular(11);
 
+var height10 = const SizedBox(
+  height: 10,
+);
+
 var commonHeight = const SizedBox(
   height: 20,
 );

@@ -42,7 +42,7 @@ dependencies:
   email_validator: ^2.1.17
   shared_preferences: ^2.1.1
   http: ^1.0.0
-  animated_splash_screen: ^1.3.0
+  animated_custom_dropdown: ^1.5.0
   google_sign_in: 
   lottie: ^2.4.0
   
@@ -72,7 +72,6 @@ flutter:
   assets:
     - assets/ui-loader.json
     - assets/car-animation.json
-    - assets/baground.png
     - assets/splash.jpg
     - assets/splash_b.webp
     - assets/nexon.jpeg
@@ -80,6 +79,8 @@ flutter:
     - assets/nexon.webp
     - assets/nexonEvB.png
     - assets/nexon_black_back.png
+    - assets/nexon_ev_banner_mobil.jpg
+    - assets/IMG_20230617_145456.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

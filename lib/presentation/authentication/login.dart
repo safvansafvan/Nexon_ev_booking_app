@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          TextFormCommon(
+                          TextFormLogin(
                               controller: providerLogin.emailController,
                               hintText: "Email",
                               keyType: TextInputType.emailAddress,
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                               size: screenHeight,
                               prefixIcon: const Icon(Icons.person_outline)),
                           commonHeight,
-                          TextFormCommon(
+                          TextFormLogin(
                             controller: providerLogin.passwordCntrlr,
                             hintText: "Password",
                             keyType: TextInputType.name,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/const/const.dart';
 
-class TextFormCommon extends StatelessWidget {
+class TextFormLogin extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final TextInputType keyType;
@@ -16,7 +16,7 @@ class TextFormCommon extends StatelessWidget {
   final Size size;
   final dynamic prefixIcon;
   final dynamic maxlength;
-  const TextFormCommon(
+  const TextFormLogin(
       {super.key,
       required this.prefixIcon,
       required this.controller,

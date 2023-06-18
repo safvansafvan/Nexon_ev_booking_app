@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
                               SizedBox(
                                 height: screenHeight.height * 0.05,
                               ),
-                              TextFormCommon(
+                              TextFormLogin(
                                 controller: signUpProvider.usernameController,
                                 hintText: "Username",
                                 keyType: TextInputType.name,
@@ -60,7 +60,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                               ),
                               commonHeight,
-                              TextFormCommon(
+                              TextFormLogin(
                                 controller: signUpProvider.emailController,
                                 hintText: "Email",
                                 keyType: TextInputType.emailAddress,
@@ -71,7 +71,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                               ),
                               commonHeight,
-                              TextFormCommon(
+                              TextFormLogin(
                                 controller: signUpProvider.phoneController,
                                 hintText: "Phone",
                                 keyType: TextInputType.number,
@@ -83,7 +83,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                               ),
                               commonHeight,
-                              TextFormCommon(
+                              TextFormLogin(
                                 controller: signUpProvider.passwordController,
                                 hintText: "Password",
                                 keyType: TextInputType.name,

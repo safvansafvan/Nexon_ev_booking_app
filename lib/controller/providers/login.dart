@@ -4,7 +4,7 @@ import 'package:bookingapp/apiservice/status.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/authentication/login.dart';
-import 'package:bookingapp/presentation/home/home.dart';
+import 'package:bookingapp/presentation/home.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

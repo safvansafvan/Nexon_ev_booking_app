@@ -49,7 +49,7 @@ class ForgotPasswordWidget extends StatelessWidget {
                             weight: FontWeight.w400, color: kBlack, size: 14),
                       ),
                       commonHeight,
-                      TextFormCommon(
+                      TextFormLogin(
                           prefixIcon: const Icon(Icons.email_outlined),
                           controller: forgotProvider.emailController,
                           hintText: "Email",
