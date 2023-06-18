@@ -41,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const AppBarWidget(
+              AppBarWidget(
+                menu: true,
                 leading: Icons.menu,
                 title: "Nexon",
                 trailing: Icons.settings,

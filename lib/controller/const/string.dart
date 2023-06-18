@@ -11,4 +11,7 @@ class Urls {
   static String otpVerificationAndSignup = "/verify-and-signup";
   static String forgotPassword = "/forgot-password";
   static String verifyAndForgot = "/verify-and-forgot";
+
+//getdealer
+  static String dealer = "/get-dealer";
 }

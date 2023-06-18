@@ -4,6 +4,7 @@ import 'package:bookingapp/controller/providers/login.dart';
 import 'package:bookingapp/controller/providers/otp_provider.dart';
 import 'package:bookingapp/controller/providers/otpverify_signup.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
+import 'package:bookingapp/controller/providers/test_drive_provider.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ForgotPasswordProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TestDriveBookingProvider(),
         ),
       ],
       child: MaterialApp(

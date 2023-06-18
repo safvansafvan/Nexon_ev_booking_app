@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -13,7 +14,7 @@ class DrawerWidget extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 53, 86, 113),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListView(
+            child: Column(
               children: [
                 commonHeight,
                 CircleAvatar(
@@ -96,7 +97,13 @@ class DrawerWidget extends StatelessWidget {
                       borderRadius: radiusTen,
                       border: Border.all(color: Colors.grey)),
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsScreen(),
+                        ),
+                      );
+                    },
                     leading: Icon(
                       Icons.settings_outlined,
                       color: kwhite,
@@ -127,7 +134,7 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 175,
+                  height: 140,
                 ),
                 Text(
                   "Version",
