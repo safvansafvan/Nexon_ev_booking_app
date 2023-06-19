@@ -8,7 +8,7 @@ import 'package:bookingapp/presentation/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../presentation/widget/snack_bar.dart';
+import '../../../presentation/widget/snack_bar.dart';
 
 class ContinueWithGoogleProvider extends ChangeNotifier {
   // GoogleSignIn? _googleSignIn;

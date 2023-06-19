@@ -1,8 +1,8 @@
-import 'package:bookingapp/controller/providers/continue_with_google.dart';
-import 'package:bookingapp/controller/providers/forgot_password.dart';
-import 'package:bookingapp/controller/providers/login.dart';
-import 'package:bookingapp/controller/providers/otp_provider.dart';
-import 'package:bookingapp/controller/providers/otpverify_signup.dart';
+import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
+import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
+import 'package:bookingapp/controller/providers/authentication/login.dart';
+import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
+import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
 import 'package:bookingapp/controller/providers/test_drive_provider.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';

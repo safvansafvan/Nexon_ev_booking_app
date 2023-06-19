@@ -1,6 +1,6 @@
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/otp_provider.dart';
-import 'package:bookingapp/controller/providers/otpverify_signup.dart';
+import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
+import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
 import 'package:bookingapp/presentation/authentication/login.dart';
 import 'package:bookingapp/presentation/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';

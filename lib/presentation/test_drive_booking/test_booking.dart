@@ -56,6 +56,7 @@ class TestDriveBooking extends StatelessWidget {
               prefixIcon: const Icon(Icons.phone_outlined),
               controller: testDriveProvider.phoneController,
               hintText: "Phone",
+              maxlength: 10,
               keyType: TextInputType.number,
               size: screenSize),
           height10,
@@ -135,7 +136,9 @@ class TestDriveBooking extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 70),
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () async {
+                await testDriveProvider.tesDriveBookingButtonClick(context);
+              },
               icon: const Icon(Icons.done_sharp),
               label: const Text("Submit"),
             ),

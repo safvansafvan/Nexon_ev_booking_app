@@ -1,11 +1,11 @@
-import 'package:bookingapp/controller/providers/otp_provider.dart';
+import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
 import 'package:bookingapp/presentation/authentication/widget/image_widget.dart';
 import 'package:bookingapp/presentation/widget/otp_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../controller/const/const.dart';
-import '../../controller/providers/otpverify_signup.dart';
+import '../../controller/providers/authentication/otpverify_signup.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});

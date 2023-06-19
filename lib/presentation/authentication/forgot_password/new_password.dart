@@ -1,5 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/forgot_password.dart';
+import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
 import 'package:bookingapp/presentation/authentication/widget/image_widget.dart';
 import 'package:bookingapp/presentation/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';

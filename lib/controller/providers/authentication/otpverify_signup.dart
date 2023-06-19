@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
-import 'package:bookingapp/controller/providers/otp_provider.dart';
+import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
 import 'package:bookingapp/model/authentication/signup.dart';
 import 'package:bookingapp/presentation/home.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';

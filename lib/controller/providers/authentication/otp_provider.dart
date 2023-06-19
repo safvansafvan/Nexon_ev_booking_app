@@ -7,7 +7,7 @@ import 'package:bookingapp/model/authentication/otp.dart';
 import 'package:bookingapp/presentation/authentication/otp_verify.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../presentation/widget/snack_bar.dart';
+import '../../../presentation/widget/snack_bar.dart';
 import 'otpverify_signup.dart';
 
 class OtpProvider extends ChangeNotifier {

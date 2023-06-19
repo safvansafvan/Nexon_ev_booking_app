@@ -1,5 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/login.dart';
+import 'package:bookingapp/controller/providers/authentication/login.dart';
 import 'package:bookingapp/presentation/authentication/forgot_password/forgot_otp.dart';
 import 'package:bookingapp/presentation/authentication/register.dart';
 import 'package:bookingapp/presentation/authentication/widget/image_widget.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import '../../controller/providers/continue_with_google.dart';
+import '../../controller/providers/authentication/continue_with_google.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

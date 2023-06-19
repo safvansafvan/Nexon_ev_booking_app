@@ -14,4 +14,8 @@ class Urls {
 
 //getdealer
   static String dealer = "/get-dealer";
+
+  //testDriveBooking
+
+  static String testDriveBooking = "/test-drive";
 }
