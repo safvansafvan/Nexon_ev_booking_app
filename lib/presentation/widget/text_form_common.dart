@@ -41,14 +41,13 @@ class TextFormFieldCommon extends StatelessWidget {
         hintText: hintText,
         hintStyle: TextStyle(color: kwhite),
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.blue),
-          borderRadius: BorderRadius.circular(10),
-        ),
+            borderRadius: radiusTen,
+            borderSide: const BorderSide(color: Colors.grey, width: 3)),
       ),
       style: TextStyle(
         fontSize: size.width * 0.045,
         color: kwhite,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
       ),
     );
   }

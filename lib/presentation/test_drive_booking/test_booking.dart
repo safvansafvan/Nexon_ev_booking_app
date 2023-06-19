@@ -15,15 +15,8 @@ class TestDriveBooking extends StatelessWidget {
       Provider.of<TestDriveBookingProvider>(context, listen: false)
           .fetchDealer();
     });
-    TextEditingController nameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController phoneController = TextEditingController();
-    TextEditingController cityController = TextEditingController();
-
-    ///dropdowncontroller
-    TextEditingController stateController = TextEditingController();
-    TextEditingController carModelController = TextEditingController();
-    TextEditingController dealerShipController = TextEditingController();
+    final testDriveProvider =
+        Provider.of<TestDriveBookingProvider>(context, listen: false);
 
     final screenSize = MediaQuery.of(context).size;
 
@@ -47,28 +40,28 @@ class TestDriveBooking extends StatelessWidget {
           ),
           TextFormFieldCommon(
               prefixIcon: const Icon(Icons.person_outline),
-              controller: nameController,
+              controller: testDriveProvider.nameController,
               hintText: "Full Name",
               keyType: TextInputType.name,
               size: screenSize),
           height10,
           TextFormFieldCommon(
               prefixIcon: const Icon(Icons.email_outlined),
-              controller: emailController,
+              controller: testDriveProvider.emailController,
               hintText: "Email",
               keyType: TextInputType.emailAddress,
               size: screenSize),
           height10,
           TextFormFieldCommon(
               prefixIcon: const Icon(Icons.phone_outlined),
-              controller: phoneController,
+              controller: testDriveProvider.phoneController,
               hintText: "Phone",
               keyType: TextInputType.number,
               size: screenSize),
           height10,
           TextFormFieldCommon(
               prefixIcon: const Icon(Icons.location_city_outlined),
-              controller: cityController,
+              controller: testDriveProvider.cityController,
               hintText: "City",
               keyType: TextInputType.name,
               size: screenSize),
@@ -86,7 +79,7 @@ class TestDriveBooking extends StatelessWidget {
                   hintStyle: TextStyle(color: kwhite),
                   selectedStyle: TextStyle(color: kwhite),
                   items: const ["kerala", "Tamilnadu"],
-                  controller: stateController),
+                  controller: testDriveProvider.stateController),
             ),
           ),
           height10,
@@ -107,7 +100,7 @@ class TestDriveBooking extends StatelessWidget {
                     "Nexon Ev Max",
                     "Nexon Ev Dart"
                   ],
-                  controller: carModelController),
+                  controller: testDriveProvider.carModelController),
             ),
           ),
           height10,
@@ -119,6 +112,9 @@ class TestDriveBooking extends StatelessWidget {
             child: Center(
               child: Consumer<TestDriveBookingProvider>(
                   builder: (context, value, _) {
+                if (value.dealerList.isEmpty) {
+                  return const Center(child: CircularProgressIndicator());
+                }
                 return CustomDropdown(
                     excludeSelected: true,
                     fillColor: Colors.transparent,
@@ -131,7 +127,7 @@ class TestDriveBooking extends StatelessWidget {
                       value.dealerList[2].dealerName,
                       value.dealerList[3].dealerName
                     ],
-                    controller: dealerShipController);
+                    controller: testDriveProvider.dealerShipController);
               }),
             ),
           ),
