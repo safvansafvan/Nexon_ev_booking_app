@@ -85,6 +85,9 @@ flutter:
     - assets/nexon.jpeg
     - assets/community.jpeg
     - assets/chatBoat.jpg
+    - assets/nexonPrime1.png
+    - assets/prime.webp
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

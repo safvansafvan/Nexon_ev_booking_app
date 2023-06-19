@@ -3,6 +3,8 @@ import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
 
+import '../carbooking&deatails/booking_and_deatails.dart';
+
 List image = ["assets/neprime.jpeg", "assets/nexon.webp", "assets/sap.webp"];
 List carName = ["Nexon Ev Prime ", "Nexon Ev Max", "Nexon Ev Dark"];
 
@@ -44,13 +46,26 @@ class MainScreen extends StatelessWidget {
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      width: 300,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(image[index]),
+                    InkWell(
+                      onTap: () {
+                        if (index == 0) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const NexonEvPrimeDeatails(),
+                            ),
+                          );
+                        }
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(image[index]),
+                          ),
                         ),
                       ),
                     ),

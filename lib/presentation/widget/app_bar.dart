@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 class AppBarWidget extends StatelessWidget {
   AppBarWidget(
       {super.key,
-      required this.title,
+      this.title,
       required this.leading,
       this.trailing,
       required this.menu});
 
-  final String title;
+  final String? title;
   final IconData leading;
   final IconData? trailing;
 
@@ -39,7 +39,7 @@ class AppBarWidget extends StatelessWidget {
               )),
       title: Center(
         child: Text(
-          title,
+          title ?? "",
           style: textStyleFuc(weight: FontWeight.w600, color: kBlack, size: 20),
         ),
       ),
