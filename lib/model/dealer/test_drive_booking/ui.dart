@@ -6,7 +6,11 @@ class Checkig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [],
+      children: [
+        Container(
+          child: Text("ddddddddddddddddddddddd"),
+        )
+      ],
     );
   }
 }
