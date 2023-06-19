@@ -7,11 +7,10 @@ import 'package:bookingapp/controller/providers/splash.dart';
 import 'package:bookingapp/controller/providers/test_drive_provider.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  //   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -48,9 +47,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Nexon Booking App',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 181, 24, 216),
-          ),
+          fontFamily: GoogleFonts.philosopher().fontFamily,
+          // colorScheme: ColorScheme.fromSeed(
+          //   seedColor: const Color.fromARGB(255, 181, 24, 216),
+          // ),
           useMaterial3: true,
         ),
         home: const SplashScreen(),

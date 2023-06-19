@@ -1,6 +1,6 @@
 import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
 import 'package:bookingapp/presentation/authentication/widget/image_widget.dart';
-import 'package:bookingapp/presentation/widget/otp_text_field.dart';
+import 'package:bookingapp/presentation/authentication/widget/otp_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';

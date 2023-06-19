@@ -45,6 +45,7 @@ dependencies:
   animated_custom_dropdown: ^1.5.0
   google_sign_in: 
   lottie: ^2.4.0
+  google_fonts: ^5.0.0
   
 dev_dependencies:
   flutter_test:
@@ -72,15 +73,18 @@ flutter:
   assets:
     - assets/ui-loader.json
     - assets/car-animation.json
-    - assets/splash.jpg
     - assets/splash_b.webp
-    - assets/nexon.jpeg
     - assets/nexonOt.webp
     - assets/nexon.webp
     - assets/nexonEvB.png
     - assets/nexon_black_back.png
     - assets/nexon_ev_banner_mobil.jpg
-    - assets/IMG_20230617_145456.jpg
+    - assets/sap.webp
+    - assets/wide.webp
+    - assets/neprime.jpeg
+    - assets/nexon.jpeg
+    - assets/community.jpeg
+    - assets/chatBoat.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

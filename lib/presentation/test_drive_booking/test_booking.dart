@@ -26,7 +26,7 @@ class TestDriveBooking extends StatelessWidget {
         children: [
           HeadingTextWidget(
             text: "Test Drive Booking",
-            color: kwhite,
+            color: kBlack,
             fontWeight: FontWeight.w500,
             textSize: 23,
             underline: true,
@@ -34,7 +34,7 @@ class TestDriveBooking extends StatelessWidget {
           height10,
           HeadingTextWidget(
             text: "Please fill in your details",
-            color: kwhite,
+            color: kBlack,
             fontWeight: FontWeight.w300,
             textSize: 15,
           ),
@@ -77,8 +77,8 @@ class TestDriveBooking extends StatelessWidget {
                   excludeSelected: true,
                   fillColor: Colors.transparent,
                   hintText: "Select State",
-                  hintStyle: TextStyle(color: kwhite),
-                  selectedStyle: TextStyle(color: kwhite),
+                  hintStyle: TextStyle(color: kBlack),
+                  selectedStyle: TextStyle(color: kBlack),
                   items: const ["kerala", "Tamilnadu"],
                   controller: testDriveProvider.stateController),
             ),
@@ -94,8 +94,8 @@ class TestDriveBooking extends StatelessWidget {
                   excludeSelected: true,
                   fillColor: Colors.transparent,
                   hintText: "Select An Ev",
-                  hintStyle: TextStyle(color: kwhite),
-                  selectedStyle: TextStyle(color: kwhite),
+                  hintStyle: TextStyle(color: kBlack),
+                  selectedStyle: TextStyle(color: kBlack),
                   items: const [
                     "Nexon Ev Prime",
                     "Nexon Ev Max",
@@ -120,8 +120,8 @@ class TestDriveBooking extends StatelessWidget {
                     excludeSelected: true,
                     fillColor: Colors.transparent,
                     hintText: "Dealer",
-                    hintStyle: TextStyle(color: kwhite),
-                    selectedStyle: TextStyle(color: kwhite),
+                    hintStyle: TextStyle(color: kBlack),
+                    selectedStyle: TextStyle(color: kBlack),
                     items: [
                       value.dealerList[0].dealerName,
                       value.dealerList[1].dealerName,

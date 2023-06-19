@@ -33,20 +33,20 @@ class TextFormFieldCommon extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
-        prefixIconColor: kwhite,
+        prefixIconColor: kBlack,
         prefixIcon: prefixIcon,
-        suffixIconColor: kwhite,
+        suffixIconColor: kBlack,
         suffixIcon: suffixIcon,
-        counterStyle: TextStyle(color: kwhite),
+        counterStyle: TextStyle(color: kBlack),
         hintText: hintText,
-        hintStyle: TextStyle(color: kwhite),
+        hintStyle: TextStyle(color: kBlack),
         border: OutlineInputBorder(
             borderRadius: radiusTen,
             borderSide: const BorderSide(color: Colors.grey, width: 3)),
       ),
       style: TextStyle(
         fontSize: size.width * 0.045,
-        color: kwhite,
+        color: kBlack,
         fontWeight: FontWeight.w500,
       ),
     );

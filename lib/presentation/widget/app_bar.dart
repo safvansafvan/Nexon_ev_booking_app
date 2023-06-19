@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -25,7 +26,7 @@ class AppBarWidget extends StatelessWidget {
               },
               icon: Icon(
                 Icons.menu,
-                color: kwhite,
+                color: kBlack,
               ),
             )
           : IconButton(
@@ -34,17 +35,24 @@ class AppBarWidget extends StatelessWidget {
               },
               icon: Icon(
                 leading,
-                color: kwhite,
+                color: kBlack,
               )),
       title: Center(
         child: Text(
           title,
-          style: textStyleFuc(weight: FontWeight.w400, color: kwhite, size: 20),
+          style: textStyleFuc(weight: FontWeight.w600, color: kBlack, size: 20),
         ),
       ),
       trailing: IconButton(
-        onPressed: () {},
-        icon: Icon(trailing, color: kwhite),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SettingsScreen(),
+            ),
+          );
+        },
+        icon: Icon(trailing, color: kBlack),
       ),
     );
   }

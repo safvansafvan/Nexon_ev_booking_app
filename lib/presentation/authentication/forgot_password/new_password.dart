@@ -5,8 +5,7 @@ import 'package:bookingapp/presentation/authentication/widget/text_form_field.da
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
-import '../../widget/otp_text_field.dart';
+import '../widget/otp_text_field.dart';
 
 class NewPasswordWidget extends StatelessWidget {
   const NewPasswordWidget({super.key});
