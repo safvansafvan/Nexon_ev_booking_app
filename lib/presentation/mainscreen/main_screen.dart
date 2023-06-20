@@ -3,7 +3,7 @@ import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
 
-import '../carbooking&deatails/booking_and_deatails.dart';
+import '../carbooking&deatails/nexon_prime_booking.dart';
 
 List image = ["assets/neprime.jpeg", "assets/nexon.webp", "assets/sap.webp"];
 List carName = ["Nexon Ev Prime ", "Nexon Ev Max", "Nexon Ev Dark"];

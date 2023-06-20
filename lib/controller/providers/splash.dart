@@ -15,7 +15,8 @@ class SplashProvider with ChangeNotifier {
           return const LoginPage();
         }),
       );
-    } else {
+    }
+    if (isLoggedIn == true) {
       Navigator.pushReplacement(
         ctx,
         MaterialPageRoute(builder: (context) {

@@ -46,6 +46,7 @@ dependencies:
   google_sign_in: 
   lottie: ^2.4.0
   google_fonts: ^5.0.0
+  smooth_page_indicator: ^1.1.0
   
 dev_dependencies:
   flutter_test:
