@@ -1,18 +1,24 @@
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
-import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
-
-import '../carbooking&deatails/nexon_prime_booking.dart';
-
-List image = ["assets/neprime.jpeg", "assets/nexon.webp", "assets/sap.webp"];
-List carName = ["Nexon Ev Prime ", "Nexon Ev Max", "Nexon Ev Dark"];
+import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/widget/text_h.dart';
+import 'package:bookingapp/presentation/widget/page_indicator.dart';
+import 'package:bookingapp/presentation/carbooking&deatails/nexon_darke.dart';
+import 'package:bookingapp/presentation/carbooking&deatails/nexon_max.dart';
+import 'package:bookingapp/presentation/carbooking&deatails/nexon_prime.dart';
+import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List image = [
+      "assets/neprime.jpeg",
+      "assets/nexon.webp",
+      "assets/sap.webp"
+    ];
+    List carName = ["Nexon Ev Prime ", "Nexon Ev Max", "Nexon Ev Dark"];
+    final pageController = PageController();
     return Padding(
       padding: const EdgeInsets.all(10),
       child: ListView(
@@ -35,42 +41,56 @@ class MainScreen extends StatelessWidget {
             textSize: 20,
             underline: true,
           ),
+          height10,
           SizedBox(
             height: 250,
-            width: 300,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: image.length,
+            width: double.infinity,
+            child: PageView.builder(
+              controller: pageController,
               itemBuilder: (context, index) {
                 return Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        if (index == 0) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const NexonEvPrimeDeatails(),
-                            ),
-                          );
-                        }
-                      },
-                      child: Container(
-                        width: 300,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: InkWell(
+                        onTap: () {
+                          if (index % image.length == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const NexonEvPrimeDeatails(),
+                              ),
+                            );
+                          } else if (index % image.length == 1) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const NexonEvMaxDeatails(),
+                              ),
+                            );
+                          } else if (index % image.length == 2) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NexonDarkEdition(),
+                              ),
+                            );
+                          }
+                        },
+                        child: SizedBox(
+                          height: 200,
+                          width: double.infinity,
+                          child: Image.asset(
+                            image[index % image.length],
                             fit: BoxFit.cover,
-                            image: AssetImage(image[index]),
                           ),
                         ),
                       ),
                     ),
                     Text(
-                      carName[index],
+                      carName[index % carName.length],
                       style: textStyleFuc(
                           weight: FontWeight.w500, color: kBlack, size: 20),
                     ),
@@ -78,6 +98,10 @@ class MainScreen extends StatelessWidget {
                 );
               },
             ),
+          ),
+          Center(
+            child: PageIndicatorWidget(
+                pageController: pageController, count: image.length),
           ),
           TextButton(
             onPressed: () {},
@@ -96,7 +120,7 @@ class MainScreen extends StatelessWidget {
             textSize: 20,
             underline: true,
           ),
-          commonHeight,
+          height10,
           const PopularOptionsWidges(),
         ],
       ),

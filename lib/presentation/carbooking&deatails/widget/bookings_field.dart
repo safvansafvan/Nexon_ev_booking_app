@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/test_drive_booking/test_booking.dart';
 import 'package:flutter/material.dart';
 
 class BookingsField extends StatelessWidget {
@@ -20,7 +21,13 @@ class BookingsField extends StatelessWidget {
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: radiusTen),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const TestDriveBooking(),
+                ),
+              );
+            },
             child: const Text("Book A Test Drive"),
           ),
         ),

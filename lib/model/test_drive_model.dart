@@ -1,3 +1,15 @@
+// To parse this JSON data, do
+//
+//     final testDriveBookingModel = testDriveBookingModelFromJson(jsonString);
+
+import 'dart:convert';
+
+TestDriveBookingModel testDriveBookingModelFromJson(String str) =>
+    TestDriveBookingModel.fromJson(json.decode(str));
+
+String testDriveBookingModelToJson(TestDriveBookingModel data) =>
+    json.encode(data.toJson());
+
 class TestDriveBookingModel {
   String? name;
   String? email;
@@ -5,7 +17,8 @@ class TestDriveBookingModel {
   String? city;
   String? state;
   String? model;
-  String? dealerShip;
+  String? dealership;
+  bool? checked;
 
   TestDriveBookingModel({
     this.name,
@@ -14,7 +27,8 @@ class TestDriveBookingModel {
     this.city,
     this.state,
     this.model,
-    this.dealerShip,
+    this.dealership,
+    this.checked,
   });
 
   factory TestDriveBookingModel.fromJson(Map<String, dynamic> json) =>
@@ -25,7 +39,8 @@ class TestDriveBookingModel {
         city: json["city"],
         state: json["state"],
         model: json["model"],
-        dealerShip: json["dealerShip"],
+        dealership: json["dealership"],
+        checked: json["checked"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,6 +50,7 @@ class TestDriveBookingModel {
         "city": city,
         "state": state,
         "model": model,
-        "dealerShip": dealerShip,
+        "dealership": dealership,
+        "checked": checked,
       };
 }

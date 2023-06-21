@@ -47,6 +47,7 @@ dependencies:
   lottie: ^2.4.0
   google_fonts: ^5.0.0
   smooth_page_indicator: ^1.1.0
+  awesome_dialog: ^2.2.1
   
 dev_dependencies:
   flutter_test:
@@ -88,6 +89,9 @@ flutter:
     - assets/chatBoat.jpg
     - assets/nexonPrime1.png
     - assets/prime.webp
+    - assets/maxxx.png
+    - assets/white.webp
+  
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

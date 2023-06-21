@@ -22,6 +22,8 @@ class TextFormFieldCommon extends StatelessWidget {
   TextEditingController controller;
   @override
   Widget build(BuildContext context) {
+    final border = OutlineInputBorder(
+        borderRadius: radiusTen, borderSide: BorderSide(color: kblue));
     return TextFormField(
       controller: controller,
       maxLength: maxlength,
@@ -33,17 +35,16 @@ class TextFormFieldCommon extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
-        prefixIconColor: kBlack,
-        prefixIcon: prefixIcon,
-        suffixIconColor: kBlack,
-        suffixIcon: suffixIcon,
-        counterStyle: TextStyle(color: kBlack),
-        hintText: hintText,
-        hintStyle: TextStyle(color: kBlack),
-        border: OutlineInputBorder(
-            borderRadius: radiusTen,
-            borderSide: const BorderSide(color: Colors.grey, width: 3)),
-      ),
+          prefixIconColor: kBlack,
+          prefixIcon: prefixIcon,
+          suffixIconColor: kBlack,
+          suffixIcon: suffixIcon,
+          hintText: hintText,
+          hintStyle: TextStyle(color: kBlack),
+          border: border,
+          enabledBorder: border,
+          focusedBorder: border,
+          disabledBorder: border),
       style: TextStyle(
         fontSize: size.width * 0.045,
         color: kBlack,

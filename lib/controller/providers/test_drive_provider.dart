@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/dealer/dealer_model.dart';
-import 'package:flutter/material.dart';
+import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:http/http.dart' as http;
 
 class TestDriveBookingProvider with ChangeNotifier {
@@ -16,6 +19,8 @@ class TestDriveBookingProvider with ChangeNotifier {
   TextEditingController carModelController = TextEditingController();
   TextEditingController dealerShipController = TextEditingController();
   List<Dealer> dealerList = [];
+  final formKey7 = GlobalKey<FormState>();
+
   final String url = Urls.baseUrl + Urls.dealer;
 
   bool isLoading = false;
@@ -41,12 +46,11 @@ class TestDriveBookingProvider with ChangeNotifier {
   }
 
   tesDriveBookingButtonClick(context) async {
-    // testDriveBookingStatus(context);
-    testDriveBooking();
+    await testDriveBooking(context);
     notifyListeners();
   }
 
-  Future<void> testDriveBooking() async {
+  Future<void> testDriveBooking(context) async {
     try {
       var url = Urls.baseUrl + Urls.testDriveBooking;
 
@@ -66,27 +70,54 @@ class TestDriveBookingProvider with ChangeNotifier {
       var response = await http.post(
         Uri.parse(url),
         body: requestBody,
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 200) {
-        // Successful response
         var data = json.decode(response.body);
         if (data['status'] == 'success') {
-          // Test drive booking successful
+          awesome(context);
+          clearController();
           var result = data['result'];
           log('Test drive booking successful: $result');
         } else {
-          // Test drive booking failed
           var message = data['message'];
           log('Test drive booking failed: $message');
+          snakBarWiget(context: context, title: "Booking Failed", clr: kred);
         }
       } else {
-        // Error occurred during the API call
         log('Error: ${response.statusCode}');
+        snakBarWiget(context: context, title: "Something Wrong", clr: kred);
       }
     } catch (error) {
-      // Exception occurred
       log('Exception: $error');
     }
   }
+
+  clearController() {
+    nameController.clear();
+    emailController.clear();
+    cityController.clear();
+    phoneController.clear();
+    stateController.clear();
+    carModelController.clear();
+    dealerShipController.clear();
+  }
+}
+
+void awesome(context) {
+  AwesomeDialog(
+    context: context,
+    dialogType: DialogType.SUCCES,
+    animType: AnimType.BOTTOMSLIDE,
+    // showCloseIcon: true,
+    title: "Success",
+    desc:
+        "Your Test Drive Booking Is Success, Our Team Will Contact You As Soon As Possible",
+    btnCancelText: "Cancel",
+    btnCancelOnPress: () {
+      Navigator.of(context)
+          .pop(); // Function to execute when cancel button is pressed
+    },
+  ).show();
 }
