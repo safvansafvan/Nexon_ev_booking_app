@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/booknow/book_now.dart';
 import 'package:bookingapp/presentation/test_drive_booking/test_booking.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,14 @@ class BookingsField extends StatelessWidget {
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: radiusTen),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BookNowWidget(),
+                ),
+              );
+            },
             child: const Text("Book Now"),
           ),
         ),

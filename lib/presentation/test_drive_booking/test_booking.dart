@@ -5,7 +5,7 @@ import '../widget/text_form_common.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:bookingapp/controller/providers/test_drive_provider.dart';
+import 'package:bookingapp/controller/providers/bookings/test_drive_provider.dart';
 
 class TestDriveBooking extends StatelessWidget {
   const TestDriveBooking({super.key});

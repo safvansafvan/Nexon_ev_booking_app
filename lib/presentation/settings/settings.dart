@@ -39,6 +39,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               commonHeight,
               const SettingsFieldWidget(
+                isLogout: true,
                 title: "Logout",
               )
             ],
