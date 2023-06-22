@@ -1,11 +1,12 @@
+import 'package:share/share.dart';
+import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bookingapp/presentation/authentication/login.dart';
 import 'package:bookingapp/presentation/settings/screens/about_us.dart';
 import 'package:bookingapp/presentation/settings/screens/privacy_and_policy.dart';
 import 'package:bookingapp/presentation/settings/screens/terms_and_conditions.dart';
-import 'package:flutter/material.dart';
-import 'package:share/share.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bookingapp/presentation/widget/snack_bar.dart';
 
 class SettingsFieldWidget extends StatelessWidget {
   const SettingsFieldWidget(
@@ -55,7 +56,7 @@ class SettingsFieldWidget extends StatelessWidget {
               ),
             );
           } else if (isLogout == true) {
-            logout(context);
+            alertDialog(context);
           } else if (isShare == true) {
             share("com.example.share_app");
           }
@@ -65,6 +66,30 @@ class SettingsFieldWidget extends StatelessWidget {
           style: textStyleFuc(weight: FontWeight.w500, color: kBlack, size: 16),
         ),
       ),
+    );
+  }
+
+  void alertDialog(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Conform Message"),
+          content: const Text("Are you sure you would like to LOGOUT?"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Cancel")),
+            TextButton(
+                onPressed: () async {
+                  await logout(context);
+                },
+                child: const Text("Ok"))
+          ],
+        );
+      },
     );
   }
 
@@ -79,6 +104,8 @@ class SettingsFieldWidget extends StatelessWidget {
         builder: (context) => const LoginPage(),
       ),
     );
+    snakBarWiget(
+        context: context, title: "Your Logout is success", clr: kGreen);
   }
 
   void share(content) {

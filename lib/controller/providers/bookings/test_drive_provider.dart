@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/dealer/dealer_model.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/presentation/widget/succes_dialog.dart';
 import 'package:http/http.dart' as http;
 
 class TestDriveBookingProvider with ChangeNotifier {
@@ -76,7 +76,8 @@ class TestDriveBookingProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         if (data['status'] == 'success') {
-          awesome(context);
+          successDialogWiget(context,
+              "Your Test Drive Booking Is Success, Our Team Will Contact You As Soon As Possible");
           clearController();
           var result = data['result'];
           log('Test drive booking successful: $result');
@@ -103,21 +104,4 @@ class TestDriveBookingProvider with ChangeNotifier {
     carModelController.clear();
     dealerShipController.clear();
   }
-}
-
-void awesome(context) {
-  AwesomeDialog(
-    context: context,
-    dialogType: DialogType.SUCCES,
-    animType: AnimType.BOTTOMSLIDE,
-    // showCloseIcon: true,
-    title: "Success",
-    desc:
-        "Your Test Drive Booking Is Success, Our Team Will Contact You As Soon As Possible",
-    btnCancelText: "Cancel",
-    btnCancelOnPress: () {
-      Navigator.of(context)
-          .pop(); // Function to execute when cancel button is pressed
-    },
-  ).show();
 }
