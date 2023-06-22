@@ -4,6 +4,7 @@ import 'package:bookingapp/presentation/settings/screens/about_us.dart';
 import 'package:bookingapp/presentation/settings/screens/privacy_and_policy.dart';
 import 'package:bookingapp/presentation/settings/screens/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsFieldWidget extends StatelessWidget {
@@ -13,7 +14,8 @@ class SettingsFieldWidget extends StatelessWidget {
       this.isTerms,
       this.isPrivacyAndPolicy,
       required this.title,
-      this.isLogout});
+      this.isLogout,
+      this.isShare});
 
   final String title;
 
@@ -21,6 +23,7 @@ class SettingsFieldWidget extends StatelessWidget {
   final bool? isAboutUs;
   final bool? isTerms;
   final bool? isLogout;
+  final bool? isShare;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +56,8 @@ class SettingsFieldWidget extends StatelessWidget {
             );
           } else if (isLogout == true) {
             logout(context);
+          } else if (isShare == true) {
+            share("com.example.share_app");
           }
         },
         title: Text(
@@ -74,5 +79,9 @@ class SettingsFieldWidget extends StatelessWidget {
         builder: (context) => const LoginPage(),
       ),
     );
+  }
+
+  void share(content) {
+    Share.share(content);
   }
 }

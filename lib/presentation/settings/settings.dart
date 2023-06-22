@@ -36,6 +36,7 @@ class SettingsScreen extends StatelessWidget {
               commonHeight,
               const SettingsFieldWidget(
                 title: "Share",
+                isShare: true,
               ),
               commonHeight,
               const SettingsFieldWidget(

@@ -18,14 +18,14 @@ class DrawerWidget extends StatelessWidget {
             child: Column(
               children: [
                 commonHeight,
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 25,
-                  backgroundColor: kBlack,
-                  child: const Icon(Icons.person_outline),
+                  backgroundColor: Colors.grey,
+                  child: Icon(Icons.person_outline),
                 ),
                 commonHeight,
                 Text(
-                  "username",
+                  "safvan",
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kBlack, size: 15),
                 ),
