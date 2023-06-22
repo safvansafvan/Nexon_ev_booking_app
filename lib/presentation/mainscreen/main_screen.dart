@@ -1,3 +1,4 @@
+import 'package:bookingapp/presentation/brouchure/brouchure.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
@@ -104,7 +105,14 @@ class MainScreen extends StatelessWidget {
                 pageController: pageController, count: image.length),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BrochureGridViewWidget(),
+                ),
+              );
+            },
             child: Align(
               alignment: Alignment.topRight,
               child: Text(
