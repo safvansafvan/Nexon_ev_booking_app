@@ -8,9 +8,14 @@ import 'package:bookingapp/presentation/carbooking&deatails/nexon_max.dart';
 import 'package:bookingapp/presentation/carbooking&deatails/nexon_prime.dart';
 import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     List image = [
@@ -25,7 +30,7 @@ class MainScreen extends StatelessWidget {
       child: ListView(
         children: [
           TextButton(
-            onPressed: () {},
+            onPressed: () async {},
             child: Align(
               alignment: Alignment.topRight,
               child: Text(

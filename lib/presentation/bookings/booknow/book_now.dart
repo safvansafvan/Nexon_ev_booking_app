@@ -1,14 +1,65 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../../controller/providers/bookings_provider/bookingnow_provider.dart';
 import '../../../controller/providers/bookings_provider/test_drive_provider.dart';
 
-class BookNowWidget extends StatelessWidget {
+class BookNowWidget extends StatefulWidget {
   const BookNowWidget({super.key});
+
+  @override
+  State<BookNowWidget> createState() => _BookNowWidgetState();
+}
+
+class _BookNowWidgetState extends State<BookNowWidget> {
+  Razorpay? _razorpay;
+
+  void _handlePaymentSucccess(PaymentSuccessResponse response) {
+    Fluttertoast.showToast(
+        msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR HERE:${response.code},${response.message}");
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL WALLET IS:${response.walletName}",
+        timeInSecForIosWeb: 4);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _razorpay = Razorpay();
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSucccess);
+    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+  }
+
+  makePaymet() async {
+    var options = {
+      'key': 'rzp_test_XD8ZNhIAt6i1AM',
+      'amount': 500000,
+      'name': 'Nexon ev',
+      'description': '',
+      'prefill': {'contact': '+917902609889', 'email': 'contact@gmail.com'}
+    };
+    try {
+      _razorpay?.open(options);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -211,6 +262,8 @@ class BookNowWidget extends StatelessWidget {
                                     child: const Text("Cancel")),
                                 TextButton(
                                     onPressed: () async {
+                                      await makePaymet();
+                                      // ignore: use_build_context_synchronously
                                       await bookingProvider
                                           .bookingNowbuttonClick(context);
                                     },

@@ -5,7 +5,6 @@ import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/booking_now_model.dart';
 import 'package:bookingapp/presentation/home.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
-import 'package:bookingapp/presentation/widget/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -75,7 +74,6 @@ class BookingNowProvider extends ChangeNotifier {
           );
           clearController();
           // ignore: use_build_context_synchronously
-          successDialogWiget(context, "Your Car Booking Is Success");
           var result = data['result'];
           log('booking success $result');
         } else {
@@ -87,6 +85,7 @@ class BookingNowProvider extends ChangeNotifier {
       }
     } catch (e) {
       log("exception: $e");
+      snakBarWiget(context: context, title: e.toString(), clr: kred);
     }
 
     isLoading = false;
