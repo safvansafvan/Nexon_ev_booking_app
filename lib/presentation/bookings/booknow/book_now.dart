@@ -4,8 +4,8 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
-import '../../controller/providers/bookings/bookingnow_provider.dart';
-import '../../controller/providers/bookings/test_drive_provider.dart';
+import '../../../controller/providers/bookings_provider/bookingnow_provider.dart';
+import '../../../controller/providers/bookings_provider/test_drive_provider.dart';
 
 class BookNowWidget extends StatelessWidget {
   const BookNowWidget({super.key});
@@ -60,20 +60,6 @@ class BookNowWidget extends StatelessWidget {
                 kHeightFive,
                 HeadingTextWidget(text: "Billing Address"),
                 height10,
-                TextFormFieldCommon(
-                    controller: bookingProvider.address1Controller,
-                    hintText: "Address1",
-                    maxlength: 10,
-                    keyType: TextInputType.name,
-                    size: screenSize),
-                kHeightFive,
-                TextFormFieldCommon(
-                    controller: bookingProvider.address2Controller,
-                    hintText: "Address2",
-                    maxlength: 10,
-                    keyType: TextInputType.name,
-                    size: screenSize),
-                kHeightFive,
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -97,6 +83,20 @@ class BookNowWidget extends StatelessWidget {
                     size: screenSize),
                 height10,
                 TextFormFieldCommon(
+                    controller: bookingProvider.address1Controller,
+                    hintText: "Address1",
+                    maxlength: 15,
+                    keyType: TextInputType.name,
+                    size: screenSize),
+                kHeightFive,
+                TextFormFieldCommon(
+                    controller: bookingProvider.address2Controller,
+                    hintText: "Address2",
+                    maxlength: 15,
+                    keyType: TextInputType.name,
+                    size: screenSize),
+                kHeightFive,
+                TextFormFieldCommon(
                     controller: bookingProvider.pincodeController,
                     hintText: "Pincode",
                     maxlength: 6,
@@ -104,7 +104,7 @@ class BookNowWidget extends StatelessWidget {
                     size: screenSize),
                 kHeightFive,
                 HeadingTextWidget(text: "Dealer information"),
-                kHeightFive,
+                height10,
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -134,6 +134,7 @@ class BookNowWidget extends StatelessWidget {
                 ),
                 kHeightFive,
                 HeadingTextWidget(text: "Select Veriant"),
+                height10,
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -209,7 +210,10 @@ class BookNowWidget extends StatelessWidget {
                                     },
                                     child: const Text("Cancel")),
                                 TextButton(
-                                    onPressed: () async {},
+                                    onPressed: () async {
+                                      await bookingProvider
+                                          .bookingNowbuttonClick(context);
+                                    },
                                     child: const Text("Ok"))
                               ],
                             );

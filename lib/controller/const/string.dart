@@ -18,4 +18,7 @@ class Urls {
   //testDriveBooking
 
   static String testDriveBooking = "/test-drive";
+
+  //booking
+  static String bookingnow = "/booking";
 }

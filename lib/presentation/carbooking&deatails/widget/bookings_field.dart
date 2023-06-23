@@ -1,6 +1,6 @@
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/presentation/booknow/book_now.dart';
-import 'package:bookingapp/presentation/test_drive_booking/test_booking.dart';
+import 'package:bookingapp/presentation/bookings/booknow/book_now.dart';
+import 'package:bookingapp/presentation/bookings/test_drive_booking/test_booking.dart';
 import 'package:flutter/material.dart';
 
 class BookingsField extends StatelessWidget {

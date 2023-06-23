@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:bookingapp/presentation/home.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
@@ -21,11 +22,10 @@ class TestDriveBookingProvider with ChangeNotifier {
   List<Dealer> dealerList = [];
   final formKey7 = GlobalKey<FormState>();
 
-  final String url = Urls.baseUrl + Urls.dealer;
-
   bool isLoading = false;
 
   Future<void> fetchDealer() async {
+    final String url = Urls.baseUrl + Urls.dealer;
     try {
       isLoading = true;
       final response = await http.get(Uri.parse(url));
@@ -76,9 +76,16 @@ class TestDriveBookingProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         if (data['status'] == 'success') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MyHomePage(),
+            ),
+          );
+          clearController();
           successDialogWiget(context,
               "Your Test Drive Booking Is Success, Our Team Will Contact You As Soon As Possible");
-          clearController();
+
           var result = data['result'];
           log('Test drive booking successful: $result');
         } else {

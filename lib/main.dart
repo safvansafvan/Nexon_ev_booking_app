@@ -3,9 +3,9 @@ import 'package:bookingapp/controller/providers/authentication/forgot_password.d
 import 'package:bookingapp/controller/providers/authentication/login.dart';
 import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
 import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
-import 'package:bookingapp/controller/providers/bookings/bookingnow_provider.dart';
+import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_provider.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
-import 'package:bookingapp/controller/providers/bookings/test_drive_provider.dart';
+import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
 import 'package:bookingapp/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

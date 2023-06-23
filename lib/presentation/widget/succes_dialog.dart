@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 
 void successDialogWiget(context, message) {
   AwesomeDialog(
@@ -9,8 +10,9 @@ void successDialogWiget(context, message) {
     title: "Success",
     desc: message,
     btnCancelText: "Cancel",
-    // btnCancelOnPress: () {
-    //   Navigator.of(context).pop();
-    // },
   ).show();
+  const duration = Duration(seconds: 2);
+  Future.delayed(duration, () {
+    Navigator.of(context).pop();
+  });
 }

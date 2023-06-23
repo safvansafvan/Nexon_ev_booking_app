@@ -1,10 +1,12 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
 import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/map/location.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/widget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -24,6 +26,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<TestDriveBookingProvider>(context, listen: false)
+          .fetchDealer();
+    });
     return Scaffold(
       extendBody: true,
       body: SafeArea(
