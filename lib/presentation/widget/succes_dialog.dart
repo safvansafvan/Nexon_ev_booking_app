@@ -11,7 +11,7 @@ void successDialogWiget(context, message) {
     desc: message,
     btnCancelText: "Cancel",
   ).show();
-  const duration = Duration(seconds: 2);
+  const duration = Duration(seconds: 3);
   Future.delayed(duration, () {
     Navigator.of(context).pop();
   });

@@ -99,6 +99,7 @@ class TestDriveBookingProvider with ChangeNotifier {
       }
     } catch (error) {
       log('Exception: $error');
+      snakBarWiget(context: context, title: error.toString(), clr: kred);
     }
   }
 

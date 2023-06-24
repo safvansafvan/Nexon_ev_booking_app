@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/brouchure/pdfview/pdf_view.dart';
 
 class BrochureGridViewWidget extends StatelessWidget {
@@ -20,10 +19,21 @@ class BrochureGridViewWidget extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            AppBarWidget(
-                leading: Icons.arrow_back_ios_new_rounded,
-                menu: false,
-                title: "Brochure"),
+            ListTile(
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: kwhite,
+                  )),
+              title: Text(
+                "Brochure",
+                style: textStyleFuc(
+                    weight: FontWeight.w500, color: kwhite, size: 20),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(10),
               child: GridView.builder(

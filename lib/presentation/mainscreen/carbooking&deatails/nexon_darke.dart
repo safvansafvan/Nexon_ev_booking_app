@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../widget/page_indicator.dart';
+import '../../widget/page_indicator.dart';
 import 'widget/specification_box_widget.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
-import 'package:bookingapp/presentation/carbooking&deatails/widget/bookings_field.dart';
-import 'package:bookingapp/presentation/carbooking&deatails/widget/option_widget.dart';
+import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/widget/bookings_field.dart';
+import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/widget/option_widget.dart';
 
 class NexonDarkEdition extends StatelessWidget {
   const NexonDarkEdition({super.key});

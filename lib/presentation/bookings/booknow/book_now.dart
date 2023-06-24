@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -21,22 +21,6 @@ class BookNowWidget extends StatefulWidget {
 class _BookNowWidgetState extends State<BookNowWidget> {
   Razorpay? _razorpay;
 
-  void _handlePaymentSucccess(PaymentSuccessResponse response) {
-    Fluttertoast.showToast(
-        msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    Fluttertoast.showToast(
-        msg: "ERROR HERE:${response.code},${response.message}");
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    Fluttertoast.showToast(
-        msg: "EXTERNAL WALLET IS:${response.walletName}",
-        timeInSecForIosWeb: 4);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -44,21 +28,6 @@ class _BookNowWidgetState extends State<BookNowWidget> {
     _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSucccess);
     _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-  }
-
-  makePaymet() async {
-    var options = {
-      'key': 'rzp_test_XD8ZNhIAt6i1AM',
-      'amount': 500000,
-      'name': 'Nexon ev',
-      'description': '',
-      'prefill': {'contact': '+917902609889', 'email': 'contact@gmail.com'}
-    };
-    try {
-      _razorpay?.open(options);
-    } catch (e) {
-      log(e.toString());
-    }
   }
 
   @override
@@ -247,31 +216,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                   child: ElevatedButton.icon(
                     onPressed: () {
                       if (bookingProvider.formKey8.currentState!.validate()) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text("Conform Message"),
-                              content: const Text(
-                                  "Are you sure to continue booking?"),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text("Cancel")),
-                                TextButton(
-                                    onPressed: () async {
-                                      await makePaymet();
-                                      // ignore: use_build_context_synchronously
-                                      await bookingProvider
-                                          .bookingNowbuttonClick(context);
-                                    },
-                                    child: const Text("Ok"))
-                              ],
-                            );
-                          },
-                        );
+                        submittButtonClick(bookingProvider);
                       }
                     },
                     icon: const Icon(Icons.done_sharp),
@@ -283,6 +228,64 @@ class _BookNowWidgetState extends State<BookNowWidget> {
           ),
         ),
       ),
+    );
+  }
+
+  void _handlePaymentSucccess(PaymentSuccessResponse response) {
+    Fluttertoast.showToast(
+        msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR HERE:${response.code},${response.message}");
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL WALLET IS:${response.walletName}",
+        timeInSecForIosWeb: 4);
+  }
+
+  makePaymet() async {
+    var options = {
+      'key': 'rzp_test_XD8ZNhIAt6i1AM',
+      'amount': 500000,
+      'name': 'Nexon ev',
+      'description': '',
+      'prefill': {'contact': '+918756896578', 'email': 'contact@gmail.com'}
+    };
+    try {
+      _razorpay?.open(options);
+    } catch (e) {
+      snakBarWiget(context: context, title: e.toString(), clr: kred);
+      log(e.toString());
+    }
+  }
+
+  void submittButtonClick(bookingProvider) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Conform Message"),
+          content: const Text("Are you sure to continue Ev booking?"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Cancel")),
+            TextButton(
+                onPressed: () async {
+                  await makePaymet();
+                  // ignore: use_build_context_synchronously
+                  await bookingProvider.bookingNowbuttonClick(context);
+                },
+                child: const Text("Ok"))
+          ],
+        );
+      },
     );
   }
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:bookingapp/presentation/widget/page_indicator.dart';
-import 'package:bookingapp/presentation/carbooking&deatails/nexon_darke.dart';
-import 'package:bookingapp/presentation/carbooking&deatails/nexon_max.dart';
-import 'package:bookingapp/presentation/carbooking&deatails/nexon_prime.dart';
+import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/nexon_darke.dart';
+import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/nexon_max.dart';
+import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/nexon_prime.dart';
 import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
 
 class MainScreen extends StatefulWidget {

@@ -1,15 +1,3 @@
-// To parse this JSON data, do
-//
-//     final testDriveBookingModel = testDriveBookingModelFromJson(jsonString);
-
-import 'dart:convert';
-
-TestDriveBookingModel testDriveBookingModelFromJson(String str) =>
-    TestDriveBookingModel.fromJson(json.decode(str));
-
-String testDriveBookingModelToJson(TestDriveBookingModel data) =>
-    json.encode(data.toJson());
-
 class TestDriveBookingModel {
   String? name;
   String? email;
