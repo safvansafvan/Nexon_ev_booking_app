@@ -19,9 +19,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List screens = const [
-    MainScreen(),
-    MapWidget(),
+  final List screens = [
+    const MainScreen(),
+    const MapWidget(),
   ];
 
   @override

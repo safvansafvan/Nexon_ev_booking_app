@@ -6,12 +6,14 @@ class MapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    return Stack(
       children: [
         Center(
-        
-            child: Text("location",style: textStyleFuc(weight: FontWeight.w800, color: kBlack, size: 25),),
-          
+          child: Text(
+            "location",
+            style:
+                textStyleFuc(weight: FontWeight.w800, color: kBlack, size: 25),
+          ),
         ),
       ],
     );

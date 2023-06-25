@@ -121,7 +121,7 @@ class _MainScreenState extends State<MainScreen> {
             child: Align(
               alignment: Alignment.topRight,
               child: Text(
-                "Car Brouchure",
+                "Car Brochure",
                 style: TextStyle(color: kblue),
               ),
             ),

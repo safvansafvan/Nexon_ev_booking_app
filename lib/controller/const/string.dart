@@ -21,4 +21,8 @@ class Urls {
 
   //booking
   static String bookingnow = "/booking";
+
+  //map
+
+  static String getMap = "/get-map";
 }

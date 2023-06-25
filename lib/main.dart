@@ -46,6 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => BookingNowProvider(),
         ),
+        // ChangeNotifierProvider(
+        //   create: (context) => MapProvider(),
+        // ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
