@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List screens = [
     const MainScreen(),
-    const MapWidget(),
+    const MyWidget(),
   ];
 
   @override
