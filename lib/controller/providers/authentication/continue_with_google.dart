@@ -4,7 +4,7 @@ import 'package:bookingapp/apiservice/status.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/authentication/continue_with_google.dart';
-import 'package:bookingapp/presentation/home.dart';
+import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,7 +54,7 @@ class ContinueWithGoogleProvider extends ChangeNotifier {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const MyHomePage(),
+          builder: (context) => const MainScreen(),
         ),
       );
       snakBarWiget(context: context, title: "Login Success", clr: kGreen);

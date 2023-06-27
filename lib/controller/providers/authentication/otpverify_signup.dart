@@ -4,7 +4,7 @@ import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
 import 'package:bookingapp/model/authentication/signup.dart';
-import 'package:bookingapp/presentation/home.dart';
+import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +69,7 @@ class OtpVerificationAndSignupProvider extends ChangeNotifier {
       if (status == "success") {
         navigator.pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const MyHomePage(),
+            builder: (context) => const MainScreen(),
           ),
         );
       } else if (status == "failed") {

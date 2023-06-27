@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/booking_now_model.dart';
-import 'package:bookingapp/presentation/home.dart';
+import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -69,7 +69,7 @@ class BookingNowProvider extends ChangeNotifier {
         if (data['status'] == 'success') {
           navigator.push(
             MaterialPageRoute(
-              builder: (context) => const MyHomePage(),
+              builder: (context) => const MainScreen(),
             ),
           );
           clearController();

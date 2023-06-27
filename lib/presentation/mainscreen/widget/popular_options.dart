@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/map/location.dart';
 import 'package:flutter/material.dart';
 
 class PopularOptionsWidges extends StatelessWidget {
@@ -15,21 +18,33 @@ class PopularOptionsWidges extends StatelessWidget {
         children: [
           Column(
             children: [
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/chatBoat.jpg"),
+              InkWell(
+                onTap: () {
+                  log("touched00", name: "location");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyWidget(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                          "https://cdn-icons-png.flaticon.com/512/5899/5899556.png"),
+                    ),
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: radiusTen,
                   ),
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: radiusTen,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
-                'Chat Boat',
+                'Location',
                 style: TextStyle(
                     fontSize: 16, fontWeight: FontWeight.w500, color: kBlack),
               ),

@@ -1,7 +1,7 @@
 import 'package:bookingapp/presentation/authentication/login.dart';
+import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../presentation/home.dart';
 
 class SplashProvider with ChangeNotifier {
   navigateHome(ctx) async {
@@ -20,7 +20,7 @@ class SplashProvider with ChangeNotifier {
       Navigator.pushReplacement(
         ctx,
         MaterialPageRoute(builder: (context) {
-          return const MyHomePage();
+          return const MainScreen();
         }),
       );
     }

@@ -1,6 +1,9 @@
 class Urls {
   static String baseUrl = 'https://ecos2.onrender.com';
 
+  //map
+  static String map = '/map';
+
 // authentication
 
   static String login = "/login";

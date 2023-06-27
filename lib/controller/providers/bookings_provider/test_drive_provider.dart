@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/presentation/home.dart';
+import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
@@ -79,7 +79,7 @@ class TestDriveBookingProvider with ChangeNotifier {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyHomePage(),
+              builder: (context) => const MainScreen(),
             ),
           );
           clearController();
