@@ -2,6 +2,7 @@ import 'package:bookingapp/controller/providers/map_provider.dart';
 import 'package:bookingapp/presentation/map/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+
 import 'package:provider/provider.dart';
 
 class MyWidget extends StatefulWidget {
@@ -34,14 +35,16 @@ class _MyWidgetState extends State<MyWidget> {
                 'accessToken': MapConst.mapBoxAccessToken,
               },
             ),
+            MarkerLayer(
+              markers: [],
+            )
           ],
         ),
         Positioned(
+          right: 0,
           bottom: 0,
           child: FloatingActionButton.small(
-            onPressed: () {
-              locationProvider.getCurrentLocation();
-            },
+            onPressed: () {},
             child: const Icon(Icons.gps_not_fixed_rounded),
           ),
         )
