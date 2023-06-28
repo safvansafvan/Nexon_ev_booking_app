@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/map_provider.dart';
 import 'package:bookingapp/presentation/map/const.dart';
+import 'package:bookingapp/presentation/map/more.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -104,13 +104,7 @@ class _MyWidgetState extends State<MyWidget> {
               title: CupertinoSearchTextField(
                 backgroundColor: Colors.grey[350],
               ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.more_vert,
-                  color: kBlack,
-                ),
-              ),
+              trailing: const PopUpMenuOption(),
             ),
           ),
           Positioned(

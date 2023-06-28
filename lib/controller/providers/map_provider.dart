@@ -12,6 +12,7 @@ class MapProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
+        notifyListeners();
         return jsonData['result'];
       } else {
         log("failed");

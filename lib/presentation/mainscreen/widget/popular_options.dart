@@ -34,8 +34,7 @@ class PopularOptionsWidges extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(
-                          "https://cdn-icons-png.flaticon.com/512/5899/5899556.png"),
+                      image: AssetImage("assets/locations.webp"),
                     ),
                     border: Border.all(color: Colors.grey),
                     borderRadius: radiusTen,

@@ -1,5 +1,6 @@
 import 'package:bookingapp/presentation/brouchure/brouchure.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
+import 'package:bookingapp/presentation/widget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
@@ -29,11 +30,13 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 50),
-          child: AppBarWidget(
-            leading: Icons.menu,
-            menu: true,
-            title: "Nexon",
-            trailing: Icons.settings,
+          child: SafeArea(
+            child: AppBarWidget(
+              leading: Icons.menu,
+              menu: true,
+              title: "Nexon",
+              trailing: Icons.settings,
+            ),
           )),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -149,6 +152,7 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
       ),
+      drawer: const DrawerWidget(),
     );
   }
 }
