@@ -34,6 +34,7 @@ class ContinueWithGoogleProvider extends ChangeNotifier {
       final String email = googleUser.email;
       final String username = googleUser.displayName ?? "Unknown Name";
       await continueWithGoogle(context, email, username);
+      notifyListeners();
     }
     notifyListeners();
   }

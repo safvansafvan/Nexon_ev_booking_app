@@ -1,10 +1,7 @@
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:flutter/material.dart';
 
-snakBarWiget(
-    {required BuildContext context,
-    required String title,
-    required Color clr}) {
+snakBarWiget({required context, required String title, required Color clr}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       width: 350,

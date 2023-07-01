@@ -3,6 +3,7 @@ import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/map_provider.dart';
 import 'package:bookingapp/presentation/map/const.dart';
 import 'package:bookingapp/presentation/map/more.dart';
+import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -128,20 +129,25 @@ class _MyWidgetState extends State<MyWidget> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw Exception('Location services are disabled.');
+      // ignore: use_build_context_synchronously
+      return snakBarWiget(
+          context: context, title: "Please Enable Location Service", clr: kred);
     }
     permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.deniedForever) {
-      throw Exception(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      if (permission != LocationPermission.whileInUse &&
-          permission != LocationPermission.always) {
-        throw Exception(
-            'Location permissions are denied (actual value: $permission).');
-      }
+    }
+    if (permission == LocationPermission.denied) {
+      // ignore: use_build_context_synchronously
+      return snakBarWiget(
+          context: context, title: "Permission denied", clr: kred);
+    }
+    if (permission == LocationPermission.deniedForever) {
+      // ignore: use_build_context_synchronously
+      return snakBarWiget(
+          context: context,
+          title: "Location permissions are permanently denied",
+          clr: kred);
     }
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
@@ -154,7 +160,8 @@ class _MyWidgetState extends State<MyWidget> {
       LatLng(position.latitude, position.longitude),
       15.0,
     );
-    mapDetails = await locationProvider.getChargingProt();
+    // ignore: use_build_context_synchronously
+    mapDetails = await locationProvider.getChargingProt(context);
 
     log(mapDetails.toString());
   }
