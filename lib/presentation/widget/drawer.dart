@@ -9,7 +9,7 @@ class DrawerWidget extends StatelessWidget {
     return SafeArea(
       child: SizedBox(
         width: 250,
-        height: 250,
+        height: 400,
         child: Drawer(
           clipBehavior: Clip.antiAliasWithSaveLayer,
           backgroundColor: Colors.white70,
@@ -39,6 +39,27 @@ class DrawerWidget extends StatelessWidget {
                   color: Colors.grey,
                   thickness: 2,
                 ),
+                height10,
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: radiusTen,
+                      border: Border.all(color: kblue)),
+                  child: ListTile(
+                    onTap: () {},
+                    title: const Text("Booking Status"),
+                  ),
+                ),
+                height10,
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: radiusTen,
+                      border: Border.all(color: kblue)),
+                  child: ListTile(
+                    onTap: () {},
+                    title: const Text("Test Drive Status"),
+                  ),
+                ),
+                kheight30,
                 Text(
                   "Version",
                   style: textStyleFuc(weight: null, color: kBlack, size: 16),
