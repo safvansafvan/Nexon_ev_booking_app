@@ -16,7 +16,7 @@ class NexonEvPrimeDeatails extends StatelessWidget {
     final pageController = PageController();
     final nullContr = TextEditingController();
     List images = [
-      "assets/neprime.jpeg",
+      "assets/primenexon.jpg",
       "assets/nexonEvB.png",
       "assets/nexonPrime1.png",
       "assets/prime.webp"

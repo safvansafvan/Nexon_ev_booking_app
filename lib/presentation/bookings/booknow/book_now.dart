@@ -42,6 +42,13 @@ class _BookNowWidgetState extends State<BookNowWidget> {
             key: bookingProvider.formKey8,
             child: ListView(
               children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  alignment: Alignment.bottomLeft,
+                ),
                 height10,
                 HeadingTextWidget(
                   text: "Booking Now",
@@ -263,7 +270,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
     }
   }
 
-  void submittButtonClick(bookingProvider) {
+  void submittButtonClick(BookingNowProvider bookingProvider) {
     showDialog(
       context: context,
       builder: (context) {

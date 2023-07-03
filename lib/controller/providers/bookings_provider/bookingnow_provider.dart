@@ -5,6 +5,7 @@ import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/booking_now_model.dart';
 import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/presentation/widget/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -73,8 +74,11 @@ class BookingNowProvider extends ChangeNotifier {
             ),
           );
           clearController();
-          // ignore: use_build_context_synchronously
           var result = data['result'];
+          final bookingId = result['_id'];
+          log(bookingId, name: "bookingId");
+          // ignore: use_build_context_synchronously
+          await updateBookingStatus(context, bookingId);
           log('booking success $result');
         } else {
           var message = data['message'];
@@ -87,7 +91,6 @@ class BookingNowProvider extends ChangeNotifier {
       log("exception: $e");
       snakBarWiget(context: context, title: e.toString(), clr: kred);
     }
-
     isLoading = false;
   }
 
@@ -103,5 +106,31 @@ class BookingNowProvider extends ChangeNotifier {
     pincodeController.clear();
     dealerController.clear();
     carModelController.clear();
+  }
+
+  ///user  booking placing here
+  ///
+
+  Future<void> updateBookingStatus(ctx, bookingId) async {
+    final String url = Urls.baseUrl + Urls.updateBooking;
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: jsonEncode({'params': bookingId}),
+        headers: {'Content-Type': 'application/json'},
+      );
+      if (response.statusCode == 200) {
+        final responseMsg = jsonEncode(response.body);
+        successDialogWiget(ctx,
+            "Your Booking Is Placed , Our Team Will Contact You", "Placed");
+        log(responseMsg);
+      } else {
+        final responseMsg = jsonEncode(response.body);
+        log(responseMsg);
+      }
+    } catch (e) {
+      log(e.toString());
+      snakBarWiget(context: ctx, title: e.toString(), clr: kred);
+    }
   }
 }

@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     List image = [
-      "assets/neprime.jpeg",
+      "assets/primenexon.jpg",
       "assets/nexon.webp",
       "assets/sap.webp"
     ];

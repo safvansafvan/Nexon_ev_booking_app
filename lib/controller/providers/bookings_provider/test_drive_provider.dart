@@ -64,9 +64,7 @@ class TestDriveBookingProvider with ChangeNotifier {
         'dealership': dealerShipController.text.trim(),
         'checked': true,
       };
-
       var requestBody = json.encode({'formData': formData});
-
       var response = await http.post(
         Uri.parse(url),
         body: requestBody,
@@ -83,8 +81,10 @@ class TestDriveBookingProvider with ChangeNotifier {
             ),
           );
           clearController();
-          successDialogWiget(context,
-              "Your Test Drive Booking Is Success, Our Team Will Contact You As Soon As Possible");
+          successDialogWiget(
+              context,
+              "Your Test Drive Booking Is Success, Our Team Will Contact You As Soon As Possible",
+              "Success");
 
           var result = data['result'];
           log('Test drive booking successful: $result');
