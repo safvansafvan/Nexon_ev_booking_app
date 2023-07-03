@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/map_provider.dart';
 import 'package:bookingapp/presentation/brouchure/brouchure.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/widget/drawer.dart';
@@ -9,6 +10,7 @@ import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/nexon_dar
 import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/nexon_max.dart';
 import 'package:bookingapp/presentation/mainscreen/carbooking&deatails/nexon_prime.dart';
 import 'package:bookingapp/presentation/mainscreen/widget/popular_options.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -18,6 +20,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<MapProvider>(context, listen: false)
+        .fetchCharginLocation(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     List image = [

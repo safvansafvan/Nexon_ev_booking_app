@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
-import 'package:bookingapp/model/booking_now_model.dart';
+import 'package:bookingapp/model/bookings/booking_now_model.dart';
 import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:bookingapp/presentation/widget/succes_dialog.dart';

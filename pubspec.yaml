@@ -55,6 +55,7 @@ dependencies:
   flutter_map: 5.0.0
   latlong2: 
   geolocator: 9.0.2
+  geocoding: 2.1.0  
   
 dev_dependencies:
   flutter_test:

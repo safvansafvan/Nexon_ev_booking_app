@@ -28,6 +28,7 @@ class Urls {
   //map
 
   static String getMap = "/get-map";
+  static String addPlot = "/add-map";
 
   //
   static String updateBooking = "/update-booking";

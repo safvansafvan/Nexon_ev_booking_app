@@ -1,15 +1,17 @@
 import 'dart:developer';
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/map_provider.dart';
-import 'package:bookingapp/presentation/map/const.dart';
-import 'package:bookingapp/presentation/map/more.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/providers/map_provider.dart';
+import 'package:bookingapp/presentation/map/const.dart';
+import 'package:bookingapp/presentation/map/widget/more.dart';
+import 'package:bookingapp/presentation/map/widget/dialog_fields.dart';
+import 'package:bookingapp/presentation/widget/snack_bar.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -19,10 +21,9 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  List<dynamic>? mapDetails;
-
   MapController mapController = MapController();
   Position? currentPosition;
+  LatLng? currentLocation;
 
   @override
   void initState() {
@@ -32,7 +33,15 @@ class _MyWidgetState extends State<MyWidget> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    mapController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     final locationProvider = Provider.of<MapProvider>(context, listen: false);
     return Scaffold(
       body: Stack(
@@ -40,10 +49,26 @@ class _MyWidgetState extends State<MyWidget> {
           FlutterMap(
             mapController: mapController,
             options: MapOptions(
+              onLongPress: (tapPosition, point) {
+                log("${point.latitude}");
+                log("${point.longitude}");
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return TextFieldForAddPlot(
+                        lat: point.latitude,
+                        long: point.longitude,
+                        stationNameCtr: locationProvider.stationNameCtr,
+                        screenSize: screenSize,
+                        descriptionCtr: locationProvider.descriptionCtr,
+                        keyController: locationProvider.keyController);
+                  },
+                );
+              },
               minZoom: 5,
               maxZoom: 18,
               zoom: 13,
-              center: MapConst.myLocation,
+              center: currentLocation ?? const LatLng(0, 0),
             ),
             children: [
               TileLayer(
@@ -69,8 +94,21 @@ class _MyWidgetState extends State<MyWidget> {
                         ),
                       ),
                     ),
-                  if (mapDetails != null)
-                    for (var detail in mapDetails!)
+                  if (currentLocation != null)
+                    Marker(
+                      width: 100.0,
+                      height: 100.0,
+                      point: LatLng(currentLocation!.latitude,
+                          currentLocation!.longitude),
+                      builder: (ctx) => const SizedBox(
+                        child: Icon(
+                          Icons.location_pin,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  if (locationProvider.mapDetails != null)
+                    for (var detail in locationProvider.mapDetails!)
                       if (detail['lat'] != null && detail['long'] != null)
                         Marker(
                           width: 100.0,
@@ -104,6 +142,10 @@ class _MyWidgetState extends State<MyWidget> {
               ),
               title: CupertinoSearchTextField(
                 backgroundColor: Colors.grey[350],
+                onChanged: (value) {
+                  log(value);
+                  searchPlace(value);
+                },
               ),
               trailing: const PopUpMenuOption(),
             ),
@@ -151,18 +193,33 @@ class _MyWidgetState extends State<MyWidget> {
     }
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-
     setState(() {
       currentPosition = position;
     });
-
     mapController.move(
       LatLng(position.latitude, position.longitude),
       15.0,
     );
-    // ignore: use_build_context_synchronously
-    mapDetails = await locationProvider.getChargingProt(context);
+  }
 
-    log(mapDetails.toString());
+  void searchPlace(String query) async {
+    List<Location> locations = await locationFromAddress(query);
+    if (locations.isNotEmpty) {
+      Location location = locations.first;
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        location.latitude,
+        location.longitude,
+      );
+      if (placemarks.isNotEmpty) {
+        LatLng searchedLocation = LatLng(
+          location.latitude,
+          location.longitude,
+        );
+        setState(() {
+          currentLocation = searchedLocation;
+          mapController.move(currentLocation!, 15.0);
+        });
+      }
+    }
   }
 }
