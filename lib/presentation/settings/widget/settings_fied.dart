@@ -1,3 +1,5 @@
+import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
@@ -95,7 +97,7 @@ class SettingsFieldWidget extends StatelessWidget {
 
   logout(context) async {
     final pref = await SharedPreferences.getInstance();
-    pref.remove("isLoggedIn");
+    pref.remove("ACCESS_TOKEN");
     pref.remove("USER_NAME");
     pref.remove("USER_EMAIL");
     Navigator.pushReplacement(
@@ -104,8 +106,8 @@ class SettingsFieldWidget extends StatelessWidget {
         builder: (context) => const LoginPage(),
       ),
     );
-    snakBarWiget(
-        context: context, title: "Your Logout is success", clr: kGreen);
+    Provider.of<ContinueWithGoogleProvider>(context, listen: false).logout();
+    snakBarWiget(context: context, title: " Logout Is Success", clr: kGreen);
   }
 
   void share(content) {

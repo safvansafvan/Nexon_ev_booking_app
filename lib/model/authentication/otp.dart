@@ -1,14 +1,3 @@
-// To parse this JSON data, do
-//
-//     final userOtpMode = userOtpModeFromJson(jsonString);
-
-import 'dart:convert';
-
-UserOtpMode userOtpModeFromJson(String str) =>
-    UserOtpMode.fromJson(json.decode(str));
-
-String userOtpModeToJson(UserOtpMode data) => json.encode(data.toJson());
-
 class UserOtpMode {
   String? email;
   String? username;

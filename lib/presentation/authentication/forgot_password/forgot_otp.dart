@@ -60,7 +60,7 @@ class ForgotPasswordWidget extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           if (key5.currentState!.validate()) {
-                            forgotProvider.emailSendButtonClick(context);
+                            forgotProvider.inForgotEmailVerifyClick(context);
                           }
                         },
                         child: const Text("Verify"),

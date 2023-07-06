@@ -7,14 +7,16 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../widget/otp_text_field.dart';
 
-class NewPasswordWidget extends StatelessWidget {
-  const NewPasswordWidget({super.key});
+final key6 = GlobalKey<FormState>();
+
+class NewPasswordScreen extends StatelessWidget {
+  const NewPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     final provider = context.watch<ForgotPasswordProvider>();
-    // final key6 = GlobalKey<FormState>();
+
     return Scaffold(
       body: SafeArea(
         child: Consumer<ForgotPasswordProvider>(builder: (context, value, _) {
@@ -26,7 +28,7 @@ class NewPasswordWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       left: 12, right: 12, top: 50, bottom: 12),
                   child: Form(
-                    // key: key6,
+                    key: key6,
                     child: ListView(
                       children: [
                         IconButton(
@@ -71,8 +73,9 @@ class NewPasswordWidget extends StatelessWidget {
                         commonHeight,
                         TextButton(
                           onPressed: () async {
-                            // if (key6.currentState!.validate()) {
-                            await provider.verifyButtonClick(context);
+                            if (key6.currentState!.validate()) {
+                              await provider.verifyButtonClick(context);
+                            }
                           },
                           child: const Text("Verify"),
                         ),
