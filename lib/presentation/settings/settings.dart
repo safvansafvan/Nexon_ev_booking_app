@@ -17,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
               AppBarWidget(
                   menu: false,
                   title: "Settings",
+                  settings: false,
                   leading: Icons.arrow_back_ios_rounded),
               commonHeight,
               const SettingsFieldWidget(

@@ -24,8 +24,10 @@ class NexonEvMaxDeatails extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 50),
         child: SafeArea(
-          child:
-              AppBarWidget(leading: Icons.arrow_back_ios_outlined, menu: false),
+          child: AppBarWidget(
+              leading: Icons.arrow_back_ios_outlined,
+              menu: false,
+              settings: false),
         ),
       ),
       body: Padding(

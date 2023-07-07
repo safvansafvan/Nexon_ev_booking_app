@@ -15,6 +15,7 @@ class AboutUs extends StatelessWidget {
           children: [
             AppBarWidget(
               leading: Icons.arrow_back_ios_new_sharp,
+              settings: false,
               menu: false,
               title: "About us",
             ),

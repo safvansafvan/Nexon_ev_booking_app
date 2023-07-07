@@ -27,6 +27,7 @@ Future getGoogleLoginStatus(context, email, username) async {
       final result = data['result'];
       await setLoginStatus(
           accessToken: data['token'],
+          id: result['_id'],
           userName: result['username'],
           userEmail: result['email']);
     } else {
@@ -42,9 +43,11 @@ Future getGoogleLoginStatus(context, email, username) async {
 setLoginStatus(
     {required String accessToken,
     required String userName,
+    required String id,
     required String userEmail}) async {
   final status = await SharedPreferences.getInstance();
   await status.setString("ACCESS_TOKEN", accessToken);
+  await status.setString("Id", id);
   await status.setString("USER_NAME", userName);
   await status.setString("USER_EMAIL", userEmail);
 }

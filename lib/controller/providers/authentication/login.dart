@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookingapp/apiservice/login_service.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,7 @@ class LoginProvider extends ChangeNotifier {
 
   Future loginButtonClick(context) async {
     isLoading = true;
+    log("called");
     await LoginApiService.getLoginStatuss(context);
     isLoading = false;
     clearController();

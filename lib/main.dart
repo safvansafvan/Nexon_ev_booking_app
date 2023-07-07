@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => MapProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => GetAllGroupsProvider(),
         ),
       ],
       child: MaterialApp(

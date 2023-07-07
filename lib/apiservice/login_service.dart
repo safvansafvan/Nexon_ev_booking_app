@@ -38,6 +38,7 @@ class LoginApiService {
           await loginStatus(
               accessToken: data['token'],
               userName: result['username'],
+              id: result['_id'],
               userEmail: result['email']);
           log("$result");
           log(data['token']);
@@ -61,9 +62,11 @@ class LoginApiService {
   static loginStatus(
       {required String accessToken,
       required String userName,
+      required String id,
       required String userEmail}) async {
     final status = await SharedPreferences.getInstance();
     await status.setString("ACCESS_TOKEN", accessToken);
+    await status.setString("Id", id);
     await status.setString("USER_NAME", userName);
     await status.setString("USER_EMAIL", userEmail);
   }

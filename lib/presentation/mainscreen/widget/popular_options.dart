@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/presentation/community_chat/community_chat.dart';
 import 'package:bookingapp/presentation/map/location.dart';
 import 'package:flutter/material.dart';
 
@@ -51,16 +52,26 @@ class PopularOptionsWidges extends StatelessWidget {
           ),
           Column(
             children: [
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/community.jpeg"),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CommunityChatScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/community.jpeg"),
+                    ),
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: radiusTen,
                   ),
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: radiusTen,
                 ),
               ),
               kHeightFive,

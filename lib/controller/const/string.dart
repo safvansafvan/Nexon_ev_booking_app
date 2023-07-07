@@ -4,6 +4,9 @@ class Urls {
   //map
   static String map = '/map';
 
+  ///group
+  static String group = '/group';
+
 // authentication
 
   static String login = "/login";
@@ -24,12 +27,17 @@ class Urls {
 
   //booking
   static String bookingnow = "/booking";
+  static String updateBooking = "/update-booking";
 
   //map
 
   static String getMap = "/get-map";
   static String addPlot = "/add-map";
 
-  //
-  static String updateBooking = "/update-booking";
+  //group
+
+  static String getGroup = '/get-group';
+  static String joinGroup = '/join-group';
+  static String getUserGroup = '/get-user-group';
+  static String getMsg = '/get-messages';
 }

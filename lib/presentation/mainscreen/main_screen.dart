@@ -45,6 +45,7 @@ class _MainScreenState extends State<MainScreen> {
               menu: true,
               title: "Nexon",
               trailing: Icons.settings,
+              settings: true,
             ),
           )),
       body: Padding(

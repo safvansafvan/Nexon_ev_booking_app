@@ -27,6 +27,7 @@ class TestDriveBooking extends StatelessWidget {
             child: AppBarWidget(
                 title: "Test Drive Booking",
                 leading: Icons.arrow_back_ios_rounded,
+                settings: false,
                 menu: false)),
       ),
       body: Padding(
