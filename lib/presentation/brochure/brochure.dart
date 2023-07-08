@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/presentation/brouchure/pdfview/pdf_view.dart';
+import 'package:bookingapp/presentation/brochure/pdfview/pdf_view.dart';
 
 class BrochureGridViewWidget extends StatelessWidget {
   const BrochureGridViewWidget({super.key});

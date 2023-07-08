@@ -1,5 +1,5 @@
 import 'package:bookingapp/controller/providers/map_provider.dart';
-import 'package:bookingapp/presentation/brouchure/brouchure.dart';
+import 'package:bookingapp/presentation/brochure/brochure.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/widget/drawer.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,10 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:bookingapp/presentation/community_chat/screens/join_group.dart';
 import 'package:bookingapp/presentation/settings/settings.dart';
+import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class AppBarWidget extends StatelessWidget {
@@ -18,7 +21,7 @@ class AppBarWidget extends StatelessWidget {
   final IconData? trailing;
 
   bool menu = false;
-  bool settings;
+  bool settings = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +67,19 @@ class AppBarWidget extends StatelessWidget {
   }
 }
 
-class PopUp extends StatelessWidget {
+class PopUp extends StatefulWidget {
   const PopUp({
     super.key,
   });
 
   @override
+  State<PopUp> createState() => _PopUpState();
+}
+
+class _PopUpState extends State<PopUp> {
+  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return PopupMenuButton(
         itemBuilder: (BuildContext context) => [
               PopupMenuItem(
@@ -88,10 +97,46 @@ class PopUp extends StatelessWidget {
               ),
               PopupMenuItem(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    dialog(context, size);
+                  },
                   child: const Text("Create Group"),
                 ),
               ),
             ]);
   }
+}
+
+void dialog(context, size) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text("New Group"),
+        content: TextFormFieldCommon(
+            controller:
+                Provider.of<GetAllGroupsProvider>(context, listen: false)
+                    .newGroupNameController,
+            hintText: "Group name",
+            keyType: TextInputType.name,
+            size: size),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () {
+              Provider.of<GetAllGroupsProvider>(context, listen: false)
+                  .addNewGroup(context);
+              Navigator.pop(context);
+            },
+            child: const Text("OK"),
+          )
+        ],
+      );
+    },
+  );
 }

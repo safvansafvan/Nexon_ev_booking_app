@@ -1,22 +1,21 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:bookingapp/apiservice/group_service/get_all_groups_service.dart';
 import 'package:bookingapp/apiservice/group_service/get_user_joined_group_service.dart';
+import 'package:bookingapp/apiservice/group_service/group_msg_service.dart';
 import 'package:bookingapp/apiservice/group_service/join_group_service.dart';
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/const/string.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/apiservice/group_service/new_group_service.dart';
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GetAllGroupsProvider extends ChangeNotifier {
+  final newGroupNameController = TextEditingController();
   List userDetails = [];
   List userGroups = [];
 
   bool isLoading = false;
   bool userGroupLoading = false;
   bool msgLoading = false;
+  bool isMsgLoading = false;
+  bool newGroupLoading = false;
   Future joinGroupButtonClick(context) async {
     isLoading = true;
     // final pref = await SharedPreferences.getInstance();
@@ -39,32 +38,21 @@ class GetAllGroupsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  addNewGroup(context) async {
+    newGroupLoading = true;
+    await NewGroupService.newGroupStatus(
+        context: context, groupName: newGroupNameController.text);
+    newGroupNameController.clear();
+    newGroupLoading = false;
+    notifyListeners();
+  }
+
   List<dynamic> messages = [];
 
-  Future<void> fetchGroupMessages(String groupId, context) async {
-    final String url = Urls.baseUrl + Urls.group + Urls.getMsg;
-    final pref = await SharedPreferences.getInstance();
-    final token = pref.getString("ACCESS_TOKEN");
-    try {
-      final response = await http.post(Uri.parse(url),
-          body: {'groupId': groupId},
-          headers: {'x-access-token': token.toString()});
-
-      if (response.statusCode == 200) {
-        log("success");
-        final data = jsonDecode(response.body);
-        if (data['status'] == "success") {
-          messages = data['result'];
-          notifyListeners();
-        } else {
-          log(data['status']);
-          snakBarWiget(context: context, title: data['status'], clr: kred);
-        }
-      } else {
-        throw Exception('Failed to fetch group messages');
-      }
-    } catch (error) {
-      throw Exception('Failed to fetch group messages: $error');
-    }
+  Future<void> fetchGroupMessages({required String groupId, context}) async {
+    isMsgLoading = true;
+    messages = await GroupMsgService.getMsgStatus(context, groupId);
+    isMsgLoading = false;
+    notifyListeners();
   }
 }

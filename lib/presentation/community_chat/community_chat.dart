@@ -70,11 +70,12 @@ class CommunityChatScreen extends StatelessWidget {
                                   Provider.of<GetAllGroupsProvider>(context,
                                           listen: false)
                                       .fetchGroupMessages(
-                                          userGroup['_id'], context);
+                                          groupId: userGroup['_id'],
+                                          context: context);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ChatScreen(),
+                                      builder: (context) => const ChatScreen(),
                                     ),
                                   );
                                 },
