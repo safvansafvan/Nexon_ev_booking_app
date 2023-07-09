@@ -34,6 +34,7 @@ class GetAllGroupsProvider extends ChangeNotifier {
     userGroupLoading = true;
     userGroups =
         await GetUserJoinedGroupService.getUserJoinedGroupStatus(context);
+
     userGroupLoading = false;
     notifyListeners();
   }

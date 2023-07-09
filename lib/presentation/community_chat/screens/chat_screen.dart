@@ -1,39 +1,57 @@
-import 'package:bookingapp/controller/const/const.dart';
+import 'dart:developer';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+  const ChatScreen(
+      {super.key, required this.groupName, required this.groupMembers});
 
-  // final String groupId;
+  final String groupName;
+  final List groupMembers;
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      log("$groupMembers");
+    });
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 100),
         child: AppBar(
-            title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SafeArea(
-              child: Row(
+          title: Row(
+            children: [
+              const CircleAvatar(radius: 25),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(),
-                  SizedBox(
-                    width: 5,
+                  Text(groupName),
+                  Text(
+                    '${groupMembers.length} members',
+                    style: const TextStyle(fontSize: 12),
                   ),
-                  Text("Group Name")
+                  SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(children: [
+                        for (var member in groupMembers)
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                member,
+                                style: const TextStyle(fontSize: 12),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          )
+                      ]))
                 ],
-              ),
-            ),
-            Text(
-              "data",
-              style: textStyleFuc(weight: null, color: kblue, size: 15),
-            )
-          ],
-        )),
+              )
+            ],
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -76,35 +94,6 @@ class ChatScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class MessageBubble extends StatelessWidget {
-  final String message;
-  final bool isMe;
-
-  // ignore: use_key_in_widget_constructors
-  const MessageBubble({required this.message, required this.isMe});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          margin: const EdgeInsets.symmetric(vertical: 4.0),
-          decoration: BoxDecoration(
-            color: isMe ? Colors.blue : Colors.grey[300],
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          child: Text(
-            message,
-            style: TextStyle(color: isMe ? Colors.white : Colors.black),
-          ),
-        ),
-      ],
     );
   }
 }

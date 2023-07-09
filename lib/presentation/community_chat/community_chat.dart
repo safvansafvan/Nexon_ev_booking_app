@@ -47,12 +47,14 @@ class CommunityChatScreen extends StatelessWidget {
                     )
                   : ListView.builder(
                       shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
                       itemCount: value.userGroups.length,
                       itemBuilder: (context, index) {
                         final userGroup = value.userGroups[index];
+                        // log(userGroup.toString());
                         return value.userGroups.isEmpty
                             ? const Center(
-                                child: Text("data"),
+                                child: Text("No Groups Found"),
                               )
                             : ListTile(
                                 leading: const CircleAvatar(
@@ -74,9 +76,18 @@ class CommunityChatScreen extends StatelessWidget {
                                           context: context);
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ChatScreen(),
-                                    ),
+                                    MaterialPageRoute(builder: (context) {
+                                      List<String> memberNames =
+                                          (userGroup['members']
+                                                  as List<dynamic>)
+                                              .map<String>((member) =>
+                                                  member['name'].toString())
+                                              .toList();
+                                      return ChatScreen(
+                                        groupName: userGroup['groupName'],
+                                        groupMembers: memberNames,
+                                      );
+                                    }),
                                   );
                                 },
                               );
