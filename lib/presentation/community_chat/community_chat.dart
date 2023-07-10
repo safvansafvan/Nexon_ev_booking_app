@@ -91,6 +91,7 @@ class CommunityChatScreen extends StatelessWidget {
                                                             .toString())
                                                     .toList();
                                             return ChatScreen(
+                                              groupId: userGroup['_id'],
                                               groupName: userGroup['groupName'],
                                               groupMembers: memberNames,
                                             );
