@@ -30,71 +30,81 @@ class CommunityChatScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(9.0),
-        child: ListView(
-          children: [
-            height10,
-            HeadingTextWidget(
-              text: "Chats",
-              textSize: 18,
-              underline: true,
-              fontWeight: FontWeight.w600,
-            ),
-            height10,
-            Consumer<GetAllGroupsProvider>(builder: (context, value, _) {
-              return value.userGroupLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: value.userGroups.length,
-                      itemBuilder: (context, index) {
-                        final userGroup = value.userGroups[index];
-                        // log(userGroup.toString());
-                        return value.userGroups.isEmpty
-                            ? const Center(
-                                child: Text("No Groups Found"),
-                              )
-                            : ListTile(
-                                leading: const CircleAvatar(
-                                  child: Icon(Icons.person),
-                                ),
-                                title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(userGroup['groupName']),
-                                    const Text("This is the last message"),
-                                  ],
-                                ),
-                                trailing: const Text("10:10"),
-                                onTap: () {
-                                  Provider.of<GetAllGroupsProvider>(context,
-                                          listen: false)
-                                      .fetchGroupMessages(
-                                          groupId: userGroup['_id'],
-                                          context: context);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) {
-                                      List<String> memberNames =
-                                          (userGroup['members']
-                                                  as List<dynamic>)
-                                              .map<String>((member) =>
-                                                  member['name'].toString())
-                                              .toList();
-                                      return ChatScreen(
-                                        groupName: userGroup['groupName'],
-                                        groupMembers: memberNames,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              height10,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: HeadingTextWidget(
+                  text: "Groups",
+                  textSize: 18,
+                  underline: true,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              height10,
+              Consumer<GetAllGroupsProvider>(
+                builder: (context, value, _) {
+                  return value.userGroupLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: value.userGroups.length,
+                          itemBuilder: (context, index) {
+                            final userGroup = value.userGroups[index];
+                            return value.userGroups.isEmpty
+                                ? const Center(
+                                    child: Text("No Groups Found"),
+                                  )
+                                : ListTile(
+                                    leading: const CircleAvatar(
+                                      child: Icon(Icons.person),
+                                    ),
+                                    title: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(userGroup['groupName']),
+                                        const Text("This is the last message"),
+                                      ],
+                                    ),
+                                    trailing: const Text("10:10"),
+                                    onTap: () {
+                                      Provider.of<GetAllGroupsProvider>(context,
+                                              listen: false)
+                                          .fetchGroupMessages(
+                                              groupId: userGroup['_id'],
+                                              context: context);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            List<String> memberNames =
+                                                (userGroup['members']
+                                                        as List<dynamic>)
+                                                    .map<String>((member) =>
+                                                        member['name']
+                                                            .toString())
+                                                    .toList();
+                                            return ChatScreen(
+                                              groupName: userGroup['groupName'],
+                                              groupMembers: memberNames,
+                                            );
+                                          },
+                                        ),
                                       );
-                                    }),
+                                    },
                                   );
-                                },
-                              );
-                      },
-                    );
-            })
-          ],
+                          },
+                        );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

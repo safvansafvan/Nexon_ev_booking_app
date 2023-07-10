@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
@@ -30,6 +31,7 @@ class JoinGroupService {
         log("${respose.statusCode}");
         if (data['status'] == 'success') {
           log("success", name: "get groups");
+          Navigator.pop(context);
           snakBarWiget(
               context: context, title: "Joined $groupName", clr: kGreen);
         } else {

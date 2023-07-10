@@ -12,34 +12,39 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          margin: const EdgeInsets.symmetric(vertical: 4.0),
-          decoration: BoxDecoration(
-            color: isMe ? Colors.blue : Colors.grey[300],
-            borderRadius: BorderRadius.circular(16.0),
+    return Padding(
+      padding: const EdgeInsets.only(top: 7, left: 8),
+      child: Row(
+        mainAxisAlignment:
+            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          Container(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            decoration: BoxDecoration(
+              color: isMe ? Colors.blue : Colors.grey[300],
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: isMe ? Colors.white : Colors.black),
+                ),
+                kHeightFive,
+                Text(
+                  message,
+                  style: TextStyle(color: isMe ? Colors.white : Colors.black),
+                ),
+              ],
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: isMe ? Colors.white : Colors.black),
-              ),
-              kHeightFive,
-              Text(
-                message,
-                style: TextStyle(color: isMe ? Colors.white : Colors.black),
-              ),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
