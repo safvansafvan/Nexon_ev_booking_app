@@ -1,17 +1,11 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/model/group_model.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
 
 class GroupDetailsWidget extends StatelessWidget {
-  const GroupDetailsWidget(
-      {super.key,
-      required this.groupMembers,
-      required this.groupName,
-      required this.groupLength});
-
-  final List groupMembers;
-  final String groupName;
-  final int groupLength;
+  const GroupDetailsWidget({super.key, required this.groupData});
+  final Group? groupData;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,13 +43,13 @@ class GroupDetailsWidget extends StatelessWidget {
                 ),
                 height10,
                 Text(
-                  groupName,
+                  groupData!.groupName,
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kwhite, size: 15),
                 ),
                 height10,
                 Text(
-                  "Members:$groupLength",
+                  "Members:${groupData!.members.length}",
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kwhite, size: 14),
                 ),
@@ -76,15 +70,21 @@ class GroupDetailsWidget extends StatelessWidget {
                   underline: true,
                 ),
                 height10,
-                for (var member in groupMembers)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      member,
-                      style: textStyleFuc(
-                          weight: FontWeight.w600, color: kBlack, size: 15),
-                    ),
-                  ),
+                // ListView.builder(
+                //   itemCount: groupData?.members.length ?? 0,
+                //   itemBuilder: (context, index) {
+                //     return Text(grou)
+                //   },
+                // )
+                // for (var member in groupData!.members)
+                //   Padding(
+                //     padding: const EdgeInsets.only(top: 8),
+                //     child: Text(
+                //       member,
+                //       style: textStyleFuc(
+                //           weight: FontWeight.w600, color: kBlack, size: 15),
+                //     ),
+                //   ),
               ],
             ),
           )

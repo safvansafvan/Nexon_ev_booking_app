@@ -54,6 +54,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => GetAllGroupsProvider(),
         ),
+        // ChangeNotifierProvider(
+        //   create: (context) => ChatProvider(),
+        // ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

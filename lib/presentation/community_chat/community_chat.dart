@@ -55,7 +55,6 @@ class CommunityChatScreen extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: value.userGroups.length,
                           itemBuilder: (context, index) {
-                            final userGroup = value.userGroups[index];
                             return value.userGroups.isEmpty
                                 ? const Center(
                                     child: Text("No Groups Found"),
@@ -68,32 +67,24 @@ class CommunityChatScreen extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(userGroup['groupName']),
-                                        const Text("This is the last message"),
+                                        Text(value.userGroups[index].groupName),
+                                        Text(
+                                          "This is the last message",
+                                          style: textStyleFuc(
+                                              weight: FontWeight.w500,
+                                              color: kBlack,
+                                              size: 13),
+                                        ),
                                       ],
                                     ),
                                     trailing: const Text("10:10"),
                                     onTap: () {
-                                      Provider.of<GetAllGroupsProvider>(context,
-                                              listen: false)
-                                          .fetchGroupMessages(
-                                              groupId: userGroup['_id'],
-                                              context: context);
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) {
-                                            List<String> memberNames =
-                                                (userGroup['members']
-                                                        as List<dynamic>)
-                                                    .map<String>((member) =>
-                                                        member['name']
-                                                            .toString())
-                                                    .toList();
                                             return ChatScreen(
-                                              groupId: userGroup['_id'],
-                                              groupName: userGroup['groupName'],
-                                              groupMembers: memberNames,
+                                              data: value.userGroups[index],
                                             );
                                           },
                                         ),

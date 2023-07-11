@@ -57,7 +57,8 @@ dependencies:
   geolocator: 9.0.2
   geocoding: 2.1.0
   socket_io_client: ^2.0.2 
-  
+  sticky_grouped_list: ^3.1.0
+  intl: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
