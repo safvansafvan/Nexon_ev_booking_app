@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,9 +55,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => GetAllGroupsProvider(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => ChatProvider(),
-        // ),
+        ChangeNotifierProvider(
+          create: (context) => ChatProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

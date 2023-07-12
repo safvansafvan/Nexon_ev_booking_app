@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/group_model.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +11,13 @@ class GroupDetailsWidget extends StatelessWidget {
   final Group? groupData;
   @override
   Widget build(BuildContext context) {
+    log(groupData!.admin.toString());
+    final membersList = groupData!.members.toList();
+    String adminName = groupData!.admin.toString();
+    RegExp regExp = RegExp(r"name: ([a-zA-Z]+)");
+    Match? match = regExp.firstMatch(adminName);
+    String name = match?.group(1) ?? "";
+    final imageUrl = Urls.baseUrl + groupData!.image.toString();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(168, 0, 0, 0),
@@ -21,10 +31,16 @@ class GroupDetailsWidget extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.edit_outlined,
+              color: kwhite,
+            ),
+          )
         ],
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             width: double.infinity,
@@ -38,8 +54,9 @@ class GroupDetailsWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 60,
+                  backgroundImage: NetworkImage(imageUrl.toString()),
                 ),
                 height10,
                 Text(
@@ -54,6 +71,11 @@ class GroupDetailsWidget extends StatelessWidget {
                       weight: FontWeight.w500, color: kwhite, size: 14),
                 ),
                 height10,
+                Text(
+                  "Created By:$name",
+                  style: textStyleFuc(
+                      weight: FontWeight.w500, color: kwhite, size: 14),
+                ),
               ],
             ),
           ),
@@ -66,25 +88,24 @@ class GroupDetailsWidget extends StatelessWidget {
                 HeadingTextWidget(
                   text: "Members",
                   fontWeight: FontWeight.w600,
-                  textSize: 16,
+                  textSize: 17,
                   underline: true,
                 ),
                 height10,
-                // ListView.builder(
-                //   itemCount: groupData?.members.length ?? 0,
-                //   itemBuilder: (context, index) {
-                //     return Text(grou)
-                //   },
-                // )
-                // for (var member in groupData!.members)
-                //   Padding(
-                //     padding: const EdgeInsets.only(top: 8),
-                //     child: Text(
-                //       member,
-                //       style: textStyleFuc(
-                //           weight: FontWeight.w600, color: kBlack, size: 15),
-                //     ),
-                //   ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: membersList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        membersList[index]['name'],
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w600),
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           )

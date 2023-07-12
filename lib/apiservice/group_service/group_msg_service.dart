@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/model/chatmodel.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class GroupMsgService {
-  static Future getMsgStatus(context, groupId) async {
+  static Future<List<ChatModel>?> getMsgStatus(context, groupId) async {
     final String url = Urls.baseUrl + Urls.group + Urls.getMsg;
     final pref = await SharedPreferences.getInstance();
     final token = pref.getString("ACCESS_TOKEN");
@@ -20,8 +21,10 @@ class GroupMsgService {
         log("success");
         final data = jsonDecode(response.body);
         if (data['status'] == "success") {
-          final messages = data['result'];
-          return messages;
+          List<ChatModel> messageList = (data['result'] as List)
+              .map((e) => ChatModel.fromJson(e))
+              .toList();
+          return messageList;
         } else {
           log(data['status']);
           snakBarWiget(context: context, title: data['status'], clr: kred);
@@ -36,6 +39,6 @@ class GroupMsgService {
     } catch (error) {
       log('Failed to fetch group messages: $error');
     }
-    return [];
+    return null;
   }
 }

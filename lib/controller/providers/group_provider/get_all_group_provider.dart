@@ -1,31 +1,22 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:bookingapp/apiservice/group_service/get_all_groups_service.dart';
 import 'package:bookingapp/apiservice/group_service/get_user_joined_group_service.dart';
-import 'package:bookingapp/apiservice/group_service/group_msg_service.dart';
 import 'package:bookingapp/apiservice/group_service/join_group_service.dart';
 import 'package:bookingapp/apiservice/group_service/new_group_service.dart';
-import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/group_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 // ignore: library_prefixes
 import 'package:flutter/material.dart';
 
 class GetAllGroupsProvider extends ChangeNotifier {
   List userDetails = [];
   List<Group> userGroups = [];
-  List messages = [];
+
   final newGroupNameController = TextEditingController();
   bool isLoading = false;
   bool userGroupLoading = false;
   bool msgLoading = false;
-  bool isMsgLoading = false;
-  bool newGroupLoading = false;
 
-  // GetAllGroupsProvider() {
-  //   connect();
-  // }
+  bool newGroupLoading = false;
 
   Future joinGroupButtonClick(context) async {
     isLoading = true;
@@ -55,18 +46,5 @@ class GetAllGroupsProvider extends ChangeNotifier {
     newGroupNameController.clear();
     newGroupLoading = false;
     notifyListeners();
-  }
-
-  Future<void> fetchGroupMessages({required String groupId, context}) async {
-    isMsgLoading = true;
-    messages = await GroupMsgService.getMsgStatus(context, groupId);
-    isMsgLoading = false;
-    notifyListeners();
-  }
-
-  getUsername() async {
-    final pref = await SharedPreferences.getInstance();
-    final name = pref.getString("USER_NAME");
-    return name.toString();
   }
 }
