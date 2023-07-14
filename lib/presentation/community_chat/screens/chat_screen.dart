@@ -7,6 +7,7 @@ import 'package:bookingapp/model/group_model.dart';
 import 'package:bookingapp/presentation/community_chat/widget/group_details.dart';
 import 'package:bookingapp/presentation/community_chat/widget/msg_bubble.dart';
 import 'package:bookingapp/presentation/community_chat/widget/reply_card.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<ChatProvider>(context, listen: false).groupId =
           widget.data.id;
-      // Provider.of<ChatProvider>(context, listen: false).connect();
+      Provider.of<ChatProvider>(context, listen: false).connect();
       Provider.of<ChatProvider>(context, listen: false).getMessages(context);
     });
 
@@ -182,7 +183,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      emojiShowing = !emojiShowing;
+                      setState(() {
+                        emojiShowing = !emojiShowing;
+                      });
                     },
                     icon: const Icon(Icons.emoji_emotions),
                   ),
@@ -197,29 +200,53 @@ class _ChatScreenState extends State<ChatScreen> {
                   IconButton(
                     icon: const Icon(Icons.send),
                     onPressed: () async {
-                      // if (value.textController.text.isNotEmpty) {
-                      //   value.sendMsg(
-                      //       message: value.textController.text,
-                      //       groupId: widget.data.id);
-                      // }
+                      if (value.textController.text.isNotEmpty) {
+                        value.sendMsg(
+                            message: value.textController.text,
+                            groupId: widget.data.id);
+                      }
                     },
                   ),
                 ],
               ),
             ),
-            // if (emojiShowing)
-            //   SizedBox(
-            //     height: 200,
-            //     child: EmojiPicker(
-            //       textEditingController: value.textController,
-            //       config: Config(
-            //         columns: 7,
-            //         initCategory: Category.ANIMALS,
-            //         noRecents: const Text("No recents"),
-            //         emojiSizeMax: 32 * (Platform.isAndroid ? 1.30 : 1.0),
-            //       ),
-            //     ),
-            //   ),
+            Offstage(
+              offstage: !emojiShowing,
+              child: SizedBox(
+                height: 250,
+                child: EmojiPicker(
+                  textEditingController: value.textController,
+                  config: const Config(
+                    columns: 7,
+                    verticalSpacing: 0,
+                    horizontalSpacing: 0,
+                    gridPadding: EdgeInsets.zero,
+                    initCategory: Category.RECENT,
+                    bgColor: Color(0xFFF2F2F2),
+                    indicatorColor: Colors.blue,
+                    iconColor: Colors.grey,
+                    iconColorSelected: Colors.blue,
+                    backspaceColor: Colors.blue,
+                    skinToneDialogBgColor: Colors.white,
+                    skinToneIndicatorColor: Colors.grey,
+                    enableSkinTones: true,
+                    recentTabBehavior: RecentTabBehavior.RECENT,
+                    recentsLimit: 28,
+                    replaceEmojiOnLimitExceed: false,
+                    noRecents: Text(
+                      'No Recents',
+                      style: TextStyle(fontSize: 20, color: Colors.black26),
+                      textAlign: TextAlign.center,
+                    ),
+                    loadingIndicator: SizedBox.shrink(),
+                    tabIndicatorAnimDuration: kTabScrollDuration,
+                    categoryIcons: CategoryIcons(),
+                    buttonMode: ButtonMode.MATERIAL,
+                    checkPlatformCompatibility: true,
+                  ),
+                ),
+              ),
+            ),
           ],
         );
       }),

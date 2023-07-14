@@ -14,25 +14,25 @@ class ChatProvider extends ChangeNotifier {
   IO.Socket? socket;
   final StreamController<List<ChatModel>> listMsg =
       StreamController<List<ChatModel>>.broadcast();
-  // ChatProvider() {
-  //   connect();
-  // }
+  ChatProvider() {
+    connect();
+  }
   void setGroupId({required groupId1}) {
     groupId = groupId1;
   }
 
-  // void connect() {
-  //   socket = IO.io(Urls.baseUrl, <String, dynamic>{
-  //     "transports": ["websocket"],
-  //     "autoConnect": false,
-  //   });
-  //   socket!.connect();
-  //   socket!.onConnect((data) {
-  //     // ignore: avoid_print
-  //     log('connnected to frontend');
-  //   });
-  //   notifyListeners();
-  // }
+  void connect() {
+    socket = IO.io(Urls.baseUrl, <String, dynamic>{
+      "transports": ["websocket"],
+      "autoConnect": false,
+    });
+    socket!.connect();
+    socket!.onConnect((data) {
+      // ignore: avoid_print
+      log('connnected to frontend');
+    });
+    notifyListeners();
+  }
 
   Future<void> getMessages(context) async {
     isMsgLoading = true;
@@ -48,14 +48,14 @@ class ChatProvider extends ChangeNotifier {
     });
   }
 
-  // void sendMsg({required String message, required String groupId}) async {
-  //   final userName = await getUsername();
-  //   log(userName.toString(), name: "sendMSg");
-  //   socket!.emit(
-  //       "messages", {"name": userName, "text": message, "groupId": groupId});
-  //   textController.clear();
-  //   notifyListeners();
-  // }
+  void sendMsg({required String message, required String groupId}) async {
+    final userName = await getUsername();
+    log(userName.toString(), name: "sendMSg");
+    socket!.emit(
+        "messages", {"name": userName, "text": message, "groupId": groupId});
+    textController.clear();
+    notifyListeners();
+  }
 
   Future<String> getUsername() async {
     final pref = await SharedPreferences.getInstance();
