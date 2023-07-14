@@ -1,6 +1,6 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/map_provider.dart';
+import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

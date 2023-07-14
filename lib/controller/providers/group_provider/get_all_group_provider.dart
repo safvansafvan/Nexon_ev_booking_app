@@ -60,6 +60,7 @@ class GetAllGroupsProvider extends ChangeNotifier {
     log("$groupId  $groupName $imageUrl ");
     await EditGroupProfileService.changeGroupInfo(
         context, groupId, groupName, imageUrl, fistImg);
+    clearControllers();
     notifyListeners();
   }
 
@@ -74,5 +75,10 @@ class GetAllGroupsProvider extends ChangeNotifier {
       notifyListeners();
     }
     notifyListeners();
+  }
+
+  clearControllers() {
+    fileImg = null;
+    editGroupName.clear();
   }
 }

@@ -81,7 +81,7 @@ class GroupDetailsWidget extends StatelessWidget {
                 Text(
                   groupData!.groupName,
                   style: textStyleFuc(
-                      weight: FontWeight.w500, color: kwhite, size: 15),
+                      weight: FontWeight.w600, color: kwhite, size: 16),
                 ),
                 height10,
                 Text(

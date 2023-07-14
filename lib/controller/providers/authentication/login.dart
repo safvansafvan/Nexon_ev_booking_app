@@ -19,6 +19,7 @@ class LoginProvider extends ChangeNotifier {
 
   Future loginButtonClick(context) async {
     isLoading = true;
+    notifyListeners();
     log("called");
     await LoginApiService.getLoginStatuss(context);
     isLoading = false;

@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/providers/map_provider.dart';
+import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/brochure/brochure.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/widget/drawer.dart';

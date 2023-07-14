@@ -18,6 +18,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
   ///this two fuction send otp to email
   inForgotEmailVerifyClick(context) async {
     isLoadingEmailSend = true;
+    notifyListeners();
     await ForgotPasswordService.getForgotPasswordStatus(context);
     clearController();
     isLoadingEmailSend = false;

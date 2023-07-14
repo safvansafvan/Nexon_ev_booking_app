@@ -16,6 +16,7 @@ class OtpVerificationAndSignupProvider extends ChangeNotifier {
   getOtpVerificationButtonClick(context) async {
     final provider = Provider.of<OtpProvider>(context, listen: false);
     isLoading = true;
+    notifyListeners();
     await SignupService.signUpAndOtpVerifyStatus(context);
     clearController();
     provider.clearController();

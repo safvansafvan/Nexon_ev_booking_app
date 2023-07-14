@@ -7,7 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/providers/map_provider.dart';
+import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/map/const.dart';
 import 'package:bookingapp/presentation/map/widget/more.dart';
 import 'package:bookingapp/presentation/map/widget/dialog_fields.dart';

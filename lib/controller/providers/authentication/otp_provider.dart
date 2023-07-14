@@ -26,6 +26,7 @@ class OtpProvider extends ChangeNotifier {
 
   signUpButtonClick(context) async {
     isLoading = true;
+    notifyListeners();
     await OtpService.getOtpStatus(context);
     isLoading = false;
     notifyListeners();

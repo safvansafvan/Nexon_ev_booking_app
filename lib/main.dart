@@ -12,7 +12,7 @@ import 'package:bookingapp/controller/providers/authentication/otp_provider.dart
 import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_provider.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
-import 'controller/providers/map_provider.dart';
+import 'controller/providers/map_provider/map_provider.dart';
 
 void main() {
   runApp(const MyApp());

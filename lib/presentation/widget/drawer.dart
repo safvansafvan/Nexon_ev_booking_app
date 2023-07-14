@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -6,6 +7,7 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetUserDetials user = GetUserDetials();
     return SafeArea(
       child: SizedBox(
         width: 250,
@@ -25,12 +27,12 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 commonHeight,
                 Text(
-                  "safvan",
+                  user.userName.toString(),
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kBlack, size: 15),
                 ),
                 Text(
-                  "sajusajuptl@gmail.com",
+                  user.userEmail.toString(),
                   style: textStyleFuc(
                       weight: FontWeight.w300, color: kBlack, size: 12),
                 ),
