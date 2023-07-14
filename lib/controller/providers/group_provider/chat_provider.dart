@@ -5,6 +5,7 @@ import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/chatmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: library_prefixes
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ChatProvider extends ChangeNotifier {
@@ -12,6 +13,8 @@ class ChatProvider extends ChangeNotifier {
   TextEditingController textController = TextEditingController();
   late String groupId;
   IO.Socket? socket;
+  bool emojiShowing = false;
+
   final StreamController<List<ChatModel>> listMsg =
       StreamController<List<ChatModel>>.broadcast();
   ChatProvider() {
@@ -19,6 +22,11 @@ class ChatProvider extends ChangeNotifier {
   }
   void setGroupId({required groupId1}) {
     groupId = groupId1;
+  }
+
+  showEmoji() {
+    emojiShowing = !emojiShowing;
+    notifyListeners();
   }
 
   void connect() {

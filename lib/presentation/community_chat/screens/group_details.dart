@@ -1,17 +1,15 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
-import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:bookingapp/model/group_model.dart';
+import 'package:bookingapp/presentation/community_chat/screens/change_group_profile.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class GroupDetailsWidget extends StatelessWidget {
-  const GroupDetailsWidget({super.key, required this.groupData});
-  final Group? groupData;
+  GroupDetailsWidget({super.key, required this.groupData});
+  Group? groupData;
   @override
   Widget build(BuildContext context) {
     log(groupData!.admin.toString());
@@ -20,9 +18,7 @@ class GroupDetailsWidget extends StatelessWidget {
     RegExp regExp = RegExp(r"name: ([a-zA-Z]+)");
     Match? match = regExp.firstMatch(adminName);
     String name = match?.group(1) ?? "";
-    final imageUrl = Urls.baseUrl + groupData!.image.toString();
 
-    final provider = Provider.of<GetAllGroupsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(168, 0, 0, 0),
@@ -38,59 +34,15 @@ class GroupDetailsWidget extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(borderRadius: radiusTen),
-                      title: const Text("Edit Group"),
-                      content: SizedBox(
-                        height: 280,
-                        child: ListView(
-                          children: [
-                            provider.fileImg == null
-                                ? const CircleAvatar(
-                                    radius: 80,
-                                    backgroundImage:
-                                        AssetImage('assets/nexonEvB.png'),
-                                  )
-                                : CircleAvatar(
-                                    radius: 70,
-                                    backgroundImage: FileImage(
-                                      File(provider.fileImg!.path),
-                                    ),
-                                  ),
-                            IconButton(
-                                onPressed: () {
-                                  provider.getImg();
-                                },
-                                icon: const Icon(Icons.edit)),
-                            height10,
-                            TextFormField(
-                              controller: provider.editGroupName,
-                            )
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Cancel")),
-                        TextButton(
-                            onPressed: () {
-                              provider.editGroupNameAndImg(
-                                  context,
-                                  groupData!.id,
-                                  provider.editGroupName.text.trim(),
-                                  provider.fileImg,
-                                  groupData!.image);
-                            },
-                            child: const Text("Ok"))
-                      ],
-                    );
-                  });
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ChangeGroupProfile(
+                      id: groupData!.id,
+                      img: groupData!.image.toString(),
+                      name: groupData!.groupName);
+                }),
+              );
             },
             icon: Icon(
               Icons.edit_outlined,
@@ -103,7 +55,7 @@ class GroupDetailsWidget extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 250,
+            height: 260,
             decoration: const BoxDecoration(
               color: Color.fromARGB(168, 0, 0, 0),
               borderRadius: BorderRadius.only(
@@ -113,10 +65,18 @@ class GroupDetailsWidget extends StatelessWidget {
             ),
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 60,
-                  backgroundImage: NetworkImage(imageUrl.toString()),
-                ),
+                groupData!.image != null
+                    ? CircleAvatar(
+                        radius: 80,
+                        backgroundImage: NetworkImage(
+                          Urls.baseUrl + groupData!.image.toString(),
+                        ),
+                      )
+                    : const CircleAvatar(
+                        radius: 70,
+                        backgroundImage: NetworkImage(
+                            "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
+                      ),
                 height10,
                 Text(
                   groupData!.groupName,

@@ -1,17 +1,19 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bookingapp/controller/const/string.dart';
-import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
-import 'package:bookingapp/model/chatmodel.dart';
-import 'package:bookingapp/model/group_model.dart';
-import 'package:bookingapp/presentation/community_chat/widget/group_details.dart';
-import 'package:bookingapp/presentation/community_chat/widget/msg_bubble.dart';
-import 'package:bookingapp/presentation/community_chat/widget/reply_card.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:bookingapp/presentation/community_chat/screens/group_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:bookingapp/model/chatmodel.dart';
+import 'package:bookingapp/model/group_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sticky_grouped_list/sticky_grouped_list.dart';
+import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
+import 'package:bookingapp/presentation/community_chat/widget/msg_card/own_msg.dart';
+import 'package:bookingapp/presentation/community_chat/widget/msg_card/reply_card.dart';
+import 'package:bookingapp/presentation/community_chat/widget/msg_sending_widget.dart';
+import 'package:bookingapp/presentation/community_chat/widget/seperator.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key, required this.data}) : super(key: key);
@@ -23,7 +25,6 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late Timer timer;
-  bool emojiShowing = false;
   StreamController<List<ChatModel>> controller =
       StreamController<List<ChatModel>>.broadcast();
   String userName = "";
@@ -120,7 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             element.createdAt!.year,
                             element.createdAt!.month,
                             element.createdAt!.day),
-                        groupSeparatorBuilder: _getGroupSeparator,
+                        groupSeparatorBuilder: getGroupSeparator,
                         indexedItemBuilder: (context, element, index) {
                           if (data[index].name!.name == userName) {
                             return OwnMessageCard(
@@ -166,52 +167,16 @@ class _ChatScreenState extends State<ChatScreen> {
                       );
                     }
                   } else if (snapshot.hasError) {
-                    log("zzzzzzzzzzzzz");
                     return const Center(child: CircularProgressIndicator());
                   } else {
-                    log("message");
-
                     return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              color: Colors.grey[200],
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        emojiShowing = !emojiShowing;
-                      });
-                    },
-                    icon: const Icon(Icons.emoji_emotions),
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: value.textController,
-                      decoration: const InputDecoration.collapsed(
-                        hintText: 'Type your message...',
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: () async {
-                      if (value.textController.text.isNotEmpty) {
-                        value.sendMsg(
-                            message: value.textController.text,
-                            groupId: widget.data.id);
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
+            MsgSendingWidget(widget: widget, value: value),
             Offstage(
-              offstage: !emojiShowing,
+              offstage: value.emojiShowing,
               child: SizedBox(
                 height: 250,
                 child: EmojiPicker(
@@ -258,70 +223,4 @@ class _ChatScreenState extends State<ChatScreen> {
     userName = pref.getString("USER_NAME").toString();
     log(userName, name: "futions");
   }
-}
-
-Widget _getGroupSeparator(ChatModel element) {
-  String? month;
-  switch (element.createdAt!.month) {
-    case 1:
-      month = 'Jan';
-      break;
-    case 2:
-      month = 'Feb';
-      break;
-    case 3:
-      month = 'March';
-      break;
-    case 4:
-      month = 'April';
-      break;
-    case 5:
-      month = 'May';
-      break;
-    case 6:
-      month = 'June';
-      break;
-    case 7:
-      month = 'July';
-      break;
-    case 8:
-      month = 'Aug';
-      break;
-    case 9:
-      month = 'Sept';
-      break;
-    case 10:
-      month = 'Oct';
-      break;
-    case 11:
-      month = 'Nov';
-      break;
-    case 12:
-      month = 'Dec';
-      break;
-  }
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: SizedBox(
-      height: 35,
-      child: Align(
-        alignment: Alignment.center,
-        child: Container(
-          width: 100,
-          decoration: BoxDecoration(
-            color: Colors.blueAccent,
-            border: Border.all(
-              color: Colors.blueAccent,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-          ),
-          child: Text(
-            '${element.createdAt!.day}, $month, ${element.createdAt!.year}',
-            textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.white, fontSize: 12),
-          ),
-        ),
-      ),
-    ),
-  );
 }

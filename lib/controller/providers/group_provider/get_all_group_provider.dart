@@ -71,6 +71,7 @@ class GetAllGroupsProvider extends ChangeNotifier {
     } else {
       final photoTemp = File(photo.path);
       fileImg = photoTemp;
+      notifyListeners();
     }
     notifyListeners();
   }
