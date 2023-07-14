@@ -14,19 +14,20 @@ class ChatModel {
     this.createdAt,
     this.updatedAt,
   });
-
-  factory ChatModel.fromJson(Map<String, dynamic> json) => ChatModel(
-        id: json["_id"],
-        name: json["name"] == null ? null : Name.fromJson(json["name"]),
-        text: json["text"],
-        group: json["group"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-      );
+  factory ChatModel.fromJson(Map<String, dynamic> json) {
+    return ChatModel(
+      id: json["_id"],
+      name: json["name"] is Map<String, dynamic>
+          ? Name.fromJson(json["name"])
+          : Name(name: json["name"]),
+      text: json["text"],
+      group: json["group"],
+      createdAt:
+          json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+      updatedAt:
+          json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "_id": id,

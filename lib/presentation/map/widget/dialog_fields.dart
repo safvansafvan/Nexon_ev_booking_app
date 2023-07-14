@@ -27,6 +27,7 @@ class TextFieldForAddPlot extends StatelessWidget {
   Widget build(BuildContext context) {
     final mapProvider = Provider.of<MapProvider>(context, listen: false);
     return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: radiusTen),
       title: const Text('Add Plot'),
       content: SizedBox(
         height: 250,

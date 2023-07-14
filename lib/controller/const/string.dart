@@ -41,4 +41,5 @@ class Urls {
   static String getUserGroup = '/get-user-group';
   static String getMsg = '/get-messages';
   static String newGroup = '/new-group';
+  static String upgradeGroup = "/update-group";
 }

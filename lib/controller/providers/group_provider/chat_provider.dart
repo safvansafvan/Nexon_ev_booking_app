@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:developer';
 import 'package:bookingapp/apiservice/group_service/group_msg_service.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/chatmodel.dart';
@@ -14,31 +14,28 @@ class ChatProvider extends ChangeNotifier {
   IO.Socket? socket;
   final StreamController<List<ChatModel>> listMsg =
       StreamController<List<ChatModel>>.broadcast();
-  ChatProvider() {
-    connect();
-  }
+  // ChatProvider() {
+  //   connect();
+  // }
   void setGroupId({required groupId1}) {
     groupId = groupId1;
   }
 
-  void connect() {
-    socket = IO.io(Urls.baseUrl, <String, dynamic>{
-      "transports": ["websocket"],
-      "autoConnect": false,
-    });
-    notifyListeners();
-    socket!.connect();
-    notifyListeners();
-    socket!.onConnect((data) {
-      // ignore: avoid_print
-      print('connnected to frontend');
-    });
-    notifyListeners();
-  }
+  // void connect() {
+  //   socket = IO.io(Urls.baseUrl, <String, dynamic>{
+  //     "transports": ["websocket"],
+  //     "autoConnect": false,
+  //   });
+  //   socket!.connect();
+  //   socket!.onConnect((data) {
+  //     // ignore: avoid_print
+  //     log('connnected to frontend');
+  //   });
+  //   notifyListeners();
+  // }
 
   Future<void> getMessages(context) async {
     isMsgLoading = true;
-    notifyListeners();
     await GroupMsgService.getMsgStatus(context, groupId).then((value) {
       if (value != null) {
         listMsg.add(value);
@@ -51,23 +48,19 @@ class ChatProvider extends ChangeNotifier {
     });
   }
 
-  void sendMsg({required String message, required String groupId}) {
-    notifyListeners();
-    notifyListeners();
-    socket!.emit("message",
-        {"name": getUsername(), "text": message, "groupId": groupId});
-    textController.clear();
-  }
+  // void sendMsg({required String message, required String groupId}) async {
+  //   final userName = await getUsername();
+  //   log(userName.toString(), name: "sendMSg");
+  //   socket!.emit(
+  //       "messages", {"name": userName, "text": message, "groupId": groupId});
+  //   textController.clear();
+  //   notifyListeners();
+  // }
 
-  getUsername() async {
+  Future<String> getUsername() async {
     final pref = await SharedPreferences.getInstance();
     final name = pref.getString("USER_NAME");
+    log(name.toString());
     return name.toString();
-  }
-
-  getUserEmail() async {
-    final pref = await SharedPreferences.getInstance();
-    final email = pref.getString("USER_EMAIL");
-    return email.toString();
   }
 }

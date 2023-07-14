@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
 import 'package:bookingapp/model/chatmodel.dart';
@@ -8,6 +9,7 @@ import 'package:bookingapp/presentation/community_chat/widget/msg_bubble.dart';
 import 'package:bookingapp/presentation/community_chat/widget/reply_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sticky_grouped_list/sticky_grouped_list.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -23,6 +25,13 @@ class _ChatScreenState extends State<ChatScreen> {
   bool emojiShowing = false;
   StreamController<List<ChatModel>> controller =
       StreamController<List<ChatModel>>.broadcast();
+  String userName = "";
+  @override
+  void initState() {
+    super.initState();
+    getUsername();
+  }
+
   @override
   void didChangeDependencies() {
     timer = Timer.periodic(const Duration(seconds: 2), (_) {
@@ -33,10 +42,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<ChatProvider>(context, listen: false).groupId =
           widget.data.id;
-      Provider.of<ChatProvider>(context, listen: false).connect();
+      // Provider.of<ChatProvider>(context, listen: false).connect();
       Provider.of<ChatProvider>(context, listen: false).getMessages(context);
     });
 
@@ -55,7 +64,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   ? CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
-                          Urls.baseUrl + widget.data.image.toString()))
+                        Urls.baseUrl + widget.data.image.toString(),
+                      ),
+                    )
                   : const CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
@@ -110,7 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             element.createdAt!.day),
                         groupSeparatorBuilder: _getGroupSeparator,
                         indexedItemBuilder: (context, element, index) {
-                          if (data[index].name == value.getUserEmail()) {
+                          if (data[index].name!.name == userName) {
                             return OwnMessageCard(
                               text: data[index].text.toString(),
                               name: data[index].name!.name.toString(),
@@ -118,6 +129,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               date: false,
                             );
                           } else {
+                            log("  $userName");
                             return ReplyCard(
                               name: data[index].name!.name.toString(),
                               text: data[index].text.toString(),
@@ -133,7 +145,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           // ignore: unrelated_type_equality_checks
-                          if (data[index].name == value.getUserEmail) {
+                          if (data[index].name!.name == userName) {
                             return OwnMessageCard(
                               text: data[index].text.toString(),
                               name: data[index].name!.name.toString(),
@@ -141,6 +153,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               date: true,
                             );
                           } else {
+                            log("${data[index].name!.name}  $userName");
                             return ReplyCard(
                               name: data[index].name!.name.toString(),
                               text: data[index].text.toString(),
@@ -152,8 +165,11 @@ class _ChatScreenState extends State<ChatScreen> {
                       );
                     }
                   } else if (snapshot.hasError) {
+                    log("zzzzzzzzzzzzz");
                     return const Center(child: CircularProgressIndicator());
                   } else {
+                    log("message");
+
                     return const Center(child: CircularProgressIndicator());
                   }
                 },
@@ -166,9 +182,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      setState(() {
-                        emojiShowing = !emojiShowing;
-                      });
+                      emojiShowing = !emojiShowing;
                     },
                     icon: const Icon(Icons.emoji_emotions),
                   ),
@@ -183,9 +197,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   IconButton(
                     icon: const Icon(Icons.send),
                     onPressed: () async {
-                      value.sendMsg(
-                          message: value.textController.text,
-                          groupId: widget.data.id);
+                      // if (value.textController.text.isNotEmpty) {
+                      //   value.sendMsg(
+                      //       message: value.textController.text,
+                      //       groupId: widget.data.id);
+                      // }
                     },
                   ),
                 ],
@@ -208,6 +224,12 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }),
     );
+  }
+
+  getUsername() async {
+    final pref = await SharedPreferences.getInstance();
+    userName = pref.getString("USER_NAME").toString();
+    log(userName, name: "futions");
   }
 }
 

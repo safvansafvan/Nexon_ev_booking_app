@@ -1,10 +1,13 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:bookingapp/model/group_model.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GroupDetailsWidget extends StatelessWidget {
   const GroupDetailsWidget({super.key, required this.groupData});
@@ -18,6 +21,8 @@ class GroupDetailsWidget extends StatelessWidget {
     Match? match = regExp.firstMatch(adminName);
     String name = match?.group(1) ?? "";
     final imageUrl = Urls.baseUrl + groupData!.image.toString();
+
+    final provider = Provider.of<GetAllGroupsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(168, 0, 0, 0),
@@ -32,7 +37,61 @@ class GroupDetailsWidget extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(borderRadius: radiusTen),
+                      title: const Text("Edit Group"),
+                      content: SizedBox(
+                        height: 280,
+                        child: ListView(
+                          children: [
+                            provider.fileImg == null
+                                ? const CircleAvatar(
+                                    radius: 80,
+                                    backgroundImage:
+                                        AssetImage('assets/nexonEvB.png'),
+                                  )
+                                : CircleAvatar(
+                                    radius: 70,
+                                    backgroundImage: FileImage(
+                                      File(provider.fileImg!.path),
+                                    ),
+                                  ),
+                            IconButton(
+                                onPressed: () {
+                                  provider.getImg();
+                                },
+                                icon: const Icon(Icons.edit)),
+                            height10,
+                            TextFormField(
+                              controller: provider.editGroupName,
+                            )
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        TextButton(
+                            onPressed: () {
+                              provider.editGroupNameAndImg(
+                                  context,
+                                  groupData!.id,
+                                  provider.editGroupName.text.trim(),
+                                  provider.fileImg,
+                                  groupData!.image);
+                            },
+                            child: const Text("Ok"))
+                      ],
+                    );
+                  });
+            },
             icon: Icon(
               Icons.edit_outlined,
               color: kwhite,
