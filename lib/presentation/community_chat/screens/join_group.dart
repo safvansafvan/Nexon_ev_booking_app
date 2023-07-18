@@ -1,4 +1,5 @@
 import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:bookingapp/presentation/community_chat/widget/pop_up.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
@@ -59,17 +60,12 @@ class _JoinGroupScreenState extends State<JoinGroupScreen> {
 
                             return ListTile(
                               leading: CircleAvatar(
-                                child: imageUrl != null
-                                    ? Image.network(
-                                        imageUrl,
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return const Icon(Icons.error);
-                                        },
-                                      )
-                                    : const Icon(Icons.person),
-                              ),
+                                  backgroundImage: imageUrl != null
+                                      ? NetworkImage(
+                                          Urls.baseUrl + imageUrl,
+                                        )
+                                      : const NetworkImage(
+                                          "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png")),
                               title: Text(
                                 grpDetails['groupName'],
                                 style: textStyleFuc(

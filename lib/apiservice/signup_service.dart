@@ -33,7 +33,7 @@ class SignupService {
           snakBarWiget(context: context, title: "SignUp Success", clr: kGreen);
           final result = data['result'];
           setLoginStatus(
-              accessToken: result['token'],
+              accessToken: data['token'],
               userName: result['username'],
               id: result['_id'],
               userEmail: result['email']);
@@ -48,7 +48,6 @@ class SignupService {
       }
     } catch (e) {
       log(e.toString());
-      snakBarWiget(context: context, title: e.toString(), clr: kred);
     }
   }
 

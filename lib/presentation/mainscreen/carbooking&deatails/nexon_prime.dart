@@ -28,7 +28,7 @@ class NexonEvPrimeDeatails extends StatelessWidget {
           child: AppBarWidget(
               leading: Icons.arrow_back_ios_outlined,
               menu: false,
-              settings: false),
+              settings: true),
         ),
       ),
       body: Padding(

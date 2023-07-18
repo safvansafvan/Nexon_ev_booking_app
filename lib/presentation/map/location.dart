@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
+import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -10,7 +12,6 @@ import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/map/const.dart';
 import 'package:bookingapp/presentation/map/widget/more.dart';
-import 'package:bookingapp/presentation/map/widget/dialog_fields.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 
 class MyWidget extends StatefulWidget {
@@ -55,13 +56,72 @@ class _MyWidgetState extends State<MyWidget> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return TextFieldForAddPlot(
-                        lat: point.latitude,
-                        long: point.longitude,
-                        stationNameCtr: locationProvider.stationNameCtr,
-                        screenSize: screenSize,
-                        descriptionCtr: locationProvider.descriptionCtr,
-                        keyController: locationProvider.keyController);
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(borderRadius: radiusTen),
+                      title: const Text('Add Plot'),
+                      content: SizedBox(
+                        height: 220,
+                        child: Column(children: [
+                          TextFormFieldCommon(
+                              controller: locationProvider.stationNameCtr,
+                              hintText: "Station",
+                              keyType: TextInputType.name,
+                              size: screenSize),
+                          height10,
+                          TextFormFieldCommon(
+                              controller: locationProvider.descriptionCtr,
+                              hintText: "Desc",
+                              keyType: TextInputType.name,
+                              size: screenSize),
+                          height10,
+                          Container(
+                            height: 63,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: kblue),
+                                borderRadius: radiusTen),
+                            child: Center(
+                              child: CustomDropdown(
+                                  excludeSelected: true,
+                                  fillColor: Colors.transparent,
+                                  hintText: "Key",
+                                  hintStyle: TextStyle(color: kBlack),
+                                  selectedStyle: TextStyle(color: kBlack),
+                                  items: const [
+                                    "KSEB",
+                                    "Tata Motor",
+                                    "Ather",
+                                    "Other"
+                                  ],
+                                  controller: locationProvider.keyController),
+                            ),
+                          ),
+                        ]),
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        TextButton(
+                          onPressed: () async {
+                            log(locationProvider.stationNameCtr.text.toString(),
+                                name: "station Name");
+                            log(locationProvider.keyController.text.toString(),
+                                name: "Key");
+                            log(locationProvider.descriptionCtr.text.toString(),
+                                name: "descr");
+                            log(point.latitude.toString());
+                            log(point.longitude.toString());
+                            await locationProvider.addButtonClick(
+                                context: context,
+                                lat: point.latitude.toDouble(),
+                                long: point.longitude.toDouble());
+                          },
+                          child: const Text("OK"),
+                        )
+                      ],
+                    );
                   },
                 );
               },

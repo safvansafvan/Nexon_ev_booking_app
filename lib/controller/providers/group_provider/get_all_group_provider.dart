@@ -46,7 +46,7 @@ class GetAllGroupsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  addNewGroup(context) async {
+  Future addNewGroup(context) async {
     newGroupLoading = true;
     await NewGroupService.newGroupStatus(
         context: context, groupName: newGroupNameController.text);

@@ -21,14 +21,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   @override
-  void initState() {
-    super.initState();
-    Provider.of<MapProvider>(context, listen: false)
-        .fetchCharginLocation(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<MapProvider>(context, listen: false)
+          .fetchCharginLocation(context);
+    });
     List image = [
       "assets/primenexon.jpg",
       "assets/nexon.webp",

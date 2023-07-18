@@ -14,23 +14,37 @@ class MapProvider extends ChangeNotifier {
   final descriptionCtr = TextEditingController();
   final keyController = TextEditingController();
   List<dynamic>? mapDetails;
-  fetchCharginLocation(context) async {
+  MapProvider() {
+    getUsername();
+    getEmail();
+  }
+  Future fetchCharginLocation(context) async {
     mapDetails = await getChargingPort(context);
     notifyListeners();
   }
 
   ///add charging plot
-  addButtonClick({context, lat, long}) async {
+  addButtonClick({context, required double lat, required double long}) async {
     final String url = Urls.baseUrl + Urls.map + Urls.addPlot;
     try {
+      // Map<String, dynamic> data = {
+      //   "type": keyController.text.trim(),
+      //   "desc": descriptionCtr.text.trim(),
+      //   "title": stationNameCtr.text.trim(),
+      //   "username": userName,
+      //   "email": userEmail,
+      //   "lat": lat,
+      //   "long": long
+      // };
       final response = await http.post(
         Uri.parse(url),
-        body: bodyData(lat, long),
+        body: bodyData(lat: lat, long: long),
       );
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        final status = data['status'];
-        if (status == 'success') {
+        log(response.body.toString());
+
+        if (data['status'] == 'success') {
           log(response.body, name: "Success");
           snakBarWiget(context: context, title: "Added New Port", clr: kGreen);
           fetchCharginLocation(context);
@@ -47,35 +61,33 @@ class MapProvider extends ChangeNotifier {
       }
     } catch (error) {
       log(error.toString());
-      snakBarWiget(context: context, title: error.toString(), clr: kred);
     }
     notifyListeners();
   }
 
-  Map<String, dynamic> bodyData(lat, long) {
+  String? userName;
+  String? userEmail;
+
+  Map<String, dynamic> bodyData({required double lat, required double long}) {
     final data = AddPlotModel(
       type: keyController.text.trim(),
       desc: descriptionCtr.text.trim(),
       title: stationNameCtr.text.trim(),
-      email: getEmail().toString().trim(),
-      username: getUsername().toString().trim(),
-      long: long.toString(),
-      lat: lat.toString(),
+      email: userEmail,
+      username: userName,
+      long: long,
+      lat: lat,
     );
     return data.toJson();
   }
 
   Future getEmail() async {
     final pref = await SharedPreferences.getInstance();
-    final email = pref.getString("USER_EMAIL");
-    log("$email", name: "getEmail");
-    return email;
+    userEmail = pref.getString("USER_EMAIL");
   }
 
   Future getUsername() async {
     final pref = await SharedPreferences.getInstance();
-    final userName = pref.getString("USER_NAME");
-    log("$userName", name: "getUsername");
-    return userName;
+    userName = pref.getString("USER_NAME");
   }
 }

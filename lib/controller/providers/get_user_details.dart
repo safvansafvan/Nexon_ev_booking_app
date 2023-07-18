@@ -1,15 +1,19 @@
+import 'dart:developer';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GetUserDetials {
-  String? userName = "";
-  String? userEmail = "";
-  getUsername() async {
+  Future<String> getUsername() async {
     final pref = await SharedPreferences.getInstance();
-    userName = pref.getString("USER_NAME");
+    final userName = pref.getString("USER_NAME");
+    log(userName.toString());
+    return userName.toString();
   }
 
-  Future getUSerEmail() async {
+  Future<String> getUSerEmail() async {
     final pref = await SharedPreferences.getInstance();
-    userEmail = pref.getString("USER_EMAIL");
+    final userEmail = pref.getString("USER_EMAIL");
+    log(userEmail.toString());
+    return userEmail.toString();
   }
 }

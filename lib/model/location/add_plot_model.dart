@@ -2,8 +2,8 @@ class AddPlotModel {
   String? type;
   String? desc;
   String? title;
-  String? lat;
-  String? long;
+  double? lat;
+  double? long;
   String? email;
   String? username;
 
@@ -21,8 +21,8 @@ class AddPlotModel {
         "type": type,
         "desc": desc,
         "title": title,
-        "lat": lat,
-        "long": long,
+        "lat": lat.toString(),
+        "long": long.toString(),
         "email": email,
         "username": username,
       };

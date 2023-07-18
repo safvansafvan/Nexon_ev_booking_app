@@ -128,9 +128,10 @@ void dialog(context, size) {
             child: const Text("Cancel"),
           ),
           TextButton(
-            onPressed: () {
-              Provider.of<GetAllGroupsProvider>(context, listen: false)
+            onPressed: () async {
+              await Provider.of<GetAllGroupsProvider>(context, listen: false)
                   .addNewGroup(context);
+              // ignore: use_build_context_synchronously
               Navigator.pop(context);
             },
             child: const Text("OK"),

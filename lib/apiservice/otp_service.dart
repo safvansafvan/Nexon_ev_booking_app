@@ -31,7 +31,6 @@ class OtpService {
       }
     } catch (e) {
       log(e.toString());
-      snakBarWiget(context: context, title: e.toString(), clr: kred);
     }
   }
 

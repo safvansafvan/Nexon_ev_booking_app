@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
@@ -30,7 +32,7 @@ class TextFieldForAddPlot extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: radiusTen),
       title: const Text('Add Plot'),
       content: SizedBox(
-        height: 250,
+        height: 220,
         child: Column(children: [
           TextFormFieldCommon(
               controller: stationNameCtr,
@@ -68,11 +70,17 @@ class TextFieldForAddPlot extends StatelessWidget {
             },
             child: const Text("Cancel")),
         TextButton(
-            onPressed: () async {
-              await mapProvider.addButtonClick(
-                  context: context, lat: lat, long: long);
-            },
-            child: const Text("OK"))
+          onPressed: () async {
+            log(stationNameCtr.text.toString());
+            log(keyController.text.toString());
+            log(descriptionCtr.text.toString());
+            log(lat.toString());
+            log(long.toString());
+            await mapProvider.addButtonClick(
+                context: context, lat: lat, long: long);
+          },
+          child: const Text("OK"),
+        )
       ],
     );
   }

@@ -2,12 +2,30 @@ import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:flutter/material.dart';
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+  String? userName;
+  String? userEmail;
+  getUserDetails() async {
     GetUserDetials user = GetUserDetials();
+    userEmail = await user.getUSerEmail();
+    userName = await user.getUsername();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserDetails();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
         width: 250,
@@ -27,12 +45,12 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 commonHeight,
                 Text(
-                  user.userName.toString(),
+                  userName ?? "Unknown",
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kBlack, size: 15),
                 ),
                 Text(
-                  user.userEmail.toString(),
+                  userEmail ?? "Unknown",
                   style: textStyleFuc(
                       weight: FontWeight.w300, color: kBlack, size: 12),
                 ),
