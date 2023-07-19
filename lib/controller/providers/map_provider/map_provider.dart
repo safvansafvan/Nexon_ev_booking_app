@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/apiservice/get_charger_port.dart';
+import 'package:bookingapp/apiservice/map_service/get_charger_port.dart';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/model/location/add_plot_model.dart';
@@ -27,15 +27,6 @@ class MapProvider extends ChangeNotifier {
   addButtonClick({context, required double lat, required double long}) async {
     final String url = Urls.baseUrl + Urls.map + Urls.addPlot;
     try {
-      // Map<String, dynamic> data = {
-      //   "type": keyController.text.trim(),
-      //   "desc": descriptionCtr.text.trim(),
-      //   "title": stationNameCtr.text.trim(),
-      //   "username": userName,
-      //   "email": userEmail,
-      //   "lat": lat,
-      //   "long": long
-      // };
       final response = await http.post(
         Uri.parse(url),
         body: bodyData(lat: lat, long: long),

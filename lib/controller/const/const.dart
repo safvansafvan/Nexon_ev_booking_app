@@ -21,6 +21,7 @@ var height10 = const SizedBox(
   height: 10,
 );
 
+//height
 var commonHeight = const SizedBox(
   height: 20,
 );
@@ -32,4 +33,9 @@ var kheight30 = const SizedBox(
 );
 var kHeightFive = const SizedBox(
   height: 5,
+);
+
+//width
+var kWidth = const SizedBox(
+  width: 20,
 );

@@ -24,10 +24,12 @@ class Urls {
   //testDriveBooking
 
   static String testDriveBooking = "/test-drive";
+  static String getUserTestDrive = "/get-test-drive-user";
 
   //booking
   static String bookingnow = "/booking";
   static String updateBooking = "/update-booking";
+  static String getUserbooking = "/get-booking-user";
 
   //map
 

@@ -1,4 +1,4 @@
-import 'package:bookingapp/apiservice/forgot_p_service.dart';
+import 'package:bookingapp/apiservice/auth/forgot_p_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

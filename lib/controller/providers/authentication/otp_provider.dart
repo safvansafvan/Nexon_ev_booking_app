@@ -1,4 +1,4 @@
-import 'package:bookingapp/apiservice/otp_service.dart';
+import 'package:bookingapp/apiservice/auth/otp_service.dart';
 
 import 'package:flutter/material.dart';
 

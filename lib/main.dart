@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/dealer_provider.dart';
 import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:flutter/material.dart';
@@ -58,15 +59,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ChatProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => DealerProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Nexon Booking App',
         theme: ThemeData(
           fontFamily: GoogleFonts.philosopher().fontFamily,
-          // colorScheme: ColorScheme.fromSeed(
-          //   seedColor: const Color.fromARGB(255, 181, 24, 216),
-          // ),
           useMaterial3: true,
         ),
         home: const SplashScreen(),

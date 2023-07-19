@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/dealer_provider.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/brochure/brochure.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
@@ -25,6 +26,8 @@ class _MainScreenState extends State<MainScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Provider.of<MapProvider>(context, listen: false)
           .fetchCharginLocation(context);
+      // ignore: use_build_context_synchronously
+      await Provider.of<DealerProvider>(context, listen: false).getDealer();
     });
     List image = [
       "assets/primenexon.jpg",

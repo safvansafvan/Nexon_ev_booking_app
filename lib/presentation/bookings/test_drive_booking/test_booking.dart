@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/dealer_provider.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,10 +13,6 @@ class TestDriveBooking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<TestDriveBookingProvider>(context, listen: false)
-          .fetchDealer();
-    });
     final testDriveProvider =
         Provider.of<TestDriveBookingProvider>(context, listen: false);
     final screenSize = MediaQuery.of(context).size;
@@ -114,8 +111,7 @@ class TestDriveBooking extends StatelessWidget {
                 decoration: BoxDecoration(
                     border: Border.all(color: kblue), borderRadius: radiusTen),
                 child: Center(
-                  child: Consumer<TestDriveBookingProvider>(
-                      builder: (context, value, _) {
+                  child: Consumer<DealerProvider>(builder: (context, value, _) {
                     if (value.dealerList.isEmpty) {
                       return const Center(child: CircularProgressIndicator());
                     }

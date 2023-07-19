@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:bookingapp/apiservice/login_service.dart';
+import 'package:bookingapp/apiservice/auth/login_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginProvider extends ChangeNotifier {

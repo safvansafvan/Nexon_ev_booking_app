@@ -1,5 +1,7 @@
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
+import 'package:bookingapp/presentation/booking_status/booking_now_status.dart';
+import 'package:bookingapp/presentation/booking_status/test_drive_status.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -13,9 +15,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   String? userName;
   String? userEmail;
   getUserDetails() async {
-    GetUserDetials user = GetUserDetials();
-    userEmail = await user.getUSerEmail();
-    userName = await user.getUsername();
+    userEmail = await GetUserDetials.getUSerEmail();
+    userName = await GetUserDetials.getUsername();
   }
 
   @override
@@ -65,7 +66,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       borderRadius: radiusTen,
                       border: Border.all(color: kblue)),
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BookingStatusScreen(),
+                        ),
+                      );
+                    },
                     title: const Text("Booking Status"),
                   ),
                 ),
@@ -75,7 +83,15 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       borderRadius: radiusTen,
                       border: Border.all(color: kblue)),
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const TestDriveBookingStatusScreen(),
+                        ),
+                      );
+                    },
                     title: const Text("Test Drive Status"),
                   ),
                 ),
