@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:bookingapp/controller/const/const.dart';
 import 'package:bookingapp/controller/const/string.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
+import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/model/bookings/test_drive/test_drive_req.dart';
+import 'package:bookingapp/model/bookings/test_drive/test_drive_resp.dart';
 import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:bookingapp/presentation/widget/succes_dialog.dart';
@@ -57,6 +59,37 @@ class TestDriveService {
       } else {
         log('Error: ${response.statusCode}');
         snakBarWiget(context: context, title: "Network Issue", clr: kred);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  ///get userbookings details,
+
+  static Future getTestDriveStatus(context) async {
+    final String url = Urls.baseUrl + Urls.getUserTestDrive;
+    try {
+      final response = await http.post(Uri.parse(url),
+          body: {'email': await GetUserDetials.getUSerEmail()});
+      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        if (response.statusCode == 200) {
+          if (data['status'] == 'success') {
+            log(data['success']);
+            final List<GetTestDriveStatus> userTestDriveDetails =
+                (data['result'] as List)
+                    .map((e) => GetTestDriveStatus.fromJson(e))
+                    .toList();
+            return userTestDriveDetails;
+          } else {
+            log(data['status']);
+            snakBarWiget(context: context, title: data['status'], clr: kred);
+          }
+        } else {
+          log(data['message']);
+          snakBarWiget(context: context, title: data['message'], clr: kred);
+        }
       }
     } catch (e) {
       log(e.toString());
