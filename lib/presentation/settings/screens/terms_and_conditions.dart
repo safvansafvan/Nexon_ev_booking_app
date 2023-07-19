@@ -15,7 +15,7 @@ class TermsAndConditions extends StatelessWidget {
           children: [
             AppBarWidget(
               leading: Icons.arrow_back_ios_new_rounded,
-              settings: false,
+              settings: true,
               menu: false,
               title: "Terms&conditions",
             ),

@@ -40,11 +40,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               children: [
                 commonHeight,
                 const CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.grey,
-                  child: Icon(Icons.person_outline),
+                  radius: 35,
+                  backgroundImage: NetworkImage(
+                      "https://cdn-icons-png.flaticon.com/512/149/149071.png"),
                 ),
-                commonHeight,
+                height10,
                 Text(
                   userName ?? "Unknown",
                   style: textStyleFuc(
