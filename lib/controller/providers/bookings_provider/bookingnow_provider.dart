@@ -1,4 +1,5 @@
 import 'package:bookingapp/apiservice/booking/booking_now_service.dart';
+import 'package:bookingapp/model/bookings/booking_now/bookings_now_resp.dart';
 import 'package:flutter/material.dart';
 
 class BookingNowProvider extends ChangeNotifier {
@@ -18,6 +19,9 @@ class BookingNowProvider extends ChangeNotifier {
   final formKey8 = GlobalKey<FormState>();
 
   bool isLoading = false;
+  bool isGetDetailsLoading = false;
+
+  List<GetUserBookingDetails> userBookingDetails = [];
 
   Future bookingNowbuttonClick(context) async {
     isLoading = true;
@@ -39,5 +43,14 @@ class BookingNowProvider extends ChangeNotifier {
     pincodeController.clear();
     dealerController.clear();
     carModelController.clear();
+  }
+
+  ///
+  Future<void> getBookingDetails(context) async {
+    isGetDetailsLoading = true;
+    notifyListeners();
+    userBookingDetails = await BookingNowService.bookingDetails(context);
+    isGetDetailsLoading = false;
+    notifyListeners();
   }
 }

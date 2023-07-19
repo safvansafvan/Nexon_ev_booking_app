@@ -69,30 +69,29 @@ class TestDriveService {
 
   static Future getTestDriveStatus(context) async {
     final String url = Urls.baseUrl + Urls.getUserTestDrive;
+    final email = await GetUserDetials.getUSerEmail();
+    log(email);
     try {
-      final response = await http.post(Uri.parse(url),
-          body: {'email': await GetUserDetials.getUSerEmail()});
+      final response = await http.post(Uri.parse(url), body: {'email': email});
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        if (response.statusCode == 200) {
-          if (data['status'] == 'success') {
-            log(data['success']);
-            final List<GetTestDriveStatus> userTestDriveDetails =
-                (data['result'] as List)
-                    .map((e) => GetTestDriveStatus.fromJson(e))
-                    .toList();
-            return userTestDriveDetails;
-          } else {
-            log(data['status']);
-            snakBarWiget(context: context, title: data['status'], clr: kred);
-          }
+        if (data['status'] == 'success') {
+          final List<GetTestDriveStatus> userTestDriveDetails =
+              (data['result'] as List)
+                  .map((e) => GetTestDriveStatus.fromJson(e))
+                  .toList();
+          return userTestDriveDetails;
         } else {
-          log(data['message']);
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          log(data['status']);
+          snakBarWiget(context: context, title: data['status'], clr: kred);
         }
+      } else {
+        log(data['message']);
+        snakBarWiget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());
     }
+    return [];
   }
 }

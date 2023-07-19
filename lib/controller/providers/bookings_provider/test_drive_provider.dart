@@ -1,4 +1,5 @@
 import 'package:bookingapp/apiservice/booking/test_drive_service.dart';
+import 'package:bookingapp/model/bookings/test_drive/test_drive_resp.dart';
 import 'package:flutter/material.dart';
 
 class TestDriveBookingProvider with ChangeNotifier {
@@ -13,6 +14,8 @@ class TestDriveBookingProvider with ChangeNotifier {
   TextEditingController dealerShipController = TextEditingController();
 
   final formKey7 = GlobalKey<FormState>();
+  bool isLoading = false;
+  List<GetTestDriveStatus> testDriveDetails = [];
 
   tesDriveBookingButtonClick(context) async {
     await TestDriveService.testDriveBooking(context);
@@ -27,5 +30,13 @@ class TestDriveBookingProvider with ChangeNotifier {
     stateController.clear();
     carModelController.clear();
     dealerShipController.clear();
+  }
+
+  Future getTestDriveDetails(context) async {
+    isLoading = true;
+    notifyListeners();
+    testDriveDetails = await TestDriveService.getTestDriveStatus(context);
+    isLoading = false;
+    notifyListeners();
   }
 }

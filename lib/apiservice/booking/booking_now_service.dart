@@ -99,7 +99,7 @@ class BookingNowService {
 
   ///incase user booked then the ui show booking details
 
-  Future bookingDetails(context) async {
+  static Future bookingDetails(context) async {
     final String url = Urls.baseUrl + Urls.getUserbooking;
 
     try {
@@ -108,7 +108,6 @@ class BookingNowService {
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
         if (data['status'] == 'success') {
-          log(data['success']);
           final List<GetUserBookingDetails> userBookingDetails =
               (data['result'] as List)
                   .map((e) => GetUserBookingDetails.fromJson(e))
