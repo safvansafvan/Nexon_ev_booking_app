@@ -1,6 +1,8 @@
 import 'package:bookingapp/apiservice/booking/booking_now_service.dart';
 import 'package:bookingapp/model/bookings/booking_now/bookings_now_resp.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class BookingNowProvider extends ChangeNotifier {
   TextEditingController firstNameController = TextEditingController();
@@ -45,12 +47,30 @@ class BookingNowProvider extends ChangeNotifier {
     carModelController.clear();
   }
 
-  ///
+  /// get booking status , booked details
   Future<void> getBookingDetails(context) async {
     isGetDetailsLoading = true;
     notifyListeners();
     userBookingDetails = await BookingNowService.bookingDetails(context);
     isGetDetailsLoading = false;
     notifyListeners();
+  }
+
+  ///payment
+  ///
+  void handlePaymentSucccess(PaymentSuccessResponse response) {
+    Fluttertoast.showToast(
+        msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
+  }
+
+  void handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR HERE:${response.code},${response.message}");
+  }
+
+  void handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL WALLET IS:${response.walletName}",
+        timeInSecForIosWeb: 4);
   }
 }

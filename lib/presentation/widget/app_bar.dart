@@ -107,11 +107,14 @@ class _PopUpState extends State<PopUp> {
   }
 }
 
+//create new group
+
 void dialog(context, size) {
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: radiusTen),
         title: const Text("New Group"),
         content: TextFormFieldCommon(
             controller:

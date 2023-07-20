@@ -31,7 +31,7 @@ class CommunityChatScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(9.0),
+        padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -39,9 +39,8 @@ class CommunityChatScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: HeadingTextWidget(
-                  text: "Groups",
-                  textSize: 18,
-                  underline: true,
+                  text: " Groups",
+                  textSize: 19,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -52,61 +51,74 @@ class CommunityChatScreen extends StatelessWidget {
                       ? const Center(
                           child: CircularProgressIndicator(),
                         )
-                      : ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: value.userGroups.length,
-                          itemBuilder: (context, index) {
-                            final formattedTime = DateFormat('h:mm a').format(
-                                value.userGroups[index].updatedAt.toLocal());
-                            return value.userGroups.isEmpty
-                                ? const Center(
-                                    child: Text("No Groups Found"),
-                                  )
-                                : ListTile(
-                                    leading: value.userGroups[index].image !=
-                                            null
-                                        ? CircleAvatar(
-                                            backgroundImage: NetworkImage(
-                                              Urls.baseUrl +
-                                                  value.userGroups[index].image
-                                                      .toString(),
-                                            ),
-                                          )
-                                        : const CircleAvatar(
-                                            backgroundImage: NetworkImage(
-                                                "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
+                      : value.userGroups.isEmpty
+                          ? SizedBox(
+                              height: 100,
+                              width: 400,
+                              child: Card(
+                                elevation: 6,
+                                child: Center(
+                                  child: Text(
+                                    "Your Group List Is Empty",
+                                    style: textStyleFuc(
+                                        weight: FontWeight.bold,
+                                        color: kred,
+                                        size: 16),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: value.userGroups.length,
+                              itemBuilder: (context, index) {
+                                final formattedTime = DateFormat('h:mm a')
+                                    .format(value.userGroups[index].updatedAt
+                                        .toLocal());
+                                return ListTile(
+                                  leading: value.userGroups[index].image != null
+                                      ? CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                            Urls.baseUrl +
+                                                value.userGroups[index].image
+                                                    .toString(),
                                           ),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(value.userGroups[index].groupName),
-                                        Text(
-                                          "This is the last message",
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 13),
+                                        )
+                                      : const CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
                                         ),
-                                      ],
-                                    ),
-                                    trailing: Text(formattedTime.toString()),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return ChatScreen(
-                                              data: value.userGroups[index],
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  );
-                          },
-                        );
+                                  title: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(value.userGroups[index].groupName),
+                                      Text(
+                                        "This is the last message",
+                                        style: textStyleFuc(
+                                            weight: FontWeight.w500,
+                                            color: kBlack,
+                                            size: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: Text(formattedTime.toString()),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return ChatScreen(
+                                            data: value.userGroups[index],
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
                 },
               )
             ],

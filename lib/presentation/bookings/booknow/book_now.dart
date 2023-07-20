@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'package:bookingapp/controller/providers/dealer_provider.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/const/const.dart';
@@ -24,10 +22,13 @@ class _BookNowWidgetState extends State<BookNowWidget> {
   @override
   void initState() {
     super.initState();
+    final provider = Provider.of<BookingNowProvider>(context, listen: false);
     _razorpay = Razorpay();
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSucccess);
-    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay?.on(
+        Razorpay.EVENT_PAYMENT_SUCCESS, provider.handlePaymentSucccess);
+    _razorpay?.on(
+        Razorpay.EVENT_EXTERNAL_WALLET, provider.handleExternalWallet);
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, provider.handlePaymentError);
   }
 
   @override
@@ -42,23 +43,27 @@ class _BookNowWidgetState extends State<BookNowWidget> {
             key: bookingProvider.formKey8,
             child: ListView(
               children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                  alignment: Alignment.bottomLeft,
-                ),
-                height10,
-                HeadingTextWidget(
-                  text: "Booking Now",
-                  color: kBlack,
-                  fontWeight: FontWeight.w600,
-                  textSize: 20,
-                  underline: true,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                      alignment: Alignment.bottomLeft,
+                    ),
+                    kWidth,
+                    HeadingTextWidget(
+                      text: "Booking Now",
+                      color: kBlack,
+                      fontWeight: FontWeight.w600,
+                      textSize: 20,
+                      underline: true,
+                    ),
+                  ],
                 ),
                 kHeightFive,
-                HeadingTextWidget(text: "Please fill your deatails"),
+                HeadingTextWidget(text: "  Please fill your deatails"),
                 kHeightFive,
                 TextFormFieldCommon(
                     controller: bookingProvider.firstNameController,
@@ -153,7 +158,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                             value.dealerList[0].dealerName,
                             value.dealerList[1].dealerName,
                             value.dealerList[2].dealerName,
-                            value.dealerList[3].dealerName
+                            value.dealerList[3].dealerName,
                           ],
                           controller: bookingProvider.dealerController);
                     }),
@@ -238,23 +243,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
     );
   }
 
-  void _handlePaymentSucccess(PaymentSuccessResponse response) {
-    Fluttertoast.showToast(
-        msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    Fluttertoast.showToast(
-        msg: "ERROR HERE:${response.code},${response.message}");
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    Fluttertoast.showToast(
-        msg: "EXTERNAL WALLET IS:${response.walletName}",
-        timeInSecForIosWeb: 4);
-  }
-
-  makePaymet() async {
+  Future makePaymet() async {
     var options = {
       'key': 'rzp_test_XD8ZNhIAt6i1AM',
       'amount': 500000,
@@ -265,7 +254,6 @@ class _BookNowWidgetState extends State<BookNowWidget> {
     try {
       _razorpay?.open(options);
     } catch (e) {
-      snakBarWiget(context: context, title: e.toString(), clr: kred);
       log(e.toString());
     }
   }
@@ -285,9 +273,9 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 child: const Text("Cancel")),
             TextButton(
                 onPressed: () async {
-                  await makePaymet();
-                  // ignore: use_build_context_synchronously
-                  await bookingProvider.bookingNowbuttonClick(context);
+                  await makePaymet().then((value) async {
+                    await bookingProvider.bookingNowbuttonClick(context);
+                  });
                 },
                 child: const Text("Ok"))
           ],
