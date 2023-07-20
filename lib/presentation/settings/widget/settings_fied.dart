@@ -100,12 +100,13 @@ class SettingsFieldWidget extends StatelessWidget {
     pref.remove("ACCESS_TOKEN");
     pref.remove("USER_NAME");
     pref.remove("USER_EMAIL");
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginPage(),
-      ),
-    );
+
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+        (route) => false);
     Provider.of<ContinueWithGoogleProvider>(context, listen: false).logout();
     snakBarWiget(context: context, title: " Logout Is Success", clr: kGreen);
   }

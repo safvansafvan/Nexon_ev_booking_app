@@ -42,37 +42,38 @@ class BookingStatusScreen extends StatelessWidget {
               ),
               commonHeight,
               Consumer<BookingNowProvider>(builder: (context, value, _) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: value.userBookingDetails.length,
-                  itemBuilder: (context, index) {
-                    final data = value.userBookingDetails[index];
-                    String? firstName = data.names;
-                    String? lastName = data.lastName;
-                    String fullName = (firstName ?? '') + (lastName ?? '');
-                    return value.isGetDetailsLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : value.userBookingDetails.isEmpty
-                            ? SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: Card(
-                                  elevation: 6,
-                                  child: Center(
-                                    child: Text(
-                                      "Your Booking Is Empty",
-                                      style: textStyleFuc(
-                                          weight: FontWeight.bold,
-                                          color: kred,
-                                          size: 16),
-                                    ),
-                                  ),
+                return value.isGetDetailsLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : value.userBookingDetails.isEmpty
+                        ? SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Card(
+                              elevation: 6,
+                              child: Center(
+                                child: Text(
+                                  "Your Booking Is Empty",
+                                  style: textStyleFuc(
+                                      weight: FontWeight.bold,
+                                      color: kred,
+                                      size: 16),
                                 ),
-                              )
-                            : SizedBox(
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: value.userBookingDetails.length,
+                            itemBuilder: (context, index) {
+                              final data = value.userBookingDetails[index];
+                              String? firstName = data.names;
+                              String? lastName = data.lastName;
+                              String fullName =
+                                  (firstName ?? '') + (lastName ?? '');
+                              return SizedBox(
                                 height: screenSize.height * 00.37,
                                 width: double.infinity,
                                 child: Card(
@@ -166,7 +167,7 @@ class BookingStatusScreen extends StatelessWidget {
                                                   color: kBlack,
                                                   size: 15),
                                             ),
-                                            data.status == 'Placed'
+                                            data.status == 'Delivered'
                                                 ? SizedBox(
                                                     height: 40,
                                                     width: 100,
@@ -191,7 +192,7 @@ class BookingStatusScreen extends StatelessWidget {
                                                     width: 100,
                                                     child: Card(
                                                       elevation: 5,
-                                                      color: kred,
+                                                      color: kblue,
                                                       child: Center(
                                                         child: Text(
                                                           data.status
@@ -212,8 +213,8 @@ class BookingStatusScreen extends StatelessWidget {
                                   ),
                                 ),
                               );
-                  },
-                );
+                            },
+                          );
               })
             ],
           ),
