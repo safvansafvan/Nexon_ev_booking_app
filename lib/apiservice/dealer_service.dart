@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/model/dealer/dealer_model.dart';
 import 'package:http/http.dart' as http;
 

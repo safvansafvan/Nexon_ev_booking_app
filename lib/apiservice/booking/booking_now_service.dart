@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/core/core.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_provider.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/model/bookings/booking_now/booking_now_req.dart';
 import 'package:bookingapp/model/bookings/booking_now/bookings_now_resp.dart';
-import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
+import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:bookingapp/presentation/widget/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import '../../controller/const/string.dart';
+import '../../controller/core/strings.dart';
 
 class BookingNowService {
   static String? bookingId;

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
-import 'package:bookingapp/presentation/authentication/forgot_password/new_password.dart';
-import 'package:bookingapp/presentation/authentication/login.dart';
+import 'package:bookingapp/presentation/screens/authentication/forgot_password/new_password.dart';
+import 'package:bookingapp/presentation/screens/authentication/login.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;

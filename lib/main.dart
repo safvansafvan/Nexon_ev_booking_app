@@ -4,7 +4,7 @@ import 'package:bookingapp/controller/providers/group_provider/get_all_group_pro
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:bookingapp/presentation/splash/splash.dart';
+import 'package:bookingapp/presentation/screens/splash/splash.dart';
 import 'package:bookingapp/controller/providers/splash.dart';
 import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
 import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';

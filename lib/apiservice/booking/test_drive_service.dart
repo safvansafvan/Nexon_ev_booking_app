@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/model/bookings/test_drive/test_drive_req.dart';
 import 'package:bookingapp/model/bookings/test_drive/test_drive_resp.dart';
-import 'package:bookingapp/presentation/mainscreen/main_screen.dart';
+import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:bookingapp/presentation/widget/succes_dialog.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

@@ -1,7 +1,7 @@
-import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/core/core.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
-import 'package:bookingapp/presentation/community_chat/screens/join_group.dart';
-import 'package:bookingapp/presentation/settings/settings.dart';
+import 'package:bookingapp/presentation/screens/community_chat/screens/join_group.dart';
+import 'package:bookingapp/presentation/screens/settings/settings.dart';
 import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

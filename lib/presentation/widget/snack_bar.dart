@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/const/const.dart';
+import 'package:bookingapp/controller/core/core.dart';
 import 'package:flutter/material.dart';
 
 snakBarWiget({required context, required String title, required Color clr}) {

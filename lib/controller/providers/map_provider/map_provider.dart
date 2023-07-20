@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/apiservice/map_service/get_charger_port.dart';
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/model/location/add_plot_model.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

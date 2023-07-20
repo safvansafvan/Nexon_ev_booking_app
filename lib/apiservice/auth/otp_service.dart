@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:bookingapp/controller/const/const.dart';
-import 'package:bookingapp/controller/const/string.dart';
+import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
 import 'package:bookingapp/model/authentication/otp.dart';
-import 'package:bookingapp/presentation/authentication/otp_verify.dart';
+import 'package:bookingapp/presentation/screens/authentication/otp_verify.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
