@@ -1,6 +1,9 @@
 import 'dart:developer';
+import 'package:bookingapp/apiservice/booking/booking_now_service.dart';
 import 'package:bookingapp/controller/providers/dealer_provider.dart';
+import 'package:bookingapp/presentation/widget/succes_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/const/const.dart';
@@ -22,13 +25,11 @@ class _BookNowWidgetState extends State<BookNowWidget> {
   @override
   void initState() {
     super.initState();
-    final provider = Provider.of<BookingNowProvider>(context, listen: false);
+    // final provider = Provider.of<BookingNowProvider>(context, listen: false);
     _razorpay = Razorpay();
-    _razorpay?.on(
-        Razorpay.EVENT_PAYMENT_SUCCESS, provider.handlePaymentSucccess);
-    _razorpay?.on(
-        Razorpay.EVENT_EXTERNAL_WALLET, provider.handleExternalWallet);
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, provider.handlePaymentError);
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSucccess);
+    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWallet);
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, handlePaymentError);
   }
 
   @override
@@ -247,7 +248,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
     var options = {
       'key': 'rzp_test_XD8ZNhIAt6i1AM',
       'amount': 500000,
-      'name': 'Nexon ev',
+      'name': 'Nexon Ev Payment',
       'description': '',
       'prefill': {'contact': '+918756896578', 'email': 'contact@gmail.com'}
     };
@@ -282,5 +283,27 @@ class _BookNowWidgetState extends State<BookNowWidget> {
         );
       },
     );
+  }
+
+  void handlePaymentSucccess(PaymentSuccessResponse response) async {
+    await BookingNowService.updateBooking(context);
+    Fluttertoast.showToast(
+        msg: "SUCCESS PAYMENT:${response.paymentId}", timeInSecForIosWeb: 4);
+    // ignore: use_build_context_synchronously
+    successDialogWiget(
+        context,
+        "You Booking Is Success Full And Our Team Will Contact You ",
+        "Success");
+  }
+
+  void handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR HERE:${response.code},${response.message}");
+  }
+
+  void handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL WALLET IS:${response.walletName}",
+        timeInSecForIosWeb: 4);
   }
 }

@@ -14,6 +14,8 @@ import 'package:http/http.dart' as http;
 import '../../controller/const/string.dart';
 
 class BookingNowService {
+  static String? bookingId;
+
   ///userBooking now service
   static Future<void> bookingStatus(BuildContext context) async {
     final provider = Provider.of<BookingNowProvider>(context, listen: false);
@@ -54,11 +56,14 @@ class BookingNowService {
           );
           provider.clearController();
           var result = data['result'];
-          final bookingId = result['_id'];
-          log(bookingId, name: "bookingId");
-          // ignore: use_build_context_synchronously
-          await updateBookingStatus(context, bookingId);
+          bookingId = result['_id'];
+          log(bookingId.toString(), name: "bookingId");
           log('booking success $result');
+        }
+        if (data['status'] == 'Pending') {
+          log("Pending");
+          // ignore: use_build_context_synchronously
+          snakBarWiget(context: context, title: data['message'], clr: kred);
         } else {
           var message = data['message'];
           log(message);
@@ -69,6 +74,10 @@ class BookingNowService {
     } catch (e) {
       log("exception: $e");
     }
+  }
+
+  static Future updateBooking(context) async {
+    await updateBookingStatus(context, bookingId);
   }
 
   //user update booking , that means status converted to placed , otherwise status pending
