@@ -16,10 +16,9 @@ class NexonEvPrimeDeatails extends StatelessWidget {
     final pageController = PageController();
     final nullContr = TextEditingController();
     List images = [
-      "assets/primenexon.jpg",
+      "assets/primenexon-.png",
       "assets/nexonEvB.png",
-      "assets/nexonPrime1.png",
-      "assets/prime.webp"
+      "assets/tata-nexon-ev-ri.png",
     ];
     return Scaffold(
       appBar: PreferredSize(
@@ -73,7 +72,7 @@ class NexonEvPrimeDeatails extends StatelessWidget {
                 )
               ],
             ),
-            height10,
+            commonHeight,
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -21,6 +21,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final pageController = PageController();
+  @override
+  void dispose() {
+    super.dispose();
+    pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -30,12 +37,12 @@ class _MainScreenState extends State<MainScreen> {
       await Provider.of<DealerProvider>(context, listen: false).getDealer();
     });
     List image = [
-      "assets/primenexon.jpg",
+      "assets/primenexon-.png",
       "assets/nexon.webp",
       "assets/sap.webp"
     ];
     List carName = ["Nexon Ev Prime ", "Nexon Ev Max", "Nexon Ev Dark"];
-    final pageController = PageController();
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 50),
@@ -64,11 +71,10 @@ class _MainScreenState extends State<MainScreen> {
             ),
             height10,
             HeadingTextWidget(
-              text: "Available Cars",
+              text: " Editions",
               color: kBlack,
-              fontWeight: FontWeight.w500,
-              textSize: 20,
-              underline: true,
+              fontWeight: FontWeight.w600,
+              textSize: 19,
             ),
             height10,
             SizedBox(
@@ -146,16 +152,15 @@ class _MainScreenState extends State<MainScreen> {
                 alignment: Alignment.topRight,
                 child: Text(
                   "Car Brochure",
-                  style: TextStyle(color: kblue),
+                  style: TextStyle(color: kblue, fontSize: 16),
                 ),
               ),
             ),
             HeadingTextWidget(
               text: "Popular Options",
               color: kBlack,
-              fontWeight: FontWeight.w500,
-              textSize: 20,
-              underline: true,
+              fontWeight: FontWeight.w600,
+              textSize: 19,
             ),
             height10,
             const PopularOptionsWidges(),

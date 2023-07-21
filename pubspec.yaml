@@ -56,13 +56,13 @@ dependencies:
   latlong2: 
   geolocator: 9.0.2
   geocoding: 2.1.0
-  socket_io_client: ^2.0.2 
-  sticky_grouped_list: ^3.1.0
+  socket_io_client: 2.0.2 
+  sticky_grouped_list: 3.1.0
   intl: 
-  emoji_picker_flutter: ^1.6.1
-  image_picker: ^1.0.0
-  http_parser: ^4.0.2
-  jwt_decoder: ^2.0.1
+  emoji_picker_flutter: 1.6.1
+  image_picker: 1.0.0
+  http_parser: 4.0.2
+  jwt_decoder: 2.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -91,27 +91,26 @@ flutter:
     - assets/Nexon-EV-bro.pdf
     - assets/Nexonprimebrou.pdf
     - assets/ui-loader.json
+    - assets/animation_splash.json
     - assets/car-animation.json
     - assets/splash_b.webp
     - assets/nexonOt.webp
     - assets/nexon.webp
     - assets/nexonEvB.png
     - assets/nexon_black_back.png
-    - assets/nexon_ev_banner_mobil.jpg
     - assets/sap.webp
     - assets/wide.webp
     - assets/nexon.jpeg
     - assets/community.jpeg
-    - assets/chatBoat.jpg
     - assets/nexonPrime1.png
-    - assets/prime.webp
     - assets/maxxx.png
     - assets/white.webp
     - assets/broucdark.jpg
     - assets/broumax.jpg
     - assets/brouprime4.jpg
     - assets/locations.webp
-    - assets/primenexon.jpg
+    - assets/primenexon-.png
+    - assets/tata-nexon-ev-ri.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

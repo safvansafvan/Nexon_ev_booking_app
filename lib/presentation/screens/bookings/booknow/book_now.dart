@@ -25,7 +25,6 @@ class _BookNowWidgetState extends State<BookNowWidget> {
   @override
   void initState() {
     super.initState();
-    // final provider = Provider.of<BookingNowProvider>(context, listen: false);
     _razorpay = Razorpay();
     _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSucccess);
     _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWallet);

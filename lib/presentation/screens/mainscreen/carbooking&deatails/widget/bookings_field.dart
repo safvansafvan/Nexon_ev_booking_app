@@ -17,7 +17,7 @@ class BookingsField extends StatelessWidget {
           height: 50,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              elevation: 2,
+              elevation: 5,
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: radiusTen),
@@ -29,14 +29,18 @@ class BookingsField extends StatelessWidget {
                 ),
               );
             },
-            child: const Text("Book A Test Drive"),
+            child: Text(
+              "Book A Test Drive",
+              style: textStyleFuc(
+                  weight: FontWeight.w600, color: kwhite, size: 14),
+            ),
           ),
         ),
         SizedBox(
           height: 50,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              elevation: 2,
+              elevation: 5,
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(borderRadius: radiusTen),
@@ -49,7 +53,11 @@ class BookingsField extends StatelessWidget {
                 ),
               );
             },
-            child: const Text("Book Now"),
+            child: Text(
+              "Book Now",
+              style: textStyleFuc(
+                  weight: FontWeight.w600, color: kwhite, size: 14),
+            ),
           ),
         ),
       ],
