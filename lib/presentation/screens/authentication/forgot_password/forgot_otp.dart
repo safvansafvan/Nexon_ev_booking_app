@@ -44,7 +44,7 @@ class ForgotPasswordWidget extends StatelessWidget {
                       ),
                       kHeightFive,
                       Text(
-                        "Provider your email and We will send OTP verification",
+                        "Provid your email and We will send OTP ",
                         style: textStyleFuc(
                             weight: FontWeight.w400, color: kBlack, size: 14),
                       ),

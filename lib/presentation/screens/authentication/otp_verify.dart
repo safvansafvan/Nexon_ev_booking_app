@@ -13,7 +13,6 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final otpProvider = context.watch<OtpProvider>();
-    // final verify = context.watch<OtpVerificationAndSignupProvider>();
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(

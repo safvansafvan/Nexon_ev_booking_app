@@ -1,5 +1,6 @@
 import 'package:bookingapp/controller/core/core.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
+import 'package:bookingapp/presentation/screens/booking_status/widget/test_drive_card.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -63,88 +64,7 @@ class TestDriveBookingStatusScreen extends StatelessWidget {
                               ),
                             ),
                           )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: value.testDriveDetails.length,
-                            itemBuilder: (context, index) {
-                              final data = value.testDriveDetails[index];
-                              return SizedBox(
-                                height: screenSize.height * 00.26,
-                                width: double.infinity,
-                                child: Card(
-                                  elevation: 5,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: radiusTen),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Edition: ${data.model}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.bold,
-                                              color: kBlack,
-                                              size: 18),
-                                        ),
-                                        Text(
-                                          'Name:${data.name}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                        Text(
-                                          'Email:${data.email}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                        Text(
-                                          'Phone:${data.phone}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                        Text(
-                                          'State:${data.state}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                        Text(
-                                          'City:${data.city}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                        Text(
-                                          'Dealer:${data.dealership!.isEmpty ? "Not Specified" : data.dealership}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                        Text(
-                                          'Date:${data.createdAt}',
-                                          style: textStyleFuc(
-                                              weight: FontWeight.w500,
-                                              color: kBlack,
-                                              size: 15),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                        : TestDriveCard(screenSize: screenSize, value: value);
               })
             ],
           ),
