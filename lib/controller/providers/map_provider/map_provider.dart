@@ -4,6 +4,7 @@ import 'package:bookingapp/apiservice/map_service/get_charger_port.dart';
 import 'package:bookingapp/controller/core/core.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/model/location/add_plot_model.dart';
+import 'package:bookingapp/model/location/map_model.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -13,13 +14,13 @@ class MapProvider extends ChangeNotifier {
   final stationNameCtr = TextEditingController();
   final descriptionCtr = TextEditingController();
   final keyController = TextEditingController();
-  List<dynamic>? mapDetails;
+  List<MapDataModel> mapDetails = [];
   MapProvider() {
     getUsername();
     getEmail();
   }
   Future fetchCharginLocation(context) async {
-    mapDetails = await getChargingPort(context);
+    mapDetails = await MapService.getChargingPort(context);
     notifyListeners();
   }
 

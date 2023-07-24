@@ -16,6 +16,7 @@ import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_pro
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

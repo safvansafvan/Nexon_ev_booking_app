@@ -22,6 +22,17 @@ class PopUpMenuOption extends StatelessWidget {
             ],
           ),
         ),
+        const PopupMenuItem(
+          child: Row(
+            children: [
+              Icon(
+                Icons.location_pin,
+                color: Color.fromARGB(255, 26, 90, 217),
+              ),
+              Text("Tata Stations")
+            ],
+          ),
+        ),
         PopupMenuItem(
           child: Row(
             children: [
@@ -29,14 +40,37 @@ class PopUpMenuOption extends StatelessWidget {
                 Icons.location_pin,
                 color: kred,
               ),
-              const Text("Charger Plot")
+              const Text("KSEB Stations")
+            ],
+          ),
+        ),
+        const PopupMenuItem(
+          child: Row(
+            children: [
+              Icon(
+                Icons.location_pin,
+                color: Color.fromARGB(200, 87, 102, 100),
+              ),
+              Text("Ather Stations")
+            ],
+          ),
+        ),
+        const PopupMenuItem(
+          child: Row(
+            children: [
+              Icon(
+                Icons.location_pin,
+                color: Color.fromARGB(255, 11, 185, 168),
+              ),
+              Text("Other Stations")
             ],
           ),
         ),
         PopupMenuItem(
           child: HeadingTextWidget(
             text: "Search",
-            underline: true,
+            fontWeight: FontWeight.w600,
+            textSize: 15,
           ),
         ),
         const PopupMenuItem(

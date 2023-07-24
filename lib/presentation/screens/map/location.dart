@@ -167,23 +167,63 @@ class _MyWidgetState extends State<MyWidget> {
                         ),
                       ),
                     ),
-                  if (locationProvider.mapDetails != null)
-                    for (var detail in locationProvider.mapDetails!)
-                      if (detail['lat'] != null && detail['long'] != null)
-                        Marker(
-                          width: 100.0,
-                          height: 100.0,
-                          point: LatLng(
-                            detail['lat'] as double,
-                            detail['long'] as double,
-                          ),
-                          builder: (ctx) => const SizedBox(
-                            child: Icon(
-                              Icons.location_pin,
-                              color: Colors.red,
-                            ),
+                  for (var detail in locationProvider.mapDetails)
+                    if (detail.type == 'Others')
+                      Marker(
+                        width: 100.0,
+                        height: 100.0,
+                        point: LatLng(
+                          detail.lat as double,
+                          detail.long as double,
+                        ),
+                        builder: (ctx) => const SizedBox(
+                          child: Icon(
+                            Icons.location_pin,
+                            color: Color.fromARGB(200, 87, 102, 100),
                           ),
                         ),
+                      ),
+                  for (var detail in locationProvider.mapDetails)
+                    if (detail.type == 'KSEB')
+                      Marker(
+                        width: 100.0,
+                        height: 100.0,
+                        point: LatLng(
+                          detail.lat as double,
+                          detail.long as double,
+                        ),
+                        builder: (ctx) => SizedBox(
+                          child: Icon(Icons.location_pin, color: kred),
+                        ),
+                      ),
+                  for (var detail in locationProvider.mapDetails)
+                    if (detail.type == 'Tata')
+                      Marker(
+                        width: 100.0,
+                        height: 100.0,
+                        point: LatLng(
+                          detail.lat as double,
+                          detail.long as double,
+                        ),
+                        builder: (ctx) => const SizedBox(
+                          child: Icon(Icons.location_pin,
+                              color: Color.fromARGB(255, 26, 90, 217)),
+                        ),
+                      ),
+                  for (var detail in locationProvider.mapDetails)
+                    if (detail.type == 'Others')
+                      Marker(
+                        width: 100.0,
+                        height: 100.0,
+                        point: LatLng(
+                          detail.lat as double,
+                          detail.long as double,
+                        ),
+                        builder: (ctx) => const SizedBox(
+                          child: Icon(Icons.location_pin,
+                              color: Color.fromARGB(255, 11, 185, 168)),
+                        ),
+                      ),
                 ],
               ),
             ],
