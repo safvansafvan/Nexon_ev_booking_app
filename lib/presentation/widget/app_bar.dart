@@ -1,7 +1,9 @@
 import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:bookingapp/presentation/screens/community_chat/screens/join_group.dart';
 import 'package:bookingapp/presentation/screens/settings/settings.dart';
+import 'package:bookingapp/presentation/widget/login_dialog.dart';
 import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,11 +27,19 @@ class AppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetUserDetials user = GetUserDetials();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await user.userLoginOrNot();
+    });
     return ListTile(
         leading: menu
             ? IconButton(
                 onPressed: () {
-                  Scaffold.of(context).openDrawer();
+                  if (user.token == null) {
+                    loginReqDialog(context);
+                  } else {
+                    Scaffold.of(context).openDrawer();
+                  }
                 },
                 icon: Icon(
                   Icons.menu,

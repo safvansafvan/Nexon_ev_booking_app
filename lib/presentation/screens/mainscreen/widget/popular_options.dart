@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/presentation/screens/community_chat/community_chat.dart';
 import 'package:bookingapp/presentation/screens/map/location.dart';
+import 'package:bookingapp/presentation/widget/login_dialog.dart';
 import 'package:flutter/material.dart';
 
 class PopularOptionsWidges extends StatelessWidget {
@@ -9,6 +11,11 @@ class PopularOptionsWidges extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetUserDetials user = GetUserDetials();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await user.userLoginOrNot();
+    });
     return Padding(
       padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
       child: Row(
@@ -19,12 +26,16 @@ class PopularOptionsWidges extends StatelessWidget {
               InkWell(
                 onTap: () {
                   log("touched00", name: "location");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MapScreen(),
-                    ),
-                  );
+                  if (user.token == null) {
+                    loginReqDialog(context);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MapScreen(),
+                      ),
+                    );
+                  }
                 },
                 child: Container(
                   width: 150,
@@ -51,12 +62,16 @@ class PopularOptionsWidges extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CommunityChatScreen(),
-                    ),
-                  );
+                  if (user.token == null) {
+                    loginReqDialog(context);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CommunityChatScreen(),
+                      ),
+                    );
+                  }
                 },
                 child: Container(
                   width: 150,

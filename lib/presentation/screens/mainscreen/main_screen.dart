@@ -1,8 +1,10 @@
 import 'package:bookingapp/controller/providers/dealer_provider.dart';
+import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/screens/brochure/brochure.dart';
 import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/widget/drawer.dart';
+import 'package:bookingapp/presentation/widget/login_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/controller/core/core.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
@@ -22,6 +24,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final pageController = PageController();
+  GetUserDetials user = GetUserDetials();
   @override
   void dispose() {
     super.dispose();
@@ -35,6 +38,7 @@ class _MainScreenState extends State<MainScreen> {
           .fetchCharginLocation(context);
       // ignore: use_build_context_synchronously
       await Provider.of<DealerProvider>(context, listen: false).getDealer();
+      await user.userLoginOrNot();
     });
     List image = [
       "assets/primenexon-.png",
@@ -89,13 +93,15 @@ class _MainScreenState extends State<MainScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: InkWell(
                           onTap: () {
+                            if (user.token == null) {
+                              return loginReqDialog(context);
+                            }
                             if (index % image.length == 0) {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const NexonEvPrimeDeatails(),
-                                ),
+                                MaterialPageRoute(builder: (context) {
+                                  return const NexonEvPrimeDeatails();
+                                }),
                               );
                             } else if (index % image.length == 1) {
                               Navigator.push(

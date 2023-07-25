@@ -16,4 +16,10 @@ class GetUserDetials {
     log(userEmail.toString());
     return userEmail.toString();
   }
+
+  String? token;
+  Future userLoginOrNot() async {
+    final pref = await SharedPreferences.getInstance();
+    token = pref.getString("ACCESS_TOKEN");
+  }
 }
