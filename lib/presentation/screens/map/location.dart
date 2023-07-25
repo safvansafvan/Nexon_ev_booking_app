@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:bookingapp/presentation/widget/text_form_common.dart';
+import 'package:bookingapp/presentation/screens/map/widget/add_new_location.dart';
+import 'package:bookingapp/presentation/screens/map/widget/location_pop.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -14,15 +14,16 @@ import 'package:bookingapp/presentation/screens/map/constent/constent.dart';
 import 'package:bookingapp/presentation/screens/map/widget/more.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<MapScreen> createState() => _MapScreenState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _MapScreenState extends State<MapScreen> {
   MapController mapController = MapController();
+  PageController pageController = PageController();
   Position? currentPosition;
   LatLng? currentLocation;
 
@@ -42,7 +43,6 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
     final locationProvider = Provider.of<MapProvider>(context, listen: false);
     return Scaffold(
       body: Stack(
@@ -56,72 +56,13 @@ class _MyWidgetState extends State<MyWidget> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(borderRadius: radiusTen),
-                      title: const Text('Add Plot'),
-                      content: SizedBox(
-                        height: 220,
-                        child: Column(children: [
-                          TextFormFieldCommon(
-                              controller: locationProvider.stationNameCtr,
-                              hintText: "Station",
-                              keyType: TextInputType.name,
-                              size: screenSize),
-                          height10,
-                          TextFormFieldCommon(
-                              controller: locationProvider.descriptionCtr,
-                              hintText: "Desc",
-                              keyType: TextInputType.name,
-                              size: screenSize),
-                          height10,
-                          Container(
-                            height: 63,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: kblue),
-                                borderRadius: radiusTen),
-                            child: Center(
-                              child: CustomDropdown(
-                                  excludeSelected: true,
-                                  fillColor: Colors.transparent,
-                                  hintText: "Key",
-                                  hintStyle: TextStyle(color: kBlack),
-                                  selectedStyle: TextStyle(color: kBlack),
-                                  items: const [
-                                    "KSEB",
-                                    "Tata Motor",
-                                    "Ather",
-                                    "Other"
-                                  ],
-                                  controller: locationProvider.keyController),
-                            ),
-                          ),
-                        ]),
-                      ),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Cancel")),
-                        TextButton(
-                          onPressed: () async {
-                            log(locationProvider.stationNameCtr.text.toString(),
-                                name: "station Name");
-                            log(locationProvider.keyController.text.toString(),
-                                name: "Key");
-                            log(locationProvider.descriptionCtr.text.toString(),
-                                name: "descr");
-                            log(point.latitude.toString());
-                            log(point.longitude.toString());
-                            await locationProvider.addButtonClick(
-                                context: context,
-                                lat: point.latitude.toDouble(),
-                                long: point.longitude.toDouble());
-                          },
-                          child: const Text("OK"),
-                        )
-                      ],
-                    );
+                    return AddNewLocationWidget(
+                        stationNameCtr: locationProvider.stationNameCtr,
+                        screenSize: screenSize,
+                        descriptionCtr: locationProvider.descriptionCtr,
+                        keyController: locationProvider.keyController,
+                        lat: point.latitude,
+                        long: point.longitude);
                   },
                 );
               },
@@ -176,10 +117,23 @@ class _MyWidgetState extends State<MyWidget> {
                           detail.lat as double,
                           detail.long as double,
                         ),
-                        builder: (ctx) => const SizedBox(
-                          child: Icon(
-                            Icons.location_pin,
-                            color: Color.fromARGB(200, 87, 102, 100),
+                        builder: (ctx) => InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => LocationPopup(
+                                name: detail.title.toString(),
+                                description: detail.desc.toString(),
+                                type: detail.type.toString(),
+                                date: detail.createdAt.toString(),
+                              ),
+                            );
+                          },
+                          child: const SizedBox(
+                            child: Icon(
+                              Icons.location_pin,
+                              color: Color.fromARGB(200, 87, 102, 100),
+                            ),
                           ),
                         ),
                       ),
@@ -192,8 +146,21 @@ class _MyWidgetState extends State<MyWidget> {
                           detail.lat as double,
                           detail.long as double,
                         ),
-                        builder: (ctx) => SizedBox(
-                          child: Icon(Icons.location_pin, color: kred),
+                        builder: (ctx) => InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => LocationPopup(
+                                name: detail.title.toString(),
+                                description: detail.desc.toString(),
+                                type: detail.type.toString(),
+                                date: detail.createdAt.toString(),
+                              ),
+                            );
+                          },
+                          child: SizedBox(
+                            child: Icon(Icons.location_pin, color: kred),
+                          ),
                         ),
                       ),
                   for (var detail in locationProvider.mapDetails)
@@ -205,9 +172,22 @@ class _MyWidgetState extends State<MyWidget> {
                           detail.lat as double,
                           detail.long as double,
                         ),
-                        builder: (ctx) => const SizedBox(
-                          child: Icon(Icons.location_pin,
-                              color: Color.fromARGB(255, 26, 90, 217)),
+                        builder: (ctx) => InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => LocationPopup(
+                                name: detail.title.toString(),
+                                description: detail.desc.toString(),
+                                type: detail.type.toString(),
+                                date: detail.createdAt.toString(),
+                              ),
+                            );
+                          },
+                          child: const SizedBox(
+                            child: Icon(Icons.location_pin,
+                                color: Color.fromARGB(255, 26, 90, 217)),
+                          ),
                         ),
                       ),
                   for (var detail in locationProvider.mapDetails)
@@ -219,9 +199,22 @@ class _MyWidgetState extends State<MyWidget> {
                           detail.lat as double,
                           detail.long as double,
                         ),
-                        builder: (ctx) => const SizedBox(
-                          child: Icon(Icons.location_pin,
-                              color: Color.fromARGB(255, 11, 185, 168)),
+                        builder: (ctx) => InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => LocationPopup(
+                                name: detail.title.toString(),
+                                description: detail.desc.toString(),
+                                type: detail.type.toString(),
+                                date: detail.createdAt.toString(),
+                              ),
+                            );
+                          },
+                          child: const SizedBox(
+                            child: Icon(Icons.location_pin,
+                                color: Color.fromARGB(255, 11, 185, 168)),
+                          ),
                         ),
                       ),
                 ],

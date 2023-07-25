@@ -22,7 +22,7 @@ class PopularOptionsWidges extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyWidget(),
+                      builder: (context) => const MapScreen(),
                     ),
                   );
                 },

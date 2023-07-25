@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/core/core.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
@@ -7,8 +6,8 @@ import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class TextFieldForAddPlot extends StatelessWidget {
-  const TextFieldForAddPlot({
+class AddNewLocationWidget extends StatelessWidget {
+  const AddNewLocationWidget({
     super.key,
     required this.stationNameCtr,
     required this.screenSize,
