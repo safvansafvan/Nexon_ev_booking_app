@@ -22,7 +22,7 @@ Future getGoogleLoginStatus(context, email, username) async {
           builder: (context) => const MainScreen(),
         ),
       );
-      snakBarWiget(context: context, title: "Login Success", clr: kGreen);
+      snackBarWidget(context: context, title: "Login Success", clr: kGreen);
       final data = jsonDecode(response.body);
       final result = data['result'];
       await setLoginStatus(
@@ -32,11 +32,11 @@ Future getGoogleLoginStatus(context, email, username) async {
           userEmail: result['email']);
     } else {
       log("failed");
-      snakBarWiget(context: context, title: "Login failed", clr: kred);
+      snackBarWidget(context: context, title: "Login failed", clr: kred);
     }
   } catch (e) {
     log(e.toString());
-    snakBarWiget(context: context, title: e.toString(), clr: kred);
+    snackBarWidget(context: context, title: e.toString(), clr: kred);
   }
 }
 

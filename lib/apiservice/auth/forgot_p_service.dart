@@ -28,14 +28,14 @@ class ForgotPasswordService {
               builder: (context) => const NewPasswordScreen(),
             ),
           );
-          snakBarWiget(context: context, title: "Otp Sented", clr: kGreen);
+          snackBarWidget(context: context, title: "Otp Sented", clr: kGreen);
         } else {
           log('failed');
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         }
       } else {
         log('failed');
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());
@@ -66,15 +66,15 @@ class ForgotPasswordService {
               builder: (context) => const LoginPage(),
             ),
           );
-          snakBarWiget(
+          snackBarWidget(
               context: context, title: "Password Changed", clr: kGreen);
         } else {
           log(data['message']);
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         }
       } else {
         log("failed");
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

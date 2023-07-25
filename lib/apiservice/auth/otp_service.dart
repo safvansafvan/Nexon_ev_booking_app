@@ -27,7 +27,7 @@ class OtpService {
       } else {
         log("${response.statusCode}");
         log("failed");
-        snakBarWiget(context: context, title: "Error Occured", clr: kred);
+        snackBarWidget(context: context, title: "Error Occured", clr: kred);
       }
     } catch (e) {
       log(e.toString());

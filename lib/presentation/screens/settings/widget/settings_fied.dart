@@ -108,7 +108,7 @@ class SettingsFieldWidget extends StatelessWidget {
         ),
         (route) => false);
     Provider.of<ContinueWithGoogleProvider>(context, listen: false).logout();
-    snakBarWiget(context: context, title: " Logout Is Success", clr: kGreen);
+    snackBarWidget(context: context, title: " Logout Is Success", clr: kGreen);
   }
 
   void share(content) {

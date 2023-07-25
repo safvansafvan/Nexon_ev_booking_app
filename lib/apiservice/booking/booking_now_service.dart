@@ -63,12 +63,12 @@ class BookingNowService {
         if (data['status'] == 'Pending') {
           log("Pending");
           // ignore: use_build_context_synchronously
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         } else {
           var message = data['message'];
           log(message);
           // ignore: use_build_context_synchronously
-          snakBarWiget(context: context, title: message, clr: kred);
+          snackBarWidget(context: context, title: message, clr: kred);
         }
       }
     } catch (e) {
@@ -100,7 +100,7 @@ class BookingNowService {
       }
     } catch (e) {
       log(e.toString());
-      snakBarWiget(context: ctx, title: e.toString(), clr: kred);
+      snackBarWidget(context: ctx, title: e.toString(), clr: kred);
     }
   }
 
@@ -124,11 +124,11 @@ class BookingNowService {
           return userBookingDetails;
         } else {
           log(data['status']);
-          snakBarWiget(context: context, title: data['status'], clr: kred);
+          snackBarWidget(context: context, title: data['status'], clr: kred);
         }
       } else {
         log(data['message']);
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

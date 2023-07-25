@@ -43,7 +43,8 @@ class EditGroupProfileService {
         log("${response.statusCode}");
         final jsonData = jsonDecode(data);
         if (jsonData['status'] == 'success') {
-          snakBarWiget(context: context, title: "Profile Changed", clr: kGreen);
+          snackBarWidget(
+              context: context, title: "Profile Changed", clr: kGreen);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -52,12 +53,13 @@ class EditGroupProfileService {
           );
         } else {
           log(jsonData['message']);
-          snakBarWiget(context: context, title: jsonData['message'], clr: kred);
+          snackBarWidget(
+              context: context, title: jsonData['message'], clr: kred);
         }
       } else {
         log("${response.statusCode}");
         final jsonData = jsonDecode(data);
-        snakBarWiget(context: context, title: jsonData['message'], clr: kred);
+        snackBarWidget(context: context, title: jsonData['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

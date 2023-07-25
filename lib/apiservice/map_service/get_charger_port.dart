@@ -27,14 +27,14 @@ class MapService {
         } else {
           log("failed");
           log("${response.statusCode}");
-          snakBarWiget(
+          snackBarWidget(
               context: ctx,
               title: "Charger location finding failed",
               clr: kred);
         }
       } catch (error) {
         log(error.toString());
-        snakBarWiget(context: ctx, title: error.toString(), clr: kred);
+        snackBarWidget(context: ctx, title: error.toString(), clr: kred);
       }
     }
     return [];

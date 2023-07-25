@@ -38,18 +38,19 @@ class MapProvider extends ChangeNotifier {
 
         if (data['status'] == 'success') {
           log(response.body, name: "Success");
-          snakBarWiget(context: context, title: "Added New Port", clr: kGreen);
+          snackBarWidget(
+              context: context, title: "Added New Port", clr: kGreen);
           fetchCharginLocation(context);
         } else {
           final message = data['message'];
           log(message, name: "status not success");
-          snakBarWiget(context: context, title: message, clr: kred);
+          snackBarWidget(context: context, title: message, clr: kred);
         }
       } else {
         log("${response.statusCode}");
         final data = jsonDecode(response.body);
         final msg = data['message'];
-        snakBarWiget(context: context, title: msg, clr: kred);
+        snackBarWidget(context: context, title: msg, clr: kred);
       }
     } catch (error) {
       log(error.toString());

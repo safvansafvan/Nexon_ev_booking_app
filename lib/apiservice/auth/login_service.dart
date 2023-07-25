@@ -33,7 +33,7 @@ class LoginApiService {
             ),
             (route) => false,
           );
-          snakBarWiget(context: context, title: "Login Success", clr: kGreen);
+          snackBarWidget(context: context, title: "Login Success", clr: kGreen);
           final result = data['result'];
           await loginStatus(
               accessToken: data['token'],
@@ -47,15 +47,15 @@ class LoginApiService {
           log(result['email']);
         } else {
           log(data['status']);
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         }
       } else {
         log("${response.statusCode}");
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());
-      snakBarWiget(context: context, title: e.toString(), clr: kred);
+      snackBarWidget(context: context, title: e.toString(), clr: kred);
     }
   }
 

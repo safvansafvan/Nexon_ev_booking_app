@@ -27,11 +27,11 @@ class GroupMsgService {
           return messageList;
         } else {
           log(data['status']);
-          snakBarWiget(context: context, title: data['status'], clr: kred);
+          snackBarWidget(context: context, title: data['status'], clr: kred);
         }
       } else {
         log("${response.statusCode}");
-        snakBarWiget(
+        snackBarWidget(
             context: context,
             title: "failed to fetch group message",
             clr: kred);

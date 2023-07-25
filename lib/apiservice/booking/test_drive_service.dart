@@ -54,11 +54,11 @@ class TestDriveService {
         } else {
           var message = data['message'];
           log('Test drive booking failed: $message');
-          snakBarWiget(context: context, title: "Booking Failed", clr: kred);
+          snackBarWidget(context: context, title: "Booking Failed", clr: kred);
         }
       } else {
         log('Error: ${response.statusCode}');
-        snakBarWiget(context: context, title: "Network Issue", clr: kred);
+        snackBarWidget(context: context, title: "Network Issue", clr: kred);
       }
     } catch (e) {
       log(e.toString());
@@ -83,11 +83,11 @@ class TestDriveService {
           return userTestDriveDetails;
         } else {
           log(data['status']);
-          snakBarWiget(context: context, title: data['status'], clr: kred);
+          snackBarWidget(context: context, title: data['status'], clr: kred);
         }
       } else {
         log(data['message']);
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

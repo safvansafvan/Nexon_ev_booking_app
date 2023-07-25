@@ -29,11 +29,11 @@ class GetUserJoinedGroupService {
           return userGroupDetails;
         } else {
           log(data['status']);
-          snakBarWiget(context: context, title: data['status'], clr: kred);
+          snackBarWidget(context: context, title: data['status'], clr: kred);
         }
       } else {
         log("${respose.statusCode}");
-        snakBarWiget(context: context, title: data['status'], clr: kred);
+        snackBarWidget(context: context, title: data['status'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

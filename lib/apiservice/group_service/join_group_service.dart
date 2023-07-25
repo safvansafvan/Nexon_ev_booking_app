@@ -32,15 +32,15 @@ class JoinGroupService {
         if (data['status'] == 'success') {
           log("success", name: "get groups");
           Navigator.pop(context);
-          snakBarWiget(
+          snackBarWidget(
               context: context, title: "Joined $groupName", clr: kGreen);
         } else {
           log(data['message']);
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         }
       } else {
         log("${respose.statusCode}");
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

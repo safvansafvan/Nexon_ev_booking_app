@@ -24,15 +24,15 @@ class NewGroupService {
         if (data['status'] == 'success') {
           log("success", name: "NewGroup");
 
-          snakBarWiget(
+          snackBarWidget(
               context: context, title: "New Group $groupName", clr: kGreen);
         } else {
           log(data['message']);
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         }
       } else {
         log("${respose.statusCode}");
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

@@ -30,7 +30,8 @@ class SignupService {
               builder: (context) => const MainScreen(),
             ),
           );
-          snakBarWiget(context: context, title: "SignUp Success", clr: kGreen);
+          snackBarWidget(
+              context: context, title: "SignUp Success", clr: kGreen);
           final result = data['result'];
           setLoginStatus(
               accessToken: data['token'],
@@ -39,12 +40,12 @@ class SignupService {
               userEmail: result['email']);
         } else {
           log(data['status']);
-          snakBarWiget(context: context, title: data['status'], clr: kred);
+          snackBarWidget(context: context, title: data['status'], clr: kred);
         }
       } else {
         log("${response.statusCode}");
         final msg = data['message'];
-        snakBarWiget(context: context, title: msg, clr: kred);
+        snackBarWidget(context: context, title: msg, clr: kred);
       }
     } catch (e) {
       log(e.toString());

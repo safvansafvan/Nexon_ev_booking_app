@@ -25,11 +25,11 @@ class GetAllGroupsSerive {
           return groupDetails;
         } else {
           log(data['message']);
-          snakBarWiget(context: context, title: data['message'], clr: kred);
+          snackBarWidget(context: context, title: data['message'], clr: kred);
         }
       } else {
         log("${respose.statusCode}");
-        snakBarWiget(context: context, title: data['message'], clr: kred);
+        snackBarWidget(context: context, title: data['message'], clr: kred);
       }
     } catch (e) {
       log(e.toString());

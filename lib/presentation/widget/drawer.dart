@@ -14,7 +14,7 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   String? userName;
   String? userEmail;
-  getUserDetails() async {
+  getUserDetailss() async {
     userEmail = await GetUserDetials.getUSerEmail();
     userName = await GetUserDetials.getUsername();
   }
@@ -22,22 +22,33 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   void initState() {
     super.initState();
-    getUserDetails();
+    getUserDetailss();
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: SizedBox(
         width: 250,
-        height: 400,
         child: Drawer(
           clipBehavior: Clip.antiAliasWithSaveLayer,
-          backgroundColor: Colors.white70,
+          backgroundColor: const Color.fromARGB(237, 255, 255, 255),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).closeDrawer();
+                      },
+                      icon: Icon(
+                        Icons.close_rounded,
+                        color: kblue,
+                      )),
+                ),
                 commonHeight,
                 const CircleAvatar(
                   radius: 35,
@@ -96,6 +107,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                 ),
                 kheight30,
+                SizedBox(height: screenSize.height * 00.38),
                 Text(
                   "Version",
                   style: textStyleFuc(weight: null, color: kBlack, size: 16),

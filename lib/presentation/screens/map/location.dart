@@ -30,8 +30,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    final locationProvider = Provider.of<MapProvider>(context, listen: false);
-    _getCurrentLocation(locationProvider);
+    _getCurrentLocation();
   }
 
   @override
@@ -67,7 +66,7 @@ class _MapScreenState extends State<MapScreen> {
               minZoom: 5,
               maxZoom: 18,
               zoom: 13,
-              center: currentLocation ?? const LatLng(0, 0),
+              center: currentLocation ?? const LatLng(10.1632, 76.6413),
             ),
             children: [
               TileLayer(
@@ -247,7 +246,7 @@ class _MapScreenState extends State<MapScreen> {
             bottom: 10,
             child: FloatingActionButton(
               onPressed: () {
-                _getCurrentLocation(locationProvider);
+                _getCurrentLocation();
               },
               child: Icon(
                 Icons.gps_fixed_sharp,
@@ -260,14 +259,14 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  Future<void> _getCurrentLocation(MapProvider locationProvider) async {
+  Future<void> _getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // ignore: use_build_context_synchronously
-      return snakBarWiget(
+      return snackBarWidget(
           context: context, title: "Please Enable Location Service", clr: kred);
     }
     permission = await Geolocator.checkPermission();
@@ -276,12 +275,12 @@ class _MapScreenState extends State<MapScreen> {
     }
     if (permission == LocationPermission.denied) {
       // ignore: use_build_context_synchronously
-      return snakBarWiget(
+      return snackBarWidget(
           context: context, title: "Permission denied", clr: kred);
     }
     if (permission == LocationPermission.deniedForever) {
       // ignore: use_build_context_synchronously
-      return snakBarWiget(
+      return snackBarWidget(
           context: context,
           title: "Location permissions are permanently denied",
           clr: kred);
