@@ -51,8 +51,6 @@ class _MapScreenState extends State<MapScreen> {
             mapController: mapController,
             options: MapOptions(
               onLongPress: (tapPosition, point) {
-                log("${point.latitude}");
-                log("${point.longitude}");
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -234,7 +232,8 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ),
               title: CupertinoSearchTextField(
-                backgroundColor: Colors.grey[350],
+                borderRadius: BorderRadius.circular(6),
+                backgroundColor: Colors.white,
                 onChanged: (value) {
                   log(value);
                   searchPlace(value);
@@ -250,7 +249,10 @@ class _MapScreenState extends State<MapScreen> {
               onPressed: () {
                 _getCurrentLocation(locationProvider);
               },
-              child: const Icon(Icons.gps_not_fixed_rounded),
+              child: Icon(
+                Icons.gps_fixed_sharp,
+                color: kblue,
+              ),
             ),
           )
         ],
