@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/presentation/widget/text_form_common.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';

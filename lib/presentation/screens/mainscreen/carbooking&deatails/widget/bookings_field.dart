@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/presentation/screens/bookings/booknow/book_now.dart';
 import 'package:bookingapp/presentation/screens/bookings/test_drive_booking/test_booking.dart';
 import 'package:flutter/material.dart';

@@ -6,7 +6,7 @@ import 'package:bookingapp/presentation/widget/app_bar.dart';
 import 'package:bookingapp/presentation/widget/drawer.dart';
 import 'package:bookingapp/presentation/widget/login_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/presentation/widget/text_h.dart';
 import 'package:bookingapp/presentation/widget/page_indicator.dart';
 import 'package:bookingapp/presentation/screens/mainscreen/carbooking&deatails/nexon_darke.dart';

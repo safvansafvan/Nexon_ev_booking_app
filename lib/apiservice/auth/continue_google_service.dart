@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
 import 'package:bookingapp/presentation/widget/snack_bar.dart';

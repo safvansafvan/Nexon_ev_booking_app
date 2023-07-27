@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/presentation/screens/brochure/pdfview/pdf_view.dart';
 
 class BrochureGridViewWidget extends StatelessWidget {

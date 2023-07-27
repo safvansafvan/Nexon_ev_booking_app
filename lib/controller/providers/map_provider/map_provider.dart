@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/apiservice/map_service/get_charger_port.dart';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/model/location/add_plot_model.dart';
 import 'package:bookingapp/model/location/map_model.dart';

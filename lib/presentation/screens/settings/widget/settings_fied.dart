@@ -2,7 +2,7 @@ import 'package:bookingapp/controller/providers/authentication/continue_with_goo
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:flutter/material.dart';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bookingapp/presentation/screens/authentication/login.dart';
 import 'package:bookingapp/presentation/screens/settings/screens/about_us.dart';

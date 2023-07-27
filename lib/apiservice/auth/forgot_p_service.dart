@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
 import 'package:bookingapp/presentation/screens/authentication/forgot_password/new_password.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
-import '../../../controller/core/core.dart';
+import '../../../controller/core/constant.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

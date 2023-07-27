@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
 import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
 import 'package:bookingapp/model/authentication/signup.dart';

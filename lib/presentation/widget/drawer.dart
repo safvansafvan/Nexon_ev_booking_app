@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/presentation/screens/booking_status/booking_now_status.dart';
 import 'package:bookingapp/presentation/screens/booking_status/test_drive_status.dart';

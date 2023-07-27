@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/model/group_model.dart';
 import 'package:bookingapp/presentation/screens/community_chat/screens/change_group_profile.dart';

@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/image_widget.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/text_form_field.dart';

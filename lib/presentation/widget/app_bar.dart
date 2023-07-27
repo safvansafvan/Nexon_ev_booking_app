@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:bookingapp/presentation/screens/community_chat/screens/join_group.dart';

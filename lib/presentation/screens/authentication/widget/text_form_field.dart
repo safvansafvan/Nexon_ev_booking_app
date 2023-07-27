@@ -2,7 +2,7 @@ import 'package:bookingapp/controller/providers/authentication/login.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../controller/core/core.dart';
+import '../../../../controller/core/constant.dart';
 
 class TextFormLogin extends StatelessWidget {
   final TextEditingController controller;

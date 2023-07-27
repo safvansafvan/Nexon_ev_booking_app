@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

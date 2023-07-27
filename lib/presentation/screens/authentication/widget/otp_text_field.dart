@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../controller/core/core.dart';
+import '../../../../controller/core/constant.dart';
 
 class OtpTextField extends StatelessWidget {
   const OtpTextField({super.key, this.controller});

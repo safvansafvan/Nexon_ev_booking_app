@@ -4,7 +4,7 @@ import 'package:bookingapp/presentation/screens/authentication/widget/otp_text_f
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import '../../../controller/core/core.dart';
+import '../../../controller/core/constant.dart';
 import '../../../controller/providers/authentication/otpverify_signup.dart';
 
 class OtpScreen extends StatelessWidget {

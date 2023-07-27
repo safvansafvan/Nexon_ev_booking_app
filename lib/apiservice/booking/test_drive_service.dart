@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/core.dart';
+import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
