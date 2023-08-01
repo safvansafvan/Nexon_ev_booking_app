@@ -3,7 +3,7 @@ import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/presentation/screens/community_chat/community_chat.dart';
 import 'package:bookingapp/presentation/screens/map/location.dart';
-import 'package:bookingapp/presentation/widget/login_dialog.dart';
+import 'package:bookingapp/presentation/widgets/login_dialog.dart';
 import 'package:flutter/material.dart';
 
 class PopularOptionsWidges extends StatelessWidget {

@@ -12,7 +12,7 @@ import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
 import 'package:bookingapp/presentation/screens/map/constent/constent.dart';
 import 'package:bookingapp/presentation/screens/map/widget/more.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/presentation/widgets/snack_bar.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});

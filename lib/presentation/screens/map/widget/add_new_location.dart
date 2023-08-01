@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
-import 'package:bookingapp/presentation/widget/text_form_common.dart';
+import 'package:bookingapp/presentation/widgets/text_form_common.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

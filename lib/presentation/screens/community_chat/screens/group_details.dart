@@ -3,7 +3,7 @@ import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/model/group_model.dart';
 import 'package:bookingapp/presentation/screens/community_chat/screens/change_group_profile.dart';
-import 'package:bookingapp/presentation/widget/text_h.dart';
+import 'package:bookingapp/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

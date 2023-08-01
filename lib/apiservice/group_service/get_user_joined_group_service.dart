@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/model/group_model.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/presentation/widgets/snack_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../controller/core/strings.dart';

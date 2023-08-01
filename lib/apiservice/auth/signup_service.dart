@@ -5,7 +5,7 @@ import 'package:bookingapp/controller/providers/authentication/otp_provider.dart
 import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
 import 'package:bookingapp/model/authentication/signup.dart';
 import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/presentation/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';

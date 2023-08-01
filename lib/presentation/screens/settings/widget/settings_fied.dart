@@ -8,7 +8,7 @@ import 'package:bookingapp/presentation/screens/authentication/login.dart';
 import 'package:bookingapp/presentation/screens/settings/screens/about_us.dart';
 import 'package:bookingapp/presentation/screens/settings/screens/privacy_and_policy.dart';
 import 'package:bookingapp/presentation/screens/settings/screens/terms_and_conditions.dart';
-import 'package:bookingapp/presentation/widget/snack_bar.dart';
+import 'package:bookingapp/presentation/widgets/snack_bar.dart';
 
 class SettingsFieldWidget extends StatelessWidget {
   const SettingsFieldWidget(

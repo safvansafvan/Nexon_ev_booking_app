@@ -1,5 +1,5 @@
 import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/widget/text_h.dart';
+import 'package:bookingapp/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 
 class SpecificationBoxWidget extends StatelessWidget {

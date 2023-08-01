@@ -27,7 +27,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: SizedBox(
         width: 250,
@@ -106,8 +105,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     title: const Text("Test Drive Status"),
                   ),
                 ),
-                kheight30,
-                SizedBox(height: screenSize.height * 00.38),
+                const Spacer(),
                 Text(
                   "Version",
                   style: textStyleFuc(weight: null, color: kBlack, size: 16),
