@@ -20,5 +20,6 @@ class GetUserDetials extends ChangeNotifier {
   Future userLoginOrNot() async {
     final pref = await SharedPreferences.getInstance();
     token = pref.getString("ACCESS_TOKEN");
+    notifyListeners();
   }
 }

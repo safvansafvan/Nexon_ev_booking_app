@@ -11,10 +11,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<GetUserDetials>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await provider.getUsername();
-      await provider.getUSerEmail();
-    });
+
     return SafeArea(
       child: SizedBox(
         width: 250,

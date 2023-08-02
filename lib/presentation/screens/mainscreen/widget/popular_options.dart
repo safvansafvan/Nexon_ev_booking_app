@@ -5,14 +5,14 @@ import 'package:bookingapp/presentation/screens/community_chat/community_chat.da
 import 'package:bookingapp/presentation/screens/map/map_screen.dart';
 import 'package:bookingapp/presentation/widgets/login_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PopularOptionsWidges extends StatelessWidget {
   const PopularOptionsWidges({super.key});
 
   @override
   Widget build(BuildContext context) {
-    GetUserDetials user = GetUserDetials();
-
+    final user = Provider.of<GetUserDetials>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await user.userLoginOrNot();
     });
