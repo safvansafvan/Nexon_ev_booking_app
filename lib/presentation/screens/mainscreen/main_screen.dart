@@ -33,12 +33,18 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<GetUserDetials>(context, listen: false);
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Provider.of<MapProvider>(context, listen: false)
           .fetchCharginLocation(context);
       // ignore: use_build_context_synchronously
       await Provider.of<DealerProvider>(context, listen: false).getDealer();
       await user.userLoginOrNot();
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await provider.getUsername();
+        await provider.getUSerEmail();
+      });
     });
     List image = [
       "assets/primenexon-.png",

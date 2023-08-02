@@ -69,7 +69,8 @@ class TestDriveService {
 
   static Future getTestDriveStatus(context) async {
     final String url = Urls.baseUrl + Urls.getUserTestDrive;
-    final email = await GetUserDetials.getUSerEmail();
+    final email = await Provider.of<GetUserDetials>(context, listen: false)
+        .getUSerEmail();
     log(email);
     try {
       final response = await http.post(Uri.parse(url), body: {'email': email});

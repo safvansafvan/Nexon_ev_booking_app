@@ -1,20 +1,19 @@
-import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class GetUserDetials {
-  static Future<String> getUsername() async {
+class GetUserDetials extends ChangeNotifier {
+  String? userName;
+  String? userEmail;
+  Future getUsername() async {
     final pref = await SharedPreferences.getInstance();
-    final userName = pref.getString("USER_NAME");
-    log(userName.toString());
-    return userName.toString();
+    userName = pref.getString("USER_NAME");
+    notifyListeners();
   }
 
-  static Future<String> getUSerEmail() async {
+  Future getUSerEmail() async {
     final pref = await SharedPreferences.getInstance();
-    final userEmail = pref.getString("USER_EMAIL");
-    log(userEmail.toString());
-    return userEmail.toString();
+    userEmail = pref.getString("USER_EMAIL");
+    notifyListeners();
   }
 
   String? token;

@@ -1,3 +1,4 @@
+import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,6 +63,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => DealerProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => GetUserDetials(),
         )
       ],
       child: MaterialApp(

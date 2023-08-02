@@ -112,8 +112,10 @@ class BookingNowService {
     final String url = Urls.baseUrl + Urls.getUserbooking;
 
     try {
-      final response = await http.post(Uri.parse(url),
-          body: {"email": await GetUserDetials.getUSerEmail()});
+      final response = await http.post(Uri.parse(url), body: {
+        "email": await Provider.of<GetUserDetials>(context, listen: false)
+            .getUSerEmail()
+      });
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
         if (data['status'] == 'success') {

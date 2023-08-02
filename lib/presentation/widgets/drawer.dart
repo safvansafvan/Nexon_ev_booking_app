@@ -3,30 +3,18 @@ import 'package:bookingapp/controller/providers/get_user_details.dart';
 import 'package:bookingapp/presentation/screens/booking_status/booking_now_status.dart';
 import 'package:bookingapp/presentation/screens/booking_status/test_drive_status.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class DrawerWidget extends StatefulWidget {
+class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
 
   @override
-  State<DrawerWidget> createState() => _DrawerWidgetState();
-}
-
-class _DrawerWidgetState extends State<DrawerWidget> {
-  String? userName;
-  String? userEmail;
-  getUserDetailss() async {
-    userEmail = await GetUserDetials.getUSerEmail();
-    userName = await GetUserDetials.getUsername();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getUserDetailss();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<GetUserDetials>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await provider.getUsername();
+      await provider.getUSerEmail();
+    });
     return SafeArea(
       child: SizedBox(
         width: 250,
@@ -56,12 +44,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
                 height10,
                 Text(
-                  userName ?? "Unknown",
+                  provider.userName ?? "Unknown",
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kBlack, size: 15),
                 ),
                 Text(
-                  userEmail ?? "Unknown",
+                  provider.userEmail ?? "Unknown",
                   style: textStyleFuc(
                       weight: FontWeight.w300, color: kBlack, size: 12),
                 ),
