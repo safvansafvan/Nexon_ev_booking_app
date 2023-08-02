@@ -10,8 +10,9 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<SplashProvider>(context, listen: false).navigateHome(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<SplashProvider>(context, listen: false)
+          .navigateHome(context);
     });
     return FutureBuilder(builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {

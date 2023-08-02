@@ -110,6 +110,7 @@ flutter:
     - assets/locations.webp
     - assets/primenexon-.png
     - assets/tata-nexon-ev-ri.png
+    - assets/app_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

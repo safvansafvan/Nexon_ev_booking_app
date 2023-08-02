@@ -23,24 +23,20 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   MapController mapController = MapController();
-  PageController pageController = PageController();
   Position? currentPosition;
   LatLng? currentLocation;
 
   @override
-  void initState() {
-    super.initState();
-    _getCurrentLocation();
-  }
-
-  @override
   void dispose() {
-    super.dispose();
     mapController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _getCurrentLocation();
+    });
     final screenSize = MediaQuery.of(context).size;
     final locationProvider = Provider.of<MapProvider>(context, listen: false);
     return Scaffold(
@@ -63,9 +59,9 @@ class _MapScreenState extends State<MapScreen> {
                   },
                 );
               },
-              minZoom: 5,
+              minZoom: 3,
               maxZoom: 18,
-              zoom: 13,
+              zoom: 10,
               center: currentLocation ?? const LatLng(10.1632, 76.6413),
             ),
             children: [
@@ -288,7 +284,9 @@ class _MapScreenState extends State<MapScreen> {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
-      currentPosition = position;
+      if (mounted) {
+        currentPosition = position;
+      }
     });
     mapController.move(
       LatLng(position.latitude, position.longitude),

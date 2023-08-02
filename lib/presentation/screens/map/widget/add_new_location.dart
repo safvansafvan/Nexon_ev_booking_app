@@ -7,15 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddNewLocationWidget extends StatelessWidget {
-  const AddNewLocationWidget({
-    super.key,
-    required this.stationNameCtr,
-    required this.screenSize,
-    required this.descriptionCtr,
-    required this.keyController,
-    required this.lat,
-    required this.long,
-  });
+  const AddNewLocationWidget(
+      {super.key,
+      required this.stationNameCtr,
+      required this.screenSize,
+      required this.descriptionCtr,
+      required this.keyController,
+      required this.lat,
+      required this.long});
 
   final TextEditingController stationNameCtr;
   final Size screenSize;
