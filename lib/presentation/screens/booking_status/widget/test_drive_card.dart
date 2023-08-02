@@ -18,7 +18,6 @@ class TestDriveCard extends StatelessWidget {
       itemBuilder: (context, index) {
         final data = value.testDriveDetails[index];
         return SizedBox(
-          height: screenSize.height * 00.26,
           width: double.infinity,
           child: Card(
             elevation: 5,

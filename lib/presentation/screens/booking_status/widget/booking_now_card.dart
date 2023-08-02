@@ -7,8 +7,6 @@ class BookingNowCard extends StatelessWidget {
   final BookingNowProvider value;
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -19,7 +17,6 @@ class BookingNowCard extends StatelessWidget {
         String? lastName = data.lastName;
         String fullName = (firstName ?? '') + (lastName ?? '');
         return SizedBox(
-          height: screenSize.height * 00.37,
           width: double.infinity,
           child: Card(
             elevation: 5,
