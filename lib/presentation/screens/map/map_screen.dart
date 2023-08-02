@@ -25,6 +25,11 @@ class _MapScreenState extends State<MapScreen> {
   MapController mapController = MapController();
   Position? currentPosition;
   LatLng? currentLocation;
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
 
   @override
   void dispose() {
@@ -34,9 +39,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _getCurrentLocation();
-    });
     final screenSize = MediaQuery.of(context).size;
     final locationProvider = Provider.of<MapProvider>(context, listen: false);
     return Scaffold(
