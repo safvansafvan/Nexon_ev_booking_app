@@ -10,8 +10,8 @@ class TestDriveBookingStatusScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<TestDriveBookingProvider>(context, listen: false)
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<TestDriveBookingProvider>(context, listen: false)
           .getTestDriveDetails(context);
     });
     var screenSize = MediaQuery.of(context).size;

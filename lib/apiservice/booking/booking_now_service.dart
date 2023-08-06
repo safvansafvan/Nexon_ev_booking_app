@@ -113,8 +113,7 @@ class BookingNowService {
 
     try {
       final response = await http.post(Uri.parse(url), body: {
-        "email": await Provider.of<GetUserDetials>(context, listen: false)
-            .getUSerEmail()
+        "email": Provider.of<GetUserDetials>(context, listen: false).userEmail
       });
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {

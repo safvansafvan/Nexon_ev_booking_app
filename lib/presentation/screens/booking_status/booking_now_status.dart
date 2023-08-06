@@ -10,8 +10,8 @@ class BookingStatusScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<BookingNowProvider>(context, listen: false)
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<BookingNowProvider>(context, listen: false)
           .getBookingDetails(context);
     });
 

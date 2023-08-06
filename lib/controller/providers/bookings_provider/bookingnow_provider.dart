@@ -53,7 +53,4 @@ class BookingNowProvider extends ChangeNotifier {
     isGetDetailsLoading = false;
     notifyListeners();
   }
-
-  ///payment
-  ///
 }
