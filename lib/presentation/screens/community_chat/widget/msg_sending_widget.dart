@@ -1,12 +1,11 @@
 import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
-import 'package:bookingapp/presentation/screens/community_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MsgSendingWidget extends StatelessWidget {
-  const MsgSendingWidget(
-      {super.key, required this.widget, required this.value});
+  MsgSendingWidget({super.key, required this.id, required this.value});
 
-  final ChatScreen widget;
+  String id;
   final ChatProvider value;
   @override
   Widget build(BuildContext context) {
@@ -37,9 +36,7 @@ class MsgSendingWidget extends StatelessWidget {
             icon: const Icon(Icons.send),
             onPressed: () async {
               if (value.textController.text.isNotEmpty) {
-                value.sendMsg(
-                    message: value.textController.text,
-                    groupId: widget.data.id);
+                value.sendMsg(message: value.textController.text, groupId: id);
               }
             },
           ),

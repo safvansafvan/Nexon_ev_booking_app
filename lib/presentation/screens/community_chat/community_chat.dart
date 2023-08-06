@@ -13,8 +13,8 @@ class CommunityChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<GetAllGroupsProvider>(context, listen: false)
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<GetAllGroupsProvider>(context, listen: false)
           .getUserGroups(context);
     });
     return Scaffold(
@@ -76,19 +76,20 @@ class CommunityChatScreen extends StatelessWidget {
                                 final formattedTime = DateFormat('h:mm a')
                                     .format(value.userGroups[index].updatedAt
                                         .toLocal());
+
                                 return ListTile(
-                                  leading: value.userGroups[index].image != null
-                                      ? CircleAvatar(
-                                          backgroundImage: NetworkImage(
+                                  leading: CircleAvatar(
+                                    backgroundImage: value
+                                                .userGroups[index].image !=
+                                            null
+                                        ? NetworkImage(
                                             Urls.baseUrl +
                                                 value.userGroups[index].image
                                                     .toString(),
-                                          ),
-                                        )
-                                      : const CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
-                                        ),
+                                          )
+                                        : const NetworkImage(
+                                            "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
+                                  ),
                                   title: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

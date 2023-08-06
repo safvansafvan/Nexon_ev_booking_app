@@ -15,40 +15,27 @@ import 'package:bookingapp/presentation/screens/community_chat/widget/msg_sendin
 import 'package:bookingapp/presentation/screens/community_chat/widget/seperator.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key, required this.data}) : super(key: key);
+// ignore: must_be_immutable
+class ChatScreen extends StatelessWidget {
+  ChatScreen({Key? key, required this.data}) : super(key: key);
   final Group data;
 
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
   late Timer timer;
+
   StreamController<List<ChatModel>> controller =
       StreamController<List<ChatModel>>.broadcast();
+
   String userName = "";
-  @override
-  void initState() {
-    super.initState();
-    getUsername();
-  }
 
-  @override
-  void didChangeDependencies() {
-    timer = Timer.periodic(const Duration(seconds: 2), (_) {
-      Provider.of<ChatProvider>(context, listen: false).getMessages(context);
-    });
-    super.didChangeDependencies();
-  }
-
+  // @override
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ChatProvider>(context, listen: false).groupId =
-          widget.data.id;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      getUsername();
+      Provider.of<ChatProvider>(context, listen: false).groupId = data.id;
       Provider.of<ChatProvider>(context, listen: false).connect();
-      Provider.of<ChatProvider>(context, listen: false).getMessages(context);
+      await Provider.of<ChatProvider>(context, listen: false)
+          .getMessages(context);
     });
 
     return Scaffold(
@@ -62,11 +49,11 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: const Icon(Icons.arrow_back_ios_new_rounded)),
           title: Row(
             children: [
-              widget.data.image != null
+              data.image != null
                   ? CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
-                        Urls.baseUrl + widget.data.image.toString(),
+                        Urls.baseUrl + data.image.toString(),
                       ),
                     )
                   : const CircleAvatar(
@@ -80,7 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => GroupDetailsWidget(
-                        groupData: widget.data,
+                        groupData: data,
                       ),
                     ),
                   );
@@ -88,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.data.groupName),
+                    Text(data.groupName),
                     const Text(
                       'Click here for group info',
                       style: TextStyle(fontSize: 12),
@@ -174,7 +161,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
               ),
             ),
-            MsgSendingWidget(widget: widget, value: value),
+            MsgSendingWidget(id: data.id, value: value),
             Offstage(
               offstage: value.emojiShowing,
               child: SizedBox(
@@ -183,8 +170,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   textEditingController: value.textController,
                   config: const Config(
                     columns: 7,
-                    verticalSpacing: 0,
-                    horizontalSpacing: 0,
                     gridPadding: EdgeInsets.zero,
                     initCategory: Category.RECENT,
                     bgColor: Color(0xFFF2F2F2),
@@ -192,8 +177,6 @@ class _ChatScreenState extends State<ChatScreen> {
                     iconColor: Colors.grey,
                     iconColorSelected: Colors.blue,
                     backspaceColor: Colors.blue,
-                    skinToneDialogBgColor: Colors.white,
-                    skinToneIndicatorColor: Colors.grey,
                     enableSkinTones: true,
                     recentTabBehavior: RecentTabBehavior.RECENT,
                     recentsLimit: 28,
@@ -206,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     loadingIndicator: SizedBox.shrink(),
                     tabIndicatorAnimDuration: kTabScrollDuration,
                     categoryIcons: CategoryIcons(),
-                    buttonMode: ButtonMode.MATERIAL,
+                    buttonMode: ButtonMode.CUPERTINO,
                     checkPlatformCompatibility: true,
                   ),
                 ),
@@ -221,6 +204,6 @@ class _ChatScreenState extends State<ChatScreen> {
   getUsername() async {
     final pref = await SharedPreferences.getInstance();
     userName = pref.getString("USER_NAME").toString();
-    log(userName, name: "futions");
+    log(userName, name: "functions");
   }
 }
