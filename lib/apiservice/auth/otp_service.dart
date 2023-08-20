@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/core/strings.dart';
 import 'package:bookingapp/controller/providers/authentication/login.dart';
@@ -40,11 +39,6 @@ class LoginApiService {
               userName: result['username'],
               id: result['_id'],
               userEmail: result['email']);
-          log("$result");
-          log(data['token']);
-          log(result['_id']);
-          log(result['username']);
-          log(result['email']);
         } else {
           log(data['status']);
           snackBarWidget(context: context, title: data['message'], clr: kred);
@@ -55,11 +49,10 @@ class LoginApiService {
       }
     } catch (e) {
       log(e.toString());
-      snackBarWidget(context: context, title: e.toString(), clr: kred);
     }
   }
 
-  static loginStatus(
+  static Future<void> loginStatus(
       {required String accessToken,
       required String userName,
       required String id,

@@ -63,7 +63,7 @@ class SignupService {
     return data.toJson();
   }
 
-  static setLoginStatus(
+  static Future<void> setLoginStatus(
       {required String accessToken,
       required String userName,
       required String id,

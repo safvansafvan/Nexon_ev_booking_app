@@ -40,7 +40,7 @@ Future getGoogleLoginStatus(context, email, username) async {
   }
 }
 
-setLoginStatus(
+Future<void> setLoginStatus(
     {required String accessToken,
     required String userName,
     required String id,
