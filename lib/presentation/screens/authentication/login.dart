@@ -3,11 +3,9 @@ import 'package:bookingapp/controller/providers/authentication/continue_with_goo
 import 'package:bookingapp/controller/providers/authentication/login.dart';
 import 'package:bookingapp/presentation/screens/authentication/forgot_password/forgot_otp.dart';
 import 'package:bookingapp/presentation/screens/authentication/register.dart';
-import 'package:bookingapp/presentation/screens/authentication/widget/image_widget.dart';
+import 'package:bookingapp/presentation/screens/authentication/widget/square_field_widget.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/text_form_field.dart';
-import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -20,184 +18,182 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  void dispose() {
+    Provider.of<LoginProvider>(context, listen: false)
+        .formKey1
+        .currentState!
+        .dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final loginGoogleProvi =
         Provider.of<ContinueWithGoogleProvider>(context, listen: false);
 
     var screenHeight = MediaQuery.of(context).size;
-    return Scaffold(body:
-        SafeArea(child: Consumer<LoginProvider>(builder: (context, value, _) {
-      return value.isLoading || loginGoogleProvi.isLoading
-          ? Center(child: Lottie.asset('assets/ui-loader.json'))
-          : Form(
-              key: value.formKey1,
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 15, top: screenHeight.height * 0.03),
-                    child: Text(
-                      "Welcome Back!! ",
-                      style: textStyleFuc(
-                          weight: FontWeight.w900, color: kBlack, size: 25),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: screenHeight.height * 0.03, left: 10, right: 10),
+    return Scaffold(
+      backgroundColor: loginBackground,
+      body: SafeArea(
+        child: Consumer<LoginProvider>(builder: (context, value, _) {
+          return value.isLoading || loginGoogleProvi.isLoading
+              ? Center(child: Lottie.asset('assets/ui-loader.json'))
+              : Form(
+                  key: value.formKey1,
+                  child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        TextFormLogin(
-                            controller: value.emailController,
-                            hintText: "Email",
-                            keyType: TextInputType.emailAddress,
-                            isEmail: true,
-                            size: screenHeight,
-                            prefixIcon: const Icon(Icons.person_outline)),
+                        CustomHeight.commonHeightz(context),
+                        const Icon(Icons.lock, size: 100),
+                        CustomHeight.commonHeightz(context),
+                        const Text(
+                          "Welcome Back You've Been Missed!!",
+                        ),
                         commonHeight,
-                        TextFormLogin(
-                          controller: value.passwordCntrlr,
-                          hintText: "Password",
-                          keyType: TextInputType.name,
-                          isObs: true,
-                          isPassword: true,
-                          size: screenHeight,
-                          prefixIcon: const Icon(Icons.password_rounded),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ForgotPasswordWidget(),
-                              ),
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(7),
-                            child: Text(
-                              "Forgot Password?",
-                              style: textStyleFuc(
-                                  weight: FontWeight.w500,
-                                  color:
-                                      const Color.fromARGB(255, 66, 140, 200),
-                                  size: 15),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: screenHeight.height * 0.07,
-                          color: const Color.fromARGB(255, 241, 239, 239),
-                          child: OutlinedButton(
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(borderRadius: radiusTen),
-                              ),
-                            ),
-                            onPressed: () async {
-                              if (value.formKey1.currentState!.validate()) {
-                                value.loginButtonClick(context);
-                              }
-                            },
-                            child: Text(
-                              'Login',
-                              style: textStyleFuc(
-                                  weight: FontWeight.w500,
-                                  color: null,
-                                  size: 16),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: screenHeight.height * 0.04,
-                        ),
-                        const ImageWidget(image: "assets/nexon.webp"),
-                        SizedBox(
-                          height: screenHeight.height * 0.03,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            await loginGoogleProvi
-                                .continueWithGoogleButtonClick(context);
-                          },
-                          child: Container(
-                            height: screenHeight.height * 0.07,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 241, 239, 239),
-                              borderRadius: radiusTen,
-                              border: Border.all(color: kBlack38),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const FaIcon(
-                                  FontAwesomeIcons.google,
-                                  color: Colors.red,
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                Text(
-                                  'Continue With Google',
-                                  style: textStyleFuc(
-                                    weight: FontWeight.w500,
-                                    color: kBlack,
-                                    size: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        height10,
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const MainScreen(),
-                                ),
-                              );
-                            },
-                            child: const Text("Guest")),
-                        height10,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            const Text(
-                              "Don't have an account? ",
-                              style: TextStyle(fontWeight: FontWeight.w500),
+                            TextFormLogin(
+                                controller: value.emailController,
+                                hintText: "Email",
+                                keyType: TextInputType.emailAddress,
+                                isEmail: true,
+                                size: screenHeight,
+                                prefixIcon: const Icon(Icons.person_outline)),
+                            CustomHeight.commonHeightz(context),
+                            TextFormLogin(
+                              controller: value.passwordCntrlr,
+                              hintText: "Password",
+                              keyType: TextInputType.name,
+                              isObs: true,
+                              isPassword: true,
+                              size: screenHeight,
+                              prefixIcon: const Icon(Icons.password_rounded),
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                  context,
+                                Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) {
-                                      return const RegisterScreen();
-                                    },
+                                    builder: (context) =>
+                                        const ForgotPasswordWidget(),
                                   ),
                                 );
                               },
-                              child: Text(
-                                "Register Now",
-                                style: textStyleFuc(
-                                    weight: null, color: Colors.blue, size: 14),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "Forgot Password?",
+                                  style: textStyleFuc(
+                                      weight: FontWeight.w500,
+                                      color: const Color.fromARGB(
+                                          255, 66, 140, 200),
+                                      size: 15),
+                                ),
                               ),
-                            )
+                            ),
+                            CustomHeight.commonHeightz(context),
+                            InkWell(
+                              onTap: () async {
+                                if (value.formKey1.currentState!.validate()) {
+                                  await value.loginButtonClick(context);
+                                }
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(20),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 25),
+                                decoration: BoxDecoration(
+                                    color: kBlack, borderRadius: radiusTen),
+                                child: Center(
+                                  child: Text(
+                                    'Login',
+                                    style: textStyleFuc(
+                                        weight: FontWeight.bold,
+                                        color: kwhite,
+                                        size: 16),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            CustomHeight.commonHeightz(context),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Divider(
+                                      thickness: 0.5,
+                                      color: Colors.grey[400],
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    child: Text('Or Continue With'),
+                                  ),
+                                  Expanded(
+                                    child: Divider(
+                                      thickness: 0.5,
+                                      color: Colors.grey[400],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            CustomHeight.commonHeightz(context),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SquareFieldWidget(
+                                  isContinueGoogle: true,
+                                  imagePath: 'assets/google.webp',
+                                ),
+                                const SizedBox(width: 25),
+                                SquareFieldWidget(
+                                  isContinueGoogle: false,
+                                  imagePath: 'assets/guest.png',
+                                ),
+                              ],
+                            ),
+                            CustomHeight.commonHeightz(context),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Don't have an account? ",
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const RegisterScreen();
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    "Register Now",
+                                    style: textStyleFuc(
+                                        weight: FontWeight.w600,
+                                        color: Colors.blue,
+                                        size: 14),
+                                  ),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            );
-    })));
+                );
+        }),
+      ),
+    );
   }
 }

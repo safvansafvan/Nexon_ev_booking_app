@@ -26,6 +26,12 @@ class _MainScreenState extends State<MainScreen> {
   final pageController = PageController();
   GetUserDetials user = GetUserDetials();
   @override
+  void deactivate() {
+    const MainScreen();
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     pageController.dispose();

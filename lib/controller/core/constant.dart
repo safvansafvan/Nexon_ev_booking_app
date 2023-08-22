@@ -7,6 +7,8 @@ var kred = Colors.red;
 var kblue = Colors.blueAccent;
 var kGreen = const Color.fromARGB(255, 139, 180, 92);
 
+var loginBackground = Colors.grey[300];
+
 //fuction
 
 textStyleFuc({required weight, required color, required double size}) {
@@ -39,3 +41,13 @@ var kHeightFive = const SizedBox(
 var kWidth = const SizedBox(
   width: 20,
 );
+
+class CustomHeight {
+  static commonHeightz(context) {
+    Size size = MediaQuery.of(context).size;
+    var commonHeight = SizedBox(
+      height: size.height * 0.03,
+    );
+    return commonHeight;
+  }
+}
