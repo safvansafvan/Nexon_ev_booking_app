@@ -50,4 +50,12 @@ class CustomHeight {
     );
     return commonHeight;
   }
+
+  static heightTen(context) {
+    Size size = MediaQuery.of(context).size;
+    var commonHeight = SizedBox(
+      height: size.height * 0.01,
+    );
+    return commonHeight;
+  }
 }
