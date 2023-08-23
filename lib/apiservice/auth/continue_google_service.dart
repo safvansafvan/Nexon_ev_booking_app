@@ -10,8 +10,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future getGoogleLoginStatus(context, email, username) async {
   final String url = Urls.baseUrl + Urls.continueWithGoogle;
-  Map<String, dynamic> bodyData = {"email": email, "username": username};
-  final response = await http.post(Uri.parse(url), body: bodyData);
+  Map<String, dynamic> bodyData = {
+    "email": email,
+    "username": username,
+    "provider": "google"
+  };
+  final response = await http.post(
+    Uri.parse(url),
+    body: bodyData,
+    headers: {'Content-Type': 'application/json'},
+  );
   log("called $email");
   try {
     if (response.statusCode == 200) {
@@ -36,7 +44,6 @@ Future getGoogleLoginStatus(context, email, username) async {
     }
   } catch (e) {
     log(e.toString());
-    snackBarWidget(context: context, title: e.toString(), clr: kred);
   }
 }
 

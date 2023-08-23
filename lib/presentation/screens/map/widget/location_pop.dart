@@ -1,11 +1,12 @@
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class LocationPopup extends StatelessWidget {
   final String name;
   final String description;
   final String type;
-  final String date;
+  final DateTime date;
 
   const LocationPopup(
       {super.key,
@@ -16,6 +17,7 @@ class LocationPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatedDate = DateFormat.yMEd().format(date);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
@@ -50,7 +52,7 @@ class LocationPopup extends StatelessWidget {
           height10,
           Text("description: $description"),
           height10,
-          Text("Created At: $date"),
+          Text("Created At: $formatedDate"),
         ],
       ),
     );

@@ -118,7 +118,7 @@ class GroupDetailsWidget extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(top: 5),
                       child: Text(
-                        membersList[index]['name'],
+                        membersList[index]['name'].toString(),
                         style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w600),
                       ),

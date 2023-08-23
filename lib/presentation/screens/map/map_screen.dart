@@ -121,11 +121,10 @@ class _MapScreenState extends State<MapScreen> {
                             showModalBottomSheet(
                               context: context,
                               builder: (context) => LocationPopup(
-                                name: detail.title.toString(),
-                                description: detail.desc.toString(),
-                                type: detail.type.toString(),
-                                date: detail.createdAt.toString(),
-                              ),
+                                  name: detail.title.toString(),
+                                  description: detail.desc.toString(),
+                                  type: detail.type.toString(),
+                                  date: detail.createdAt!),
                             );
                           },
                           child: const SizedBox(
@@ -153,7 +152,7 @@ class _MapScreenState extends State<MapScreen> {
                                 name: detail.title.toString(),
                                 description: detail.desc.toString(),
                                 type: detail.type.toString(),
-                                date: detail.createdAt.toString(),
+                                date: detail.createdAt!,
                               ),
                             );
                           },
@@ -179,7 +178,7 @@ class _MapScreenState extends State<MapScreen> {
                                 name: detail.title.toString(),
                                 description: detail.desc.toString(),
                                 type: detail.type.toString(),
-                                date: detail.createdAt.toString(),
+                                date: detail.createdAt!,
                               ),
                             );
                           },
@@ -206,7 +205,7 @@ class _MapScreenState extends State<MapScreen> {
                                 name: detail.title.toString(),
                                 description: detail.desc.toString(),
                                 type: detail.type.toString(),
-                                date: detail.createdAt.toString(),
+                                date: detail.createdAt!,
                               ),
                             );
                           },
