@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class LoginProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordCntrlr = TextEditingController();
-  GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
   bool isLoading = false;
 
   bool _passwordVisibility = true;

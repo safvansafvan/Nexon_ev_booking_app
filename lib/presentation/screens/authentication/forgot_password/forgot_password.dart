@@ -1,27 +1,15 @@
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
+import 'package:bookingapp/presentation/screens/authentication/login.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class ForgotPasswordWidget extends StatefulWidget {
-  const ForgotPasswordWidget({super.key});
+class ForgotPasswordWidget extends StatelessWidget {
+  ForgotPasswordWidget({super.key});
 
-  @override
-  State<ForgotPasswordWidget> createState() => _ForgotPasswordWidgetState();
-}
-
-class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
-  @override
-  void dispose() {
-    Provider.of<ForgotPasswordProvider>(context, listen: false)
-        .key5
-        .currentState!
-        .dispose();
-    super.dispose();
-  }
-
+  final key5 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -47,7 +35,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   child: Lottie.asset("assets/ui-loader.json"),
                 )
               : Form(
-                  key: value.key5,
+                  key: key5,
                   child: SingleChildScrollView(
                     child: Column(children: [
                       Container(
@@ -84,7 +72,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                       CustomHeight.commonHeightz(context),
                       InkWell(
                         onTap: () async {
-                          if (value.key5.currentState!.validate()) {
+                          if (key5.currentState!.validate()) {
                             await value.inForgotEmailVerifyClick(context);
                           }
                         },
@@ -103,6 +91,35 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                             ),
                           ),
                         ),
+                      ),
+                      CustomHeight.heightTen(context),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Remember Password? ",
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return LoginPage();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Login Now",
+                              style: textStyleFuc(
+                                  weight: FontWeight.w600,
+                                  color: Colors.blue,
+                                  size: 14),
+                            ),
+                          )
+                        ],
                       ),
                     ]),
                   ),

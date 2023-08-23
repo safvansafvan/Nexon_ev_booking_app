@@ -6,7 +6,6 @@ class ForgotPasswordProvider extends ChangeNotifier {
   bool isLoadingEmailSend = false;
   bool isLoadingotp = false;
   final key6 = GlobalKey<FormState>();
-  final key5 = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();

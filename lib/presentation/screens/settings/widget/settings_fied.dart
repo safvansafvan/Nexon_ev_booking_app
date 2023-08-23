@@ -104,7 +104,7 @@ class SettingsFieldWidget extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => const LoginPage(),
+          builder: (context) => LoginPage(),
         ),
         (route) => false);
     Provider.of<ContinueWithGoogleProvider>(context, listen: false).logout();

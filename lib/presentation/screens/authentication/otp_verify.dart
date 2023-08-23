@@ -1,5 +1,4 @@
 import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
-import 'package:bookingapp/presentation/screens/authentication/widget/image_widget.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/otp_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -104,7 +103,6 @@ class OtpScreen extends StatelessWidget {
                             SizedBox(
                               height: screenHeight * 0.09,
                             ),
-                            const ImageWidget(image: "assets/nexonOt.webp")
                           ],
                         ),
                       ),

@@ -63,7 +63,7 @@ class ForgotPasswordService {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoginPage(),
+              builder: (context) => LoginPage(),
             ),
           );
           snackBarWidget(

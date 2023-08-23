@@ -17,6 +17,7 @@ class RegisterScreen extends StatelessWidget {
     var screenHeight = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: loginBackground,
       body: SafeArea(
         child: Consumer<OtpProvider>(builder: (context, value, _) {
           return value.isLoading
@@ -25,14 +26,14 @@ class RegisterScreen extends StatelessWidget {
                 )
               : Form(
                   key: signUpProvider.formKey2,
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10, right: 10, top: 50, bottom: 10),
-                        child: SizedBox(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomHeight.heightTen(context),
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "Welcome To Ev Car\nBooking App",
@@ -41,124 +42,115 @@ class RegisterScreen extends StatelessWidget {
                                     color: kBlack,
                                     size: 25),
                               ),
-                              SizedBox(
-                                height: screenHeight.height * 0.01,
-                              ),
+                              CustomHeight.heightTen(context),
                               const Text(
                                   "Sign up this page for accessing cars"),
-                              SizedBox(
-                                height: screenHeight.height * 0.05,
-                              ),
-                              TextFormLogin(
-                                controller: signUpProvider.usernameController,
-                                hintText: "Username",
-                                keyType: TextInputType.name,
-                                isUser: true,
-                                size: screenHeight,
-                                prefixIcon: const Icon(
-                                  Icons.person_outline,
-                                ),
-                              ),
-                              commonHeight,
-                              TextFormLogin(
-                                controller: signUpProvider.emailController,
-                                hintText: "Email",
-                                keyType: TextInputType.emailAddress,
-                                isEmail: true,
-                                size: screenHeight,
-                                prefixIcon: const Icon(
-                                  Icons.email_outlined,
-                                ),
-                              ),
-                              commonHeight,
-                              TextFormLogin(
-                                controller: signUpProvider.phoneController,
-                                hintText: "Phone",
-                                keyType: TextInputType.number,
-                                isPhone: true,
-                                maxlength: 10,
-                                size: screenHeight,
-                                prefixIcon: const Icon(
-                                  Icons.numbers_outlined,
-                                ),
-                              ),
-                              commonHeight,
-                              TextFormLogin(
-                                controller: signUpProvider.passwordController,
-                                hintText: "Password",
-                                keyType: TextInputType.name,
-                                isPassword: true,
-                                isObs: true,
-                                size: screenHeight,
-                                prefixIcon: const Icon(
-                                  Icons.password_rounded,
-                                ),
-                              ),
-                              SizedBox(
-                                height: screenHeight.height * 0.07,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: screenHeight.height * 0.07,
-                                color: const Color.fromARGB(255, 241, 239, 239),
-                                child: OutlinedButton(
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                            borderRadius: radiusTen)),
-                                  ),
-                                  onPressed: () async {
-                                    if (signUpProvider.formKey2.currentState!
-                                        .validate()) {
-                                      await context
-                                          .read<OtpProvider>()
-                                          .signUpButtonClick(context);
-                                    }
-                                  },
-                                  child: Text(
-                                    'Sign Up',
-                                    style: textStyleFuc(
-                                        weight: FontWeight.w500,
-                                        color: null,
-                                        size: 16),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: screenHeight.height * 0.03,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const LoginPage();
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      "Already have an account? ",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text("Login Now",
-                                        style: textStyleFuc(
-                                            weight: null,
-                                            color: Colors.blue,
-                                            size: 14))
-                                  ],
-                                ),
-                              )
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                        CustomHeight.commonHeightz(context),
+                        TextFormLogin(
+                          controller: signUpProvider.usernameController,
+                          hintText: "Username",
+                          keyType: TextInputType.name,
+                          isUser: true,
+                          size: screenHeight,
+                          prefixIcon: const Icon(
+                            Icons.person_outline,
+                          ),
+                        ),
+                        CustomHeight.commonHeightz(context),
+                        TextFormLogin(
+                          controller: signUpProvider.emailController,
+                          hintText: "Email",
+                          keyType: TextInputType.emailAddress,
+                          isEmail: true,
+                          size: screenHeight,
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                          ),
+                        ),
+                        CustomHeight.commonHeightz(context),
+                        TextFormLogin(
+                          controller: signUpProvider.phoneController,
+                          hintText: "Phone",
+                          keyType: TextInputType.number,
+                          isPhone: true,
+                          maxlength: 10,
+                          size: screenHeight,
+                          prefixIcon: const Icon(
+                            Icons.numbers_outlined,
+                          ),
+                        ),
+                        CustomHeight.commonHeightz(context),
+                        TextFormLogin(
+                          controller: signUpProvider.passwordController,
+                          hintText: "Password",
+                          keyType: TextInputType.name,
+                          isPassword: true,
+                          isObs: true,
+                          size: screenHeight,
+                          prefixIcon: const Icon(
+                            Icons.password_rounded,
+                          ),
+                        ),
+                        SizedBox(
+                          height: screenHeight.height * 0.07,
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            if (signUpProvider.formKey2.currentState!
+                                .validate()) {
+                              await context
+                                  .read<OtpProvider>()
+                                  .signUpButtonClick(context);
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            margin: const EdgeInsets.symmetric(horizontal: 25),
+                            decoration: BoxDecoration(
+                                color: kBlack, borderRadius: radiusTen),
+                            child: Center(
+                              child: Text(
+                                'Sign Up',
+                                style: textStyleFuc(
+                                    weight: FontWeight.bold,
+                                    color: kwhite,
+                                    size: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                        CustomHeight.commonHeightz(context),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return LoginPage();
+                                },
+                              ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Already have an account? ",
+                                style: TextStyle(fontWeight: FontWeight.w500),
+                              ),
+                              Text("Login Now",
+                                  style: textStyleFuc(
+                                      weight: FontWeight.w600,
+                                      color: Colors.blue,
+                                      size: 14))
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
         }),

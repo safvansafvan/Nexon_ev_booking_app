@@ -1,7 +1,7 @@
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
 import 'package:bookingapp/controller/providers/authentication/login.dart';
-import 'package:bookingapp/presentation/screens/authentication/forgot_password/forgot_otp.dart';
+import 'package:bookingapp/presentation/screens/authentication/forgot_password/forgot_password.dart';
 import 'package:bookingapp/presentation/screens/authentication/register.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/square_field_widget.dart';
 import 'package:bookingapp/presentation/screens/authentication/widget/text_form_field.dart';
@@ -9,22 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+// ignore: must_be_immutable
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  @override
-  void dispose() {
-    Provider.of<LoginProvider>(context, listen: false)
-        .formKey1
-        .currentState!
-        .dispose();
-    super.dispose();
-  }
+  GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
           return value.isLoading || loginGoogleProvi.isLoading
               ? Center(child: Lottie.asset('assets/ui-loader.json'))
               : Form(
-                  key: value.formKey1,
+                  key: formKey1,
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -75,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const ForgotPasswordWidget(),
+                                        ForgotPasswordWidget(),
                                   ),
                                 );
                               },
@@ -95,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                             CustomHeight.commonHeightz(context),
                             InkWell(
                               onTap: () async {
-                                if (value.formKey1.currentState!.validate()) {
+                                if (formKey1.currentState!.validate()) {
                                   await value.loginButtonClick(context);
                                 }
                               },

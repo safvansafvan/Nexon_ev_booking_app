@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:bookingapp/normal.dart';
 import 'package:bookingapp/presentation/screens/map/widget/add_new_location.dart';
 import 'package:bookingapp/presentation/screens/map/widget/location_pop.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,6 +23,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  final _debouncer = Debouncer(milliseconds: 3 * 1000);
   MapController mapController = MapController();
   Position? currentPosition;
   LatLng? currentLocation;
@@ -233,7 +235,12 @@ class _MapScreenState extends State<MapScreen> {
                 backgroundColor: Colors.white,
                 onChanged: (value) {
                   log(value);
-                  searchPlace(value);
+                  if (value.isEmpty) {
+                    return;
+                  }
+                  _debouncer.run(() {
+                    searchPlace(value);
+                  });
                 },
               ),
               trailing: const PopUpMenuOption(),
@@ -298,6 +305,7 @@ class _MapScreenState extends State<MapScreen> {
 
   void searchPlace(String query) async {
     List<Location> locations = await locationFromAddress(query);
+
     if (locations.isNotEmpty) {
       Location location = locations.first;
       List<Placemark> placemarks = await placemarkFromCoordinates(

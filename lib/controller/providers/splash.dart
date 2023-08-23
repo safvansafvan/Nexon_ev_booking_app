@@ -13,7 +13,7 @@ class SplashProvider with ChangeNotifier {
       Navigator.pushReplacement(
         ctx,
         MaterialPageRoute(builder: (context) {
-          return const LoginPage();
+          return LoginPage();
         }),
       );
     } else {
@@ -22,7 +22,7 @@ class SplashProvider with ChangeNotifier {
         Navigator.pushReplacement(
           ctx,
           MaterialPageRoute(builder: (context) {
-            return const LoginPage();
+            return LoginPage();
           }),
         );
       } else {
