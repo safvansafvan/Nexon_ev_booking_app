@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
                         const Text(
                           "Welcome Back You've Been Missed!!",
                         ),
-                        commonHeight,
+                        CustomHeight.commonHeightz(context),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [

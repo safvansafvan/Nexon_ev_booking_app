@@ -62,36 +62,36 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                     ),
                   ],
                 ),
-                kHeightFive,
+                CustomHeight.heightTen(context),
                 HeadingTextWidget(text: "  Please fill your deatails"),
-                kHeightFive,
+                CustomHeight.heightTen(context),
                 TextFormFieldCommon(
                     controller: bookingProvider.firstNameController,
                     hintText: "First Name",
                     keyType: TextInputType.name,
                     size: screenSize),
-                height10,
+                CustomHeight.heightTen(context),
                 TextFormFieldCommon(
                     controller: bookingProvider.lastNameController,
                     hintText: "Last Name",
                     keyType: TextInputType.name,
                     size: screenSize),
-                height10,
+                CustomHeight.heightTen(context),
                 TextFormFieldCommon(
                     controller: bookingProvider.emailController,
                     hintText: "Email",
                     keyType: TextInputType.emailAddress,
                     size: screenSize),
-                height10,
+                CustomHeight.heightTen(context),
                 TextFormFieldCommon(
                     controller: bookingProvider.phoneController,
                     hintText: "Phone",
                     maxlength: 10,
                     keyType: TextInputType.phone,
                     size: screenSize),
-                kHeightFive,
+                CustomHeight.heightTen(context),
                 HeadingTextWidget(text: "Billing Address"),
-                height10,
+                CustomHeight.heightTen(context),
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -107,36 +107,33 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                         controller: bookingProvider.stateController),
                   ),
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 TextFormFieldCommon(
                     controller: bookingProvider.cityController,
                     hintText: "City",
                     keyType: TextInputType.name,
                     size: screenSize),
-                height10,
+                CustomHeight.heightTen(context),
                 TextFormFieldCommon(
                     controller: bookingProvider.address1Controller,
                     hintText: "Address1",
                     maxlength: 15,
                     keyType: TextInputType.name,
                     size: screenSize),
-                kHeightFive,
                 TextFormFieldCommon(
                     controller: bookingProvider.address2Controller,
                     hintText: "Address2",
                     maxlength: 15,
                     keyType: TextInputType.name,
                     size: screenSize),
-                kHeightFive,
                 TextFormFieldCommon(
                     controller: bookingProvider.pincodeController,
                     hintText: "Pincode",
                     maxlength: 6,
                     keyType: TextInputType.number,
                     size: screenSize),
-                kHeightFive,
                 HeadingTextWidget(text: "Dealer information"),
-                height10,
+                CustomHeight.heightTen(context),
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -164,9 +161,9 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                     }),
                   ),
                 ),
-                kHeightFive,
+                CustomHeight.heightTen(context),
                 HeadingTextWidget(text: "Select Veriant"),
-                height10,
+                CustomHeight.heightTen(context),
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -187,9 +184,9 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                         controller: bookingProvider.carModelController),
                   ),
                 ),
-                kHeightFive,
+                CustomHeight.heightTen(context),
                 HeadingTextWidget(text: "Amount Payable"),
-                height10,
+                CustomHeight.heightTen(context),
                 Container(
                   height: 63,
                   decoration: BoxDecoration(
@@ -206,7 +203,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                     ),
                   ),
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 const Text(
                     "This is the booking amount. Rest of the amount will be payable at the dealership selected."),
                 Container(
@@ -222,7 +219,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                     ),
                   ),
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 70),
                   child: ElevatedButton.icon(

@@ -25,11 +25,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final pageController = PageController();
   GetUserDetials user = GetUserDetials();
-  @override
-  void deactivate() {
-    const MainScreen();
-    super.deactivate();
-  }
 
   @override
   void dispose() {
@@ -76,14 +71,14 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
-            height10,
+            CustomHeight.heightTen(context),
             HeadingTextWidget(
               text: " Editions",
               color: kBlack,
               fontWeight: FontWeight.w600,
               textSize: 19,
             ),
-            height10,
+            CustomHeight.heightTen(context),
             SizedBox(
               height: 250,
               width: double.infinity,
@@ -171,7 +166,7 @@ class _MainScreenState extends State<MainScreen> {
               fontWeight: FontWeight.w600,
               textSize: 19,
             ),
-            height10,
+            CustomHeight.heightTen(context),
             const PopularOptionsWidges(),
           ],
         ),

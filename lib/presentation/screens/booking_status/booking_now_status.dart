@@ -41,7 +41,7 @@ class BookingStatusScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               Consumer<BookingNowProvider>(builder: (context, value, _) {
                 return value.isGetDetailsLoading
                     ? const Center(

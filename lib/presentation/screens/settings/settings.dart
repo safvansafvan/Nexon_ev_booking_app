@@ -19,27 +19,27 @@ class SettingsScreen extends StatelessWidget {
                   title: "Settings",
                   settings: true,
                   leading: Icons.arrow_back_ios_rounded),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               const SettingsFieldWidget(
                 title: "Privacy And Policy",
                 isPrivacyAndPolicy: true,
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               const SettingsFieldWidget(
                 title: "About Us",
                 isAboutUs: true,
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               const SettingsFieldWidget(
                 title: "Terms And Conditions",
                 isTerms: true,
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               const SettingsFieldWidget(
                 title: "Share",
                 isShare: true,
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               const SettingsFieldWidget(
                 isLogout: true,
                 title: "Logout",

@@ -33,13 +33,13 @@ class DrawerWidget extends StatelessWidget {
                         color: kblue,
                       )),
                 ),
-                commonHeight,
+                CustomHeight.commonHeightz(context),
                 const CircleAvatar(
                   radius: 35,
                   backgroundImage: NetworkImage(
                       "https://cdn-icons-png.flaticon.com/512/149/149071.png"),
                 ),
-                height10,
+                CustomHeight.commonHeightz(context),
                 Text(
                   provider.userName ?? "Unknown",
                   style: textStyleFuc(
@@ -50,12 +50,12 @@ class DrawerWidget extends StatelessWidget {
                   style: textStyleFuc(
                       weight: FontWeight.w300, color: kBlack, size: 12),
                 ),
-                commonHeight,
+                CustomHeight.commonHeightz(context),
                 const Divider(
                   color: Colors.grey,
                   thickness: 2,
                 ),
-                height10,
+                CustomHeight.commonHeightz(context),
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: radiusTen,
@@ -72,7 +72,7 @@ class DrawerWidget extends StatelessWidget {
                     title: const Text("Booking Status"),
                   ),
                 ),
-                height10,
+                CustomHeight.commonHeightz(context),
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: radiusTen,

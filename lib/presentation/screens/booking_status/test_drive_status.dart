@@ -41,7 +41,7 @@ class TestDriveBookingStatusScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               Consumer<TestDriveBookingProvider>(builder: (context, value, _) {
                 return value.isLoading
                     ? const Center(
@@ -59,7 +59,7 @@ class TestDriveBookingStatusScreen extends StatelessWidget {
                                   style: textStyleFuc(
                                       weight: FontWeight.bold,
                                       color: kred,
-                                      size: 18),
+                                      size: 16),
                                 ),
                               ),
                             ),

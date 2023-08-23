@@ -33,7 +33,7 @@ class TestDriveBooking extends StatelessWidget {
           key: testDriveProvider.formKey7,
           child: ListView(
             children: [
-              height10,
+              CustomHeight.heightTen(context),
               HeadingTextWidget(
                 text: "Please fill in your details",
                 color: kBlack,
@@ -41,21 +41,21 @@ class TestDriveBooking extends StatelessWidget {
                 textSize: 17,
                 underline: true,
               ),
-              commonHeight,
+              CustomHeight.commonHeightz(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.person_outline),
                   controller: testDriveProvider.nameController,
                   hintText: "Full Name",
                   keyType: TextInputType.name,
                   size: screenSize),
-              kHeight15,
+              CustomHeight.heightTen(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.email_outlined),
                   controller: testDriveProvider.emailController,
                   hintText: "Email",
                   keyType: TextInputType.emailAddress,
                   size: screenSize),
-              kHeight15,
+              CustomHeight.heightTen(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.phone_outlined),
                   controller: testDriveProvider.phoneController,
@@ -63,14 +63,14 @@ class TestDriveBooking extends StatelessWidget {
                   maxlength: 10,
                   keyType: TextInputType.number,
                   size: screenSize),
-              height10,
+              CustomHeight.heightTen(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.location_city_outlined),
                   controller: testDriveProvider.cityController,
                   hintText: "City",
                   keyType: TextInputType.name,
                   size: screenSize),
-              kHeight15,
+              CustomHeight.heightTen(context),
               Container(
                 height: 63,
                 decoration: BoxDecoration(
@@ -85,7 +85,7 @@ class TestDriveBooking extends StatelessWidget {
                       controller: testDriveProvider.stateController),
                 ),
               ),
-              kHeight15,
+              CustomHeight.heightTen(context),
               Container(
                 height: 63,
                 decoration: BoxDecoration(
@@ -105,7 +105,7 @@ class TestDriveBooking extends StatelessWidget {
                       controller: testDriveProvider.carModelController),
                 ),
               ),
-              kHeight15,
+              CustomHeight.heightTen(context),
               Container(
                 height: 63,
                 decoration: BoxDecoration(
@@ -131,7 +131,7 @@ class TestDriveBooking extends StatelessWidget {
                   }),
                 ),
               ),
-              kHeight15,
+              CustomHeight.heightTen(context),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: ElevatedButton.icon(

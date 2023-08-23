@@ -34,7 +34,7 @@ class NexonEvMaxDeatails extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            commonHeight,
+            CustomHeight.commonHeightz(context),
             HeadingTextWidget(
               text: "Nexon Ev Max",
               color: kBlack,
@@ -42,7 +42,7 @@ class NexonEvMaxDeatails extends StatelessWidget {
               textSize: 20,
               underline: true,
             ),
-            commonHeight,
+            CustomHeight.commonHeightz(context),
             Column(
               children: [
                 SizedBox(
@@ -65,7 +65,7 @@ class NexonEvMaxDeatails extends StatelessWidget {
                     },
                   ),
                 ),
-                commonHeight,
+                CustomHeight.commonHeightz(context),
                 PageIndicatorWidget(
                   pageController: pageController,
                   count: images.length,
@@ -81,7 +81,7 @@ class NexonEvMaxDeatails extends StatelessWidget {
                 OptionsBoxWidget(title: "Warranty", subtitle: "8year/1.6L km"),
               ],
             ),
-            commonHeight,
+            CustomHeight.commonHeightz(context),
             HeadingTextWidget(
               text: "Specification",
               color: kBlack,
@@ -89,7 +89,7 @@ class NexonEvMaxDeatails extends StatelessWidget {
               textSize: 20,
               underline: true,
             ),
-            commonHeight,
+            CustomHeight.commonHeightz(context),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
