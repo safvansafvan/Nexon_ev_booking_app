@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:bookingapp/normal.dart';
+import 'package:bookingapp/controller/core/debouncer.dart';
 import 'package:bookingapp/presentation/screens/map/widget/add_new_location.dart';
 import 'package:bookingapp/presentation/screens/map/widget/location_pop.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +49,9 @@ class _MapScreenState extends State<MapScreen> {
           FlutterMap(
             mapController: mapController,
             options: MapOptions(
-              onLongPress: (tapPosition, point) {
+              onTap: (tapPosition, point) {
+                log(point.latitude.toString());
+                log(point.longitude.toString());
                 showDialog(
                   context: context,
                   builder: (context) {

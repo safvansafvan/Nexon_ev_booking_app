@@ -27,33 +27,26 @@ class MapProvider extends ChangeNotifier {
   ///add charging plot
   addButtonClick({context, required double lat, required double long}) async {
     final String url = Urls.baseUrl + Urls.map + Urls.addPlot;
+    var data = bodyData(lat: lat, long: long);
+    log(data.toString());
     try {
-      final response = await http.post(
-        Uri.parse(url),
-        body: bodyData(lat: lat, long: long),
-      );
+      final response = await http.post(Uri.parse(url), body: data);
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        log(response.body.toString());
-
         if (data['status'] == 'success') {
-          log(response.body, name: "Success");
           snackBarWidget(
               context: context, title: "Added New Port", clr: kGreen);
-          fetchCharginLocation(context);
         } else {
           final message = data['message'];
-          log(message, name: "status not success");
           snackBarWidget(context: context, title: message, clr: kred);
         }
       } else {
-        log("${response.statusCode}");
         final data = jsonDecode(response.body);
         final msg = data['message'];
         snackBarWidget(context: context, title: msg, clr: kred);
       }
     } catch (error) {
-      log(error.toString());
+      log(error.toString(), name: "fe");
     }
     notifyListeners();
   }
@@ -66,10 +59,10 @@ class MapProvider extends ChangeNotifier {
       type: keyController.text.trim(),
       desc: descriptionCtr.text.trim(),
       title: stationNameCtr.text.trim(),
-      email: userEmail,
-      username: userName,
-      long: long,
-      lat: lat,
+      email: "a@gmail.com",
+      username: "aboobacker siddeeq",
+      long: 75.88910732695314,
+      lat: 11.159977702366284,
     );
     return data.toJson();
   }
