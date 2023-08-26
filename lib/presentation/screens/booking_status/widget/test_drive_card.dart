@@ -1,6 +1,7 @@
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TestDriveCard extends StatelessWidget {
   const TestDriveCard(
@@ -17,6 +18,7 @@ class TestDriveCard extends StatelessWidget {
       itemCount: value.testDriveDetails.length,
       itemBuilder: (context, index) {
         final data = value.testDriveDetails[index];
+        final date = DateFormat.yMEd().format(data.createdAt!.toLocal());
         return SizedBox(
           width: double.infinity,
           child: Card(
@@ -63,7 +65,7 @@ class TestDriveCard extends StatelessWidget {
                         weight: FontWeight.w500, color: kBlack, size: 15),
                   ),
                   Text(
-                    'Date:${data.createdAt}',
+                    'Date:$date',
                     style: textStyleFuc(
                         weight: FontWeight.w500, color: kBlack, size: 15),
                   ),

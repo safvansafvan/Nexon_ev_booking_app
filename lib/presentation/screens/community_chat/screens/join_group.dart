@@ -45,7 +45,7 @@ class _JoinGroupScreenState extends State<JoinGroupScreen> {
                     ),
                   ],
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 Consumer<GetAllGroupsProvider>(
                   builder: (context, value, _) {
                     return value.isLoading

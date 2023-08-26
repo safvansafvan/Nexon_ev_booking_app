@@ -36,13 +36,13 @@ class AddNewLocationWidget extends StatelessWidget {
               hintText: "Station",
               keyType: TextInputType.name,
               size: screenSize),
-          height10,
+          CustomHeight.heightTen(context),
           TextFormFieldCommon(
               controller: descriptionCtr,
               hintText: "Desc",
               keyType: TextInputType.name,
               size: screenSize),
-          height10,
+          CustomHeight.heightTen(context),
           Container(
             height: 63,
             decoration: BoxDecoration(

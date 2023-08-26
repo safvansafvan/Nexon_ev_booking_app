@@ -86,7 +86,7 @@ class PopularOptionsWidges extends StatelessWidget {
                   ),
                 ),
               ),
-              kHeightFive,
+              CustomHeight.heightTen(context),
               Text(
                 'Community',
                 style: TextStyle(

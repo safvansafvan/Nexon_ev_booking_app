@@ -58,7 +58,6 @@ dependencies:
   socket_io_client: 2.0.2 
   sticky_grouped_list: 3.1.0
   intl: 
-  emoji_picker_flutter: 1.6.1
   image_picker: 1.0.0
   http_parser: 4.0.2
   jwt_decoder: 2.0.1

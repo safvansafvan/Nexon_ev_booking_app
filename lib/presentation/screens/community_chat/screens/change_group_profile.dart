@@ -24,7 +24,7 @@ class ChangeGroupProfile extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                height10,
+                CustomHeight.heightTen(context),
                 Row(
                   children: [
                     IconButton(

@@ -70,7 +70,7 @@ class NexonDarkEdition extends StatelessWidget {
                 )
               ],
             ),
-            height10,
+            CustomHeight.heightTen(context),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -102,7 +102,7 @@ class NexonDarkEdition extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         textSize: 17,
                       ),
-                      height10,
+                      CustomHeight.heightTen(context),
                       const Text("Black")
                     ],
                   ),

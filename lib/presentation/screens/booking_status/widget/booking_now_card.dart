@@ -1,6 +1,7 @@
 import 'package:bookingapp/controller/core/constant.dart';
 import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class BookingNowCard extends StatelessWidget {
   const BookingNowCard({super.key, required this.value});
@@ -16,6 +17,7 @@ class BookingNowCard extends StatelessWidget {
         String? firstName = data.names;
         String? lastName = data.lastName;
         String fullName = (firstName ?? '') + (lastName ?? '');
+        final date = DateFormat.yMEd().format(data.createdAt!.toLocal());
         return SizedBox(
           width: double.infinity,
           child: Card(
@@ -72,7 +74,7 @@ class BookingNowCard extends StatelessWidget {
                         weight: FontWeight.w500, color: kBlack, size: 15),
                   ),
                   Text(
-                    'Date: ${data.createdAt}',
+                    'Date: $date',
                     style: textStyleFuc(
                         weight: FontWeight.w500, color: kBlack, size: 15),
                   ),

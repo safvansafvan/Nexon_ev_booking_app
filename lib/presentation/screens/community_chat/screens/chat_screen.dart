@@ -13,7 +13,6 @@ import 'package:bookingapp/presentation/screens/community_chat/widget/msg_card/o
 import 'package:bookingapp/presentation/screens/community_chat/widget/msg_card/reply_card.dart';
 import 'package:bookingapp/presentation/screens/community_chat/widget/msg_sending_widget.dart';
 import 'package:bookingapp/presentation/screens/community_chat/widget/seperator.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
 // ignore: must_be_immutable
 class ChatScreen extends StatelessWidget {
@@ -162,39 +161,6 @@ class ChatScreen extends StatelessWidget {
               ),
             ),
             MsgSendingWidget(id: data.id, value: value),
-            Offstage(
-              offstage: value.emojiShowing,
-              child: SizedBox(
-                height: 250,
-                child: EmojiPicker(
-                  textEditingController: value.textController,
-                  config: const Config(
-                    columns: 7,
-                    gridPadding: EdgeInsets.zero,
-                    initCategory: Category.RECENT,
-                    bgColor: Color(0xFFF2F2F2),
-                    indicatorColor: Colors.blue,
-                    iconColor: Colors.grey,
-                    iconColorSelected: Colors.blue,
-                    backspaceColor: Colors.blue,
-                    enableSkinTones: true,
-                    recentTabBehavior: RecentTabBehavior.RECENT,
-                    recentsLimit: 28,
-                    replaceEmojiOnLimitExceed: false,
-                    noRecents: Text(
-                      'No Recents',
-                      style: TextStyle(fontSize: 20, color: Colors.black26),
-                      textAlign: TextAlign.center,
-                    ),
-                    loadingIndicator: SizedBox.shrink(),
-                    tabIndicatorAnimDuration: kTabScrollDuration,
-                    categoryIcons: CategoryIcons(),
-                    buttonMode: ButtonMode.CUPERTINO,
-                    checkPlatformCompatibility: true,
-                  ),
-                ),
-              ),
-            ),
           ],
         );
       }),

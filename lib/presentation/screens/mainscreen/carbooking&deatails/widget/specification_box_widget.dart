@@ -23,7 +23,7 @@ class SpecificationBoxWidget extends StatelessWidget {
             fontWeight: FontWeight.w600,
             textSize: 17,
           ),
-          height10,
+          CustomHeight.heightTen(context),
           HeadingTextWidget(
             text: subtitle,
             textSize: 15,

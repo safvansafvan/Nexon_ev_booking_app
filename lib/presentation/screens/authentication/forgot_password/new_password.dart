@@ -68,7 +68,6 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                           isObs: true,
                           isPassword: true,
                           size: screenSize),
-                      commonHeight,
                       CustomHeight.commonHeightz(context),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

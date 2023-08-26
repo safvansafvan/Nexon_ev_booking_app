@@ -77,19 +77,19 @@ class GroupDetailsWidget extends StatelessWidget {
                         backgroundImage: NetworkImage(
                             "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
                       ),
-                height10,
+                CustomHeight.heightTen(context),
                 Text(
                   groupData!.groupName,
                   style: textStyleFuc(
                       weight: FontWeight.w600, color: kwhite, size: 16),
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 Text(
                   "Members:${groupData!.members.length}",
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kwhite, size: 14),
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 Text(
                   "Created By:$name",
                   style: textStyleFuc(
@@ -98,7 +98,7 @@ class GroupDetailsWidget extends StatelessWidget {
               ],
             ),
           ),
-          kHeightFive,
+          CustomHeight.heightTen(context),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: ListView(
@@ -110,7 +110,7 @@ class GroupDetailsWidget extends StatelessWidget {
                   textSize: 17,
                   underline: true,
                 ),
-                height10,
+                CustomHeight.heightTen(context),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: membersList.length,

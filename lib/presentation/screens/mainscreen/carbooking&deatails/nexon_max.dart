@@ -72,7 +72,7 @@ class NexonEvMaxDeatails extends StatelessWidget {
                 )
               ],
             ),
-            height10,
+            CustomHeight.heightTen(context),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

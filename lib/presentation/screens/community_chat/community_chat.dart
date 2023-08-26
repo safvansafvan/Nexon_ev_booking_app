@@ -35,7 +35,7 @@ class CommunityChatScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              height10,
+              CustomHeight.heightTen(context),
               Align(
                 alignment: Alignment.centerLeft,
                 child: HeadingTextWidget(
@@ -44,7 +44,7 @@ class CommunityChatScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              height10,
+              CustomHeight.heightTen(context),
               Consumer<GetAllGroupsProvider>(
                 builder: (context, value, _) {
                   return value.userGroupLoading
