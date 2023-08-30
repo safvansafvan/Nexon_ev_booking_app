@@ -13,6 +13,7 @@ class CommunityChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var queryData = MediaQuery.of(context);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await Provider.of<GetAllGroupsProvider>(context, listen: false)
           .getUserGroups(context);
@@ -100,7 +101,7 @@ class CommunityChatScreen extends StatelessWidget {
                                         style: textStyleFuc(
                                             weight: FontWeight.w500,
                                             color: kBlack,
-                                            size: 13),
+                                            size: queryData.size.width * 0.03),
                                       ),
                                     ],
                                   ),

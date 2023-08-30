@@ -12,6 +12,7 @@ class GroupDetailsWidget extends StatelessWidget {
   Group? groupData;
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     log(groupData!.admin.toString());
     final membersList = groupData!.members.toList();
     String adminName = groupData!.admin.toString();
@@ -55,7 +56,7 @@ class GroupDetailsWidget extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 260,
+            height: screenSize.height * 0.35,
             decoration: const BoxDecoration(
               color: Color.fromARGB(168, 0, 0, 0),
               borderRadius: BorderRadius.only(

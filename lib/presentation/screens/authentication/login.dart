@@ -33,7 +33,13 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomHeight.commonHeightz(context),
-                        const Icon(Icons.lock, size: 100),
+                        Container(
+                          height: 110,
+                          width: 110,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/authlogo.png'))),
+                        ),
                         CustomHeight.commonHeightz(context),
                         const Text(
                           "Welcome Back You've Been Missed!!",
