@@ -69,7 +69,7 @@ class AboutUs extends StatelessWidget {
             ),
             CustomHeight.heightTen(context),
             Text(
-              "If you have any questions, feedback, or suggestions, we would love to hear from you. Please feel free to contact us at sajusajuptl@gmail.com. Thank you for choosing Nexon ev booking app!",
+              "If you have any questions, feedback, or suggestions, we would love to hear from you. Please feel free to contact us at playhost99@gmail.com. Thank you for choosing Nexon ev booking app!",
               style: textStyleFuc(
                   weight: FontWeight.w500, color: kBlack, size: 15),
             )

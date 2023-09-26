@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
+import 'package:bookingapp/presentation/screens/community_chat/community_chat.dart';
 import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:bookingapp/presentation/widgets/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 // ignore: depend_on_referenced_packages
 import 'package:mime/mime.dart';
 import 'dart:io';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../controller/core/strings.dart';
 
 class EditGroupProfileService {
@@ -43,14 +42,13 @@ class EditGroupProfileService {
         log("${response.statusCode}");
         final jsonData = jsonDecode(data);
         if (jsonData['status'] == 'success') {
-          snackBarWidget(
-              context: context, title: "Profile Changed", clr: kGreen);
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const MainScreen(),
+              builder: (context) => const CommunityChatScreen(),
             ),
           );
+          successDialogWiget(context, "Updated", "Community Profile Updated");
         } else {
           log(jsonData['message']);
           snackBarWidget(

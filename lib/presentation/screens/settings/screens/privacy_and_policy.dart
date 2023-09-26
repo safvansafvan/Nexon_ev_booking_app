@@ -98,7 +98,7 @@ class PrivacyAndPolicyWidget extends StatelessWidget {
               underline: true,
             ),
             CustomHeight.heightTen(context),
-            const Text("sajusajuptl@gmail.com")
+            const Text("playhost99@gmail.com")
           ],
         ),
       ),

@@ -14,16 +14,26 @@ import 'package:bookingapp/presentation/screens/community_chat/widget/msg_card/r
 import 'package:bookingapp/presentation/screens/community_chat/widget/msg_sending_widget.dart';
 import 'package:bookingapp/presentation/screens/community_chat/widget/seperator.dart';
 
-// ignore: must_be_immutable
-class ChatScreen extends StatelessWidget {
-  ChatScreen({Key? key, required this.data}) : super(key: key);
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({Key? key, required this.data}) : super(key: key);
   final Group data;
 
-  late Timer timer;
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
 
+class _ChatScreenState extends State<ChatScreen> {
+  @override
+  void didChangeDependencies() {
+    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      Provider.of<ChatProvider>(context, listen: false).getMessages(context);
+    });
+    super.didChangeDependencies();
+  }
+
+  late Timer timer;
   StreamController<List<ChatModel>> controller =
       StreamController<List<ChatModel>>.broadcast();
-
   String userName = "";
 
   // @override
@@ -31,7 +41,8 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       getUsername();
-      Provider.of<ChatProvider>(context, listen: false).groupId = data.id;
+      Provider.of<ChatProvider>(context, listen: false).groupId =
+          widget.data.id;
       Provider.of<ChatProvider>(context, listen: false).connect();
       await Provider.of<ChatProvider>(context, listen: false)
           .getMessages(context);
@@ -48,11 +59,11 @@ class ChatScreen extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios_new_rounded)),
           title: Row(
             children: [
-              data.image != null
+              widget.data.image != null
                   ? CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
-                        Urls.baseUrl + data.image.toString(),
+                        Urls.baseUrl + widget.data.image.toString(),
                       ),
                     )
                   : const CircleAvatar(
@@ -66,7 +77,7 @@ class ChatScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => GroupDetailsWidget(
-                        groupData: data,
+                        groupData: widget.data,
                       ),
                     ),
                   );
@@ -74,7 +85,7 @@ class ChatScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(data.groupName),
+                    Text(widget.data.groupName),
                     const Text(
                       'Click here for group info',
                       style: TextStyle(fontSize: 12),
@@ -160,7 +171,7 @@ class ChatScreen extends StatelessWidget {
                 },
               ),
             ),
-            MsgSendingWidget(id: data.id, value: value),
+            MsgSendingWidget(id: widget.data.id, value: value),
           ],
         );
       }),

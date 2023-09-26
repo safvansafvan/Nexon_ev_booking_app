@@ -74,9 +74,10 @@ class CommunityChatScreen extends StatelessWidget {
                               shrinkWrap: true,
                               itemCount: value.userGroups.length,
                               itemBuilder: (context, index) {
-                                final formattedTime = DateFormat('h:mm a')
-                                    .format(value.userGroups[index].updatedAt
-                                        .toLocal());
+                                final formattedTime =
+                                    DateFormat('h:mm a').format(
+                                  value.userGroups[index].updatedAt.toLocal(),
+                                );
 
                                 return ListTile(
                                   leading: CircleAvatar(

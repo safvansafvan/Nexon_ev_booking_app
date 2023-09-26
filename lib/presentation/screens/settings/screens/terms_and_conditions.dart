@@ -138,7 +138,7 @@ class TermsAndConditions extends StatelessWidget {
               underline: true,
             ),
             CustomHeight.heightTen(context),
-            const Text("sajusajuptl@gmai.com")
+            const Text("playhost99@gmail.com")
           ],
         ),
       ),

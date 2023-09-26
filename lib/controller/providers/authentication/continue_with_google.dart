@@ -12,19 +12,17 @@ class ContinueWithGoogleProvider extends ChangeNotifier {
     signInOption: SignInOption.standard,
   );
   continueWithGoogleButtonClick(context) async {
-    isLoading = true;
     log("calledGoogle");
     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
     if (googleUser != null) {
       final String email = googleUser.email;
       final String username = googleUser.displayName ?? "Unknown Name";
-      await getGoogleLoginStatus(context, email, username);
-      isLoading = false;
+      await GoogleSignInService.getGoogleLoginStatus(context, email, username);
       notifyListeners();
     }
   }
 
-  logout() async {
+  Future logout() async {
     await googleSignIn.signOut();
   }
 }
