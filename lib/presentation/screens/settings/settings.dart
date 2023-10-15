@@ -1,6 +1,6 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/screens/settings/widget/settings_fied.dart';
-import 'package:bookingapp/presentation/widgets/app_bar.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/screens/settings/widget/settings_fied.dart';
+import 'package:nexonev/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {

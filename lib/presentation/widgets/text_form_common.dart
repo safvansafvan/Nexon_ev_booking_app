@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/constant.dart';
+import 'package:nexonev/controller/core/constant.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

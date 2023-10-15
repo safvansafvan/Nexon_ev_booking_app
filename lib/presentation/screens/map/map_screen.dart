@@ -1,7 +1,7 @@
 import 'dart:developer';
-import 'package:bookingapp/controller/core/debouncer.dart';
-import 'package:bookingapp/presentation/screens/map/widget/add_new_location.dart';
-import 'package:bookingapp/presentation/screens/map/widget/location_pop.dart';
+import 'package:nexonev/controller/core/debouncer.dart';
+import 'package:nexonev/presentation/screens/map/widget/add_new_location.dart';
+import 'package:nexonev/presentation/screens/map/widget/location_pop.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -9,11 +9,11 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
-import 'package:bookingapp/presentation/screens/map/constent/constent.dart';
-import 'package:bookingapp/presentation/screens/map/widget/more.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/map_provider/map_provider.dart';
+import 'package:nexonev/presentation/screens/map/constent/constent.dart';
+import 'package:nexonev/presentation/screens/map/widget/more.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -49,9 +49,7 @@ class _MapScreenState extends State<MapScreen> {
           FlutterMap(
             mapController: mapController,
             options: MapOptions(
-              onTap: (tapPosition, point) {
-                log(point.latitude.toString());
-                log(point.longitude.toString());
+              onLongPress: (tapPosition, point) {
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -108,7 +106,10 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                     ),
                   for (var detail in locationProvider.mapDetails)
-                    if (detail.type == 'Others')
+                    if (detail.type == 'Others' ||
+                        detail.type == 'KSEB' ||
+                        detail.type == 'Tata' ||
+                        detail.type == 'Ather')
                       Marker(
                         width: 100.0,
                         height: 100.0,
@@ -127,91 +128,9 @@ class _MapScreenState extends State<MapScreen> {
                                   date: detail.createdAt!),
                             );
                           },
-                          child: const SizedBox(
-                            child: Icon(
-                              Icons.location_pin,
-                              color: Color.fromARGB(200, 87, 102, 100),
-                            ),
-                          ),
-                        ),
-                      ),
-                  for (var detail in locationProvider.mapDetails)
-                    if (detail.type == 'KSEB')
-                      Marker(
-                        width: 100.0,
-                        height: 100.0,
-                        point: LatLng(
-                          detail.lat as double,
-                          detail.long as double,
-                        ),
-                        builder: (ctx) => InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => LocationPopup(
-                                name: detail.title.toString(),
-                                description: detail.desc.toString(),
-                                type: detail.type.toString(),
-                                date: detail.createdAt!,
-                              ),
-                            );
-                          },
                           child: SizedBox(
-                            child: Icon(Icons.location_pin, color: kred),
-                          ),
-                        ),
-                      ),
-                  for (var detail in locationProvider.mapDetails)
-                    if (detail.type == 'Tata')
-                      Marker(
-                        width: 100.0,
-                        height: 100.0,
-                        point: LatLng(
-                          detail.lat as double,
-                          detail.long as double,
-                        ),
-                        builder: (ctx) => InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => LocationPopup(
-                                name: detail.title.toString(),
-                                description: detail.desc.toString(),
-                                type: detail.type.toString(),
-                                date: detail.createdAt!,
-                              ),
-                            );
-                          },
-                          child: const SizedBox(
                             child: Icon(Icons.location_pin,
-                                color: Color.fromARGB(255, 26, 90, 217)),
-                          ),
-                        ),
-                      ),
-                  for (var detail in locationProvider.mapDetails)
-                    if (detail.type == 'Others')
-                      Marker(
-                        width: 100.0,
-                        height: 100.0,
-                        point: LatLng(
-                          detail.lat as double,
-                          detail.long as double,
-                        ),
-                        builder: (ctx) => InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => LocationPopup(
-                                name: detail.title.toString(),
-                                description: detail.desc.toString(),
-                                type: detail.type.toString(),
-                                date: detail.createdAt!,
-                              ),
-                            );
-                          },
-                          child: const SizedBox(
-                            child: Icon(Icons.location_pin,
-                                color: Color.fromARGB(255, 11, 185, 168)),
+                                color: getMarkerColor(detail.type.toString())),
                           ),
                         ),
                       ),
@@ -323,6 +242,21 @@ class _MapScreenState extends State<MapScreen> {
           mapController.move(currentLocation!, 15.0);
         });
       }
+    }
+  }
+
+  Color getMarkerColor(String type) {
+    switch (type) {
+      case 'Others':
+        return const Color.fromARGB(255, 11, 185, 168);
+      case 'KSEB':
+        return kred;
+      case 'Tata':
+        return const Color.fromARGB(255, 26, 90, 217);
+      case 'Ather':
+        return const Color.fromARGB(200, 87, 102, 100);
+      default:
+        return const Color.fromARGB(200, 87, 102, 100);
     }
   }
 }

@@ -1,10 +1,11 @@
-import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
-import 'package:bookingapp/presentation/screens/authentication/widget/otp_text_field.dart';
-import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:nexonev/controller/providers/authentication/otp_provider.dart';
+import 'package:nexonev/presentation/screens/authentication/register/otp/widget/header_widget.dart';
+import 'package:nexonev/presentation/screens/authentication/widget/otp_text_field.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../controller/core/constant.dart';
-import '../../../../controller/providers/authentication/otpverify_signup.dart';
+import '../../../../../controller/core/constant.dart';
+import '../../../../../controller/providers/authentication/otpverify_signup.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -33,22 +34,14 @@ class OtpScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "OTP Verification",
-                          style: textStyleFuc(
-                              weight: FontWeight.w900, color: kBlack, size: 25),
-                        ),
-                        CustomHeight.heightTen(context),
-                        const Text(
-                            "Enter the verification code. we just sent on\nemail address"),
-                      ],
-                    ),
-                  ),
+                  headerWidgets(context),
+                  CustomHeight.commonHeightz(context),
+                  Center(
+                      child: Lottie.asset(
+                    'assets/animation/otp1.json',
+                    height: 200,
+                    width: 200,
+                  )),
                   CustomHeight.commonHeightz(context),
                   Form(
                     child: Row(
@@ -75,7 +68,7 @@ class OtpScreen extends StatelessWidget {
                           BoxDecoration(color: kBlack, borderRadius: radiusTen),
                       child: Center(
                         child: value.isLoading
-                            ? Lottie.asset('assets/ui-loader.json', height: 50)
+                            ? const CircularProgressIndicator()
                             : Text(
                                 'Login',
                                 style: textStyleFuc(

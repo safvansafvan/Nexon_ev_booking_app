@@ -1,5 +1,5 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/screens/authentication/login.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/screens/authentication/login.dart';
 import 'package:flutter/material.dart';
 
 void loginReqDialog(context) {

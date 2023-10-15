@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
-import 'package:bookingapp/presentation/widgets/text_form_common.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/group_provider/get_all_group_provider.dart';
+import 'package:nexonev/presentation/widgets/text_form_common.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,37 +18,33 @@ class ChangeGroupProfile extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     final provider = Provider.of<GetAllGroupsProvider>(context);
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        ),
+        title: HeadingTextWidget(
+          text: "Edit Group Details",
+          color: kBlack,
+          fontWeight: FontWeight.w600,
+          textSize: 18,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                CustomHeight.heightTen(context),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                    ),
-                    HeadingTextWidget(
-                      text: "Edit Group Details",
-                      color: kBlack,
-                      fontWeight: FontWeight.w600,
-                      textSize: 18,
-                      underline: true,
-                    ),
-                  ],
-                ),
                 kheight30,
                 provider.fileImg == null
                     ? Align(
                         alignment: Alignment.center,
                         child: Container(
-                          height: 250,
-                          width: 250,
+                          height: screenSize.height * 0.3,
+                          width: screenSize.width * 0.6,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                               border: Border.all(color: kblue),

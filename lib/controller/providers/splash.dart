@@ -1,5 +1,5 @@
-import 'package:bookingapp/presentation/screens/authentication/login.dart';
-import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
+import 'package:nexonev/presentation/screens/authentication/login.dart';
+import 'package:nexonev/presentation/screens/mainscreen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';

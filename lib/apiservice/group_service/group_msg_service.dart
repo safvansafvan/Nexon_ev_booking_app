@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/model/chatmodel.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/model/chatmodel.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/constant.dart';
+import 'package:nexonev/controller/core/constant.dart';
 import 'package:flutter/material.dart';
 
 snackBarWidget({required context, required String title, required Color clr}) {

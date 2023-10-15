@@ -1,5 +1,5 @@
-import 'package:bookingapp/apiservice/auth/signup_service.dart';
-import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
+import 'package:nexonev/apiservice/auth/signup_service.dart';
+import 'package:nexonev/controller/providers/authentication/otp_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +8,6 @@ class OtpVerificationAndSignupProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
 
   bool isLoading = false;
 

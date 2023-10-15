@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/apiservice/map_service/get_charger_port.dart';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/model/location/add_plot_model.dart';
-import 'package:bookingapp/model/location/map_model.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/apiservice/map_service/get_charger_port.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/model/location/add_plot_model.dart';
+import 'package:nexonev/model/location/map_model.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';

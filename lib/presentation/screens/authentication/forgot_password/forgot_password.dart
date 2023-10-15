@@ -1,9 +1,8 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
-import 'package:bookingapp/presentation/screens/authentication/login.dart';
-import 'package:bookingapp/presentation/screens/authentication/widget/text_form_field.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/authentication/forgot_password.dart';
+import 'package:nexonev/presentation/screens/authentication/login.dart';
+import 'package:nexonev/presentation/screens/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordWidget extends StatelessWidget {
@@ -29,15 +28,17 @@ class ForgotPasswordWidget extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Consumer<ForgotPasswordProvider>(builder: (context, value, _) {
-          return value.isLoadingEmailSend
-              ? Center(
-                  child: Lottie.asset("assets/ui-loader.json"),
-                )
-              : Form(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Consumer<ForgotPasswordProvider>(builder: (context, value, _) {
+                return Form(
                   key: key5,
-                  child: SingleChildScrollView(
-                    child: Column(children: [
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
@@ -82,49 +83,53 @@ class ForgotPasswordWidget extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: kBlack, borderRadius: radiusTen),
                           child: Center(
-                            child: Text(
-                              'Send code',
-                              style: textStyleFuc(
-                                  weight: FontWeight.bold,
-                                  color: kwhite,
-                                  size: 16),
-                            ),
+                            child: value.isOtpSent
+                                ? const CircularProgressIndicator()
+                                : Text(
+                                    'Send code',
+                                    style: textStyleFuc(
+                                        weight: FontWeight.bold,
+                                        color: kwhite,
+                                        size: 16),
+                                  ),
                           ),
                         ),
                       ),
-                      CustomHeight.heightTen(context),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "Remember Password? ",
-                            style: TextStyle(fontWeight: FontWeight.w500),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return LoginPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Login Now",
-                              style: textStyleFuc(
-                                  weight: FontWeight.w600,
-                                  color: Colors.blue,
-                                  size: 14),
-                            ),
-                          )
-                        ],
-                      ),
-                    ]),
+                    ],
                   ),
                 );
-        }),
+              }),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Remember Password? ",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LoginPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Login Now",
+                      style: textStyleFuc(
+                          weight: FontWeight.w600,
+                          color: Colors.blue,
+                          size: 14),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_provider.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/bookings_provider/bookingnow_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

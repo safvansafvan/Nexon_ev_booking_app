@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:bookingapp/apiservice/auth/continue_google_service.dart';
+import 'package:nexonev/apiservice/auth/continue_google_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 

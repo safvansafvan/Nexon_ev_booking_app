@@ -1,12 +1,12 @@
-import 'package:bookingapp/controller/providers/dealer_provider.dart';
-import 'package:bookingapp/presentation/widgets/app_bar.dart';
+import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/text_form_common.dart';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
+import 'package:nexonev/controller/providers/bookings_provider/test_drive_provider.dart';
 
 class TestDriveBooking extends StatelessWidget {
   const TestDriveBooking({super.key});
@@ -24,22 +24,21 @@ class TestDriveBooking extends StatelessWidget {
             child: AppBarWidget(
                 title: "Test Drive Booking",
                 leading: Icons.arrow_back_ios_rounded,
-                settings: false,
+                settings: true,
                 menu: false)),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(12),
         child: Form(
           key: testDriveProvider.formKey7,
           child: ListView(
             children: [
               CustomHeight.heightTen(context),
               HeadingTextWidget(
-                text: "Please fill in your details",
+                text: "Please Fill Your Details",
                 color: kBlack,
                 fontWeight: FontWeight.w300,
                 textSize: 17,
-                underline: true,
               ),
               CustomHeight.commonHeightz(context),
               TextFormFieldCommon(
@@ -63,7 +62,6 @@ class TestDriveBooking extends StatelessWidget {
                   maxlength: 10,
                   keyType: TextInputType.number,
                   size: screenSize),
-              CustomHeight.heightTen(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.location_city_outlined),
                   controller: testDriveProvider.cityController,
@@ -72,7 +70,7 @@ class TestDriveBooking extends StatelessWidget {
                   size: screenSize),
               CustomHeight.heightTen(context),
               Container(
-                height: 63,
+                height: screenSize.height * 0.077,
                 decoration: BoxDecoration(
                     border: Border.all(color: kblue), borderRadius: radiusTen),
                 child: Center(
@@ -87,7 +85,7 @@ class TestDriveBooking extends StatelessWidget {
               ),
               CustomHeight.heightTen(context),
               Container(
-                height: 63,
+                height: screenSize.height * 0.077,
                 decoration: BoxDecoration(
                     border: Border.all(color: kblue), borderRadius: radiusTen),
                 child: Center(
@@ -107,11 +105,13 @@ class TestDriveBooking extends StatelessWidget {
               ),
               CustomHeight.heightTen(context),
               Container(
-                height: 63,
+                height: screenSize.height * 0.077,
                 decoration: BoxDecoration(
                     border: Border.all(color: kblue), borderRadius: radiusTen),
                 child: Center(
                   child: Consumer<DealerProvider>(builder: (context, value, _) {
+                    List<String> dealerNames =
+                        value.dealerList.map((dealer) => dealer.name).toList();
                     if (value.dealerList.isEmpty) {
                       return const Center(child: CircularProgressIndicator());
                     }
@@ -121,17 +121,12 @@ class TestDriveBooking extends StatelessWidget {
                         hintText: "Dealer",
                         hintStyle: TextStyle(color: kBlack),
                         selectedStyle: TextStyle(color: kBlack),
-                        items: [
-                          value.dealerList[0].dealerName,
-                          value.dealerList[1].dealerName,
-                          value.dealerList[2].dealerName,
-                          value.dealerList[3].dealerName
-                        ],
+                        items: dealerNames,
                         controller: testDriveProvider.dealerShipController);
                   }),
                 ),
               ),
-              CustomHeight.heightTen(context),
+              CustomHeight.commonHeightz(context),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: ElevatedButton.icon(

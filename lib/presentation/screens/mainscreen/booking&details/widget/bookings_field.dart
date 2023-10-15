@@ -1,20 +1,18 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/screens/bookings/booknow/book_now.dart';
-import 'package:bookingapp/presentation/screens/bookings/test_drive_booking/test_booking.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/screens/bookings/booknow/book_now.dart';
+import 'package:nexonev/presentation/screens/bookings/test_drive_booking/test_booking.dart';
 import 'package:flutter/material.dart';
 
 class BookingsField extends StatelessWidget {
-  const BookingsField({
-    super.key,
-  });
-
+  const BookingsField({super.key, required this.screenSize});
+  final Size screenSize;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          height: 50,
+          height: screenSize.height * 0.08,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               elevation: 5,
@@ -37,7 +35,7 @@ class BookingsField extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 50,
+          height: screenSize.height * 0.08,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               elevation: 5,

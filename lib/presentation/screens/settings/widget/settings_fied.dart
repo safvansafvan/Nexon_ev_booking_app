@@ -1,14 +1,14 @@
-import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
+import 'package:nexonev/controller/providers/authentication/continue_with_google.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:flutter/material.dart';
-import 'package:bookingapp/controller/core/constant.dart';
+import 'package:nexonev/controller/core/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:bookingapp/presentation/screens/authentication/login.dart';
-import 'package:bookingapp/presentation/screens/settings/screens/about_us.dart';
-import 'package:bookingapp/presentation/screens/settings/screens/privacy_and_policy.dart';
-import 'package:bookingapp/presentation/screens/settings/screens/terms_and_conditions.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/presentation/screens/authentication/login.dart';
+import 'package:nexonev/presentation/screens/settings/screens/about_us.dart';
+import 'package:nexonev/presentation/screens/settings/screens/privacy_and_policy.dart';
+import 'package:nexonev/presentation/screens/settings/screens/terms_and_conditions.dart';
 
 class SettingsFieldWidget extends StatelessWidget {
   const SettingsFieldWidget(
@@ -76,7 +76,9 @@ class SettingsFieldWidget extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Conform Message"),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          title: const Text("Logout"),
           content: const Text("Are you sure you would like to LOGOUT?"),
           actions: [
             TextButton(
@@ -90,12 +92,13 @@ class SettingsFieldWidget extends StatelessWidget {
                 },
                 child: const Text("Ok"))
           ],
+          elevation: 10,
         );
       },
     );
   }
 
-  logout(context) async {
+  Future<void> logout(context) async {
     final pref = await SharedPreferences.getInstance();
     pref.remove("ACCESS_TOKEN");
     pref.remove("USER_NAME");

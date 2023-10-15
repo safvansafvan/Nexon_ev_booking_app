@@ -1,20 +1,20 @@
-import 'package:bookingapp/controller/providers/get_user_details.dart';
+import 'package:nexonev/controller/providers/authentication/continue_with_google.dart';
+import 'package:nexonev/controller/providers/authentication/forgot_password.dart';
+import 'package:nexonev/controller/providers/authentication/login.dart';
+import 'package:nexonev/controller/providers/authentication/otp_provider.dart';
+import 'package:nexonev/controller/providers/authentication/otpverify_signup.dart';
+import 'package:nexonev/controller/providers/bookings_provider/bookingnow_provider.dart';
+import 'package:nexonev/controller/providers/bookings_provider/test_drive_provider.dart';
+import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/controller/providers/get_user_details.dart';
+import 'package:nexonev/controller/providers/group_provider/chat_provider.dart';
+import 'package:nexonev/controller/providers/group_provider/get_all_group_provider.dart';
+import 'package:nexonev/controller/providers/map_provider/map_provider.dart';
+import 'package:nexonev/controller/providers/splash.dart';
+import 'package:nexonev/presentation/screens/splash/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'controller/providers/map_provider/map_provider.dart';
-import 'package:bookingapp/presentation/screens/splash/splash.dart';
-import 'package:bookingapp/controller/providers/splash.dart';
-import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
-import 'package:bookingapp/controller/providers/authentication/forgot_password.dart';
-import 'package:bookingapp/controller/providers/dealer_provider.dart';
-import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
-import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
-import 'package:bookingapp/controller/providers/authentication/login.dart';
-import 'package:bookingapp/controller/providers/authentication/otp_provider.dart';
-import 'package:bookingapp/controller/providers/authentication/otpverify_signup.dart';
-import 'package:bookingapp/controller/providers/bookings_provider/bookingnow_provider.dart';
-import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Nexon Booking App',
+        title: 'Nexon Ev',
         theme: ThemeData(
           fontFamily: GoogleFonts.philosopher().fontFamily,
           useMaterial3: true,

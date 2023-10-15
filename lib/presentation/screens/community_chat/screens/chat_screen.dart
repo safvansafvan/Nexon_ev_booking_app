@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/presentation/screens/community_chat/screens/group_details.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/presentation/screens/community_chat/screens/group_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:bookingapp/model/chatmodel.dart';
-import 'package:bookingapp/model/group_model.dart';
+import 'package:nexonev/model/chatmodel.dart';
+import 'package:nexonev/model/group_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sticky_grouped_list/sticky_grouped_list.dart';
-import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
-import 'package:bookingapp/presentation/screens/community_chat/widget/msg_card/own_msg.dart';
-import 'package:bookingapp/presentation/screens/community_chat/widget/msg_card/reply_card.dart';
-import 'package:bookingapp/presentation/screens/community_chat/widget/msg_sending_widget.dart';
-import 'package:bookingapp/presentation/screens/community_chat/widget/seperator.dart';
+import 'package:nexonev/controller/providers/group_provider/chat_provider.dart';
+import 'package:nexonev/presentation/screens/community_chat/widget/msg_card/own_msg.dart';
+import 'package:nexonev/presentation/screens/community_chat/widget/msg_card/reply_card.dart';
+import 'package:nexonev/presentation/screens/community_chat/widget/msg_sending_widget.dart';
+import 'package:nexonev/presentation/screens/community_chat/widget/seperator.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key, required this.data}) : super(key: key);

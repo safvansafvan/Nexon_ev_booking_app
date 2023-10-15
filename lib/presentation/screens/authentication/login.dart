@@ -1,11 +1,9 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/authentication/login.dart';
-import 'package:bookingapp/presentation/screens/authentication/forgot_password/forgot_password.dart';
-import 'package:bookingapp/presentation/screens/authentication/register/register.dart';
-import 'package:bookingapp/presentation/screens/authentication/widget/square_field_widget.dart';
-import 'package:bookingapp/presentation/screens/authentication/widget/text_form_field.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/authentication/login.dart';
+import 'package:nexonev/presentation/screens/authentication/register/register/register.dart';
+import 'package:nexonev/presentation/screens/authentication/widget/login_field_card.dart';
+import 'package:nexonev/presentation/screens/authentication/widget/square_field_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -16,169 +14,110 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: loginBackground,
       body: SafeArea(
-        child: Consumer<LoginProvider>(builder: (context, value, _) {
-          return Form(
-            key: formKey1,
-            child: SingleChildScrollView(
-              child: Column(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: screenSize.height * 0.23,
+                width: screenSize.width * 0.27,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/authlogo.png'),
+                  ),
+                ),
+              ),
+              const Text("Welcome Back You've Been Missed!!"),
+              CustomHeight.commonHeightz(context),
+              Consumer<LoginProvider>(builder: (context, value, _) {
+                return Form(
+                  key: formKey1,
+                  child: LoginFieldCardWidget(
+                    value: value,
+                    screenSize: screenSize,
+                    formKey1: formKey1,
+                  ),
+                );
+              }),
+              CustomHeight.commonHeightz(context),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('Or Continue With'),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.5,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              CustomHeight.commonHeightz(context),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomHeight.commonHeightz(context),
-                  Container(
-                    height: 110,
-                    width: 110,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/authlogo.png'))),
+                  SquareFieldWidget(
+                    screenSize: screenSize,
+                    isContinueGoogle: true,
+                    imagePath: 'assets/images/google.webp',
                   ),
-                  CustomHeight.commonHeightz(context),
-                  const Text(
-                    "Welcome Back You've Been Missed!!",
-                  ),
-                  CustomHeight.commonHeightz(context),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      TextFormLogin(
-                          controller: value.emailController,
-                          hintText: "Email",
-                          keyType: TextInputType.emailAddress,
-                          isEmail: true,
-                          size: screenHeight,
-                          prefixIcon: const Icon(Icons.person_outline)),
-                      CustomHeight.commonHeightz(context),
-                      TextFormLogin(
-                        controller: value.passwordCntrlr,
-                        hintText: "Password",
-                        keyType: TextInputType.name,
-                        isObs: true,
-                        isPassword: true,
-                        size: screenHeight,
-                        prefixIcon: const Icon(Icons.password_rounded),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => ForgotPasswordWidget(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            "Forgot Password?",
-                            style: textStyleFuc(
-                                weight: FontWeight.w500,
-                                color: const Color.fromARGB(255, 66, 140, 200),
-                                size: 15),
-                          ),
-                        ),
-                      ),
-                      CustomHeight.commonHeightz(context),
-                      InkWell(
-                        onTap: () async {
-                          if (formKey1.currentState!.validate()) {
-                            await value.loginButtonClick(context);
-                          }
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          margin: const EdgeInsets.symmetric(horizontal: 25),
-                          decoration: BoxDecoration(
-                              color: kBlack, borderRadius: radiusTen),
-                          child: Center(
-                            child: value.isLoading
-                                ? Lottie.asset('assets/ui-loader.json',
-                                    height: 50)
-                                : Text(
-                                    'Login',
-                                    style: textStyleFuc(
-                                        weight: FontWeight.bold,
-                                        color: kwhite,
-                                        size: 16),
-                                  ),
-                          ),
-                        ),
-                      ),
-                      CustomHeight.commonHeightz(context),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                thickness: 0.5,
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text('Or Continue With'),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                thickness: 0.5,
-                                color: Colors.grey[400],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      CustomHeight.commonHeightz(context),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SquareFieldWidget(
-                            isContinueGoogle: true,
-                            imagePath: 'assets/google.webp',
-                          ),
-                          const SizedBox(width: 25),
-                          SquareFieldWidget(
-                            isContinueGoogle: false,
-                            imagePath: 'assets/guest.png',
-                          ),
-                        ],
-                      ),
-                      CustomHeight.commonHeightz(context),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "Don't have an account? ",
-                            style: TextStyle(fontWeight: FontWeight.w500),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const RegisterScreen();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Register Now",
-                              style: textStyleFuc(
-                                  weight: FontWeight.w600,
-                                  color: Colors.blue,
-                                  size: 14),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
+                  const SizedBox(width: 25),
+                  SquareFieldWidget(
+                    screenSize: screenSize,
+                    isContinueGoogle: false,
+                    imagePath: 'assets/images/guest.png',
                   ),
                 ],
               ),
-            ),
-          );
-        }),
+              SizedBox(
+                height: screenSize.height * 0.12,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account? ",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return RegisterScreen();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Register Now",
+                        style: textStyleFuc(
+                          weight: FontWeight.w600,
+                          color: Colors.blue,
+                          size: 14,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/controller/providers/authentication/login.dart';
-import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/controller/providers/authentication/login.dart';
+import 'package:nexonev/presentation/screens/mainscreen/main_screen.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';

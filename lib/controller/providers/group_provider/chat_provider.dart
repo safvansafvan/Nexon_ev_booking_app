@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:bookingapp/apiservice/group_service/group_msg_service.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/model/chatmodel.dart';
+import 'package:nexonev/apiservice/group_service/group_msg_service.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/model/chatmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: library_prefixes

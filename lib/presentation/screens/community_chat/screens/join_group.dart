@@ -1,8 +1,8 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
-import 'package:bookingapp/presentation/screens/community_chat/widget/pop_up.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/controller/providers/group_provider/get_all_group_provider.dart';
+import 'package:nexonev/presentation/screens/community_chat/widget/pop_up.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,34 +18,29 @@ class _JoinGroupScreenState extends State<JoinGroupScreen> {
   void initState() {
     super.initState();
     Provider.of<GetAllGroupsProvider>(context, listen: false)
-        .joinGroupButtonClick(context);
+        .joinedGroupButtonClick(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+          title: HeadingTextWidget(
+            text: "Groups",
+            fontWeight: FontWeight.w600,
+            textSize: 18,
+          )),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(9.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-                    kWidth,
-                    HeadingTextWidget(
-                      text: "Available Groups",
-                      fontWeight: FontWeight.w600,
-                      textSize: 18,
-                    ),
-                  ],
-                ),
-                CustomHeight.heightTen(context),
                 Consumer<GetAllGroupsProvider>(
                   builder: (context, value, _) {
                     return value.isLoading

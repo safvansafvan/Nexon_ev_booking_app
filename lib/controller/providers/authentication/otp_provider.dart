@@ -1,4 +1,4 @@
-import 'package:bookingapp/apiservice/auth/otp_service.dart';
+import 'package:nexonev/apiservice/auth/otp_service.dart';
 
 import 'package:flutter/material.dart';
 

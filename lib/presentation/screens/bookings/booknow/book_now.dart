@@ -1,16 +1,17 @@
 import 'dart:developer';
-import 'package:bookingapp/apiservice/booking/booking_now_service.dart';
-import 'package:bookingapp/controller/providers/dealer_provider.dart';
-import 'package:bookingapp/presentation/widgets/succes_dialog.dart';
+import 'package:nexonev/apiservice/booking/booking_now_service.dart';
+import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/presentation/widgets/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/widgets/text_form_common.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/widgets/text_form_common.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../../../controller/providers/bookings_provider/bookingnow_provider.dart';
+import '../../../widgets/app_bar.dart';
 
 class BookNowWidget extends StatefulWidget {
   const BookNowWidget({super.key});
@@ -36,32 +37,22 @@ class _BookNowWidgetState extends State<BookNowWidget> {
     var screenSize = MediaQuery.of(context).size;
     final bookingProvider = context.watch<BookingNowProvider>();
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 50),
+        child: SafeArea(
+            child: AppBarWidget(
+                title: "Ev Booking",
+                leading: Icons.arrow_back_ios_rounded,
+                settings: true,
+                menu: false)),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(12.0),
           child: Form(
             key: bookingProvider.formKey8,
             child: ListView(
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                      alignment: Alignment.bottomLeft,
-                    ),
-                    kWidth,
-                    HeadingTextWidget(
-                      text: "Booking Now",
-                      color: kBlack,
-                      fontWeight: FontWeight.w600,
-                      textSize: 20,
-                      underline: true,
-                    ),
-                  ],
-                ),
                 CustomHeight.heightTen(context),
                 HeadingTextWidget(text: "  Please fill your deatails"),
                 CustomHeight.heightTen(context),
@@ -135,13 +126,16 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 HeadingTextWidget(text: "Dealer information"),
                 CustomHeight.heightTen(context),
                 Container(
-                  height: 63,
+                  height: screenSize.height * 0.077,
                   decoration: BoxDecoration(
                       border: Border.all(color: kblue),
                       borderRadius: radiusTen),
                   child: Center(
                     child:
                         Consumer<DealerProvider>(builder: (context, value, _) {
+                      List<String> dealerNames = value.dealerList
+                          .map((dealer) => dealer.name)
+                          .toList();
                       if (value.dealerList.isEmpty) {
                         return const Center(child: CircularProgressIndicator());
                       }
@@ -151,12 +145,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                           hintText: "Dealer",
                           hintStyle: TextStyle(color: kBlack),
                           selectedStyle: TextStyle(color: kBlack),
-                          items: [
-                            value.dealerList[0].dealerName,
-                            value.dealerList[1].dealerName,
-                            value.dealerList[2].dealerName,
-                            value.dealerList[3].dealerName,
-                          ],
+                          items: dealerNames,
                           controller: bookingProvider.dealerController);
                     }),
                   ),
@@ -165,7 +154,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 HeadingTextWidget(text: "Select Veriant"),
                 CustomHeight.heightTen(context),
                 Container(
-                  height: 63,
+                  height: screenSize.height * 0.077,
                   decoration: BoxDecoration(
                       border: Border.all(color: kblue),
                       borderRadius: radiusTen),
@@ -188,7 +177,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 HeadingTextWidget(text: "Amount Payable"),
                 CustomHeight.heightTen(context),
                 Container(
-                  height: 63,
+                  height: screenSize.height * 0.077,
                   decoration: BoxDecoration(
                       border: Border.all(color: kblue),
                       borderRadius: radiusTen),
@@ -197,7 +186,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Booking Amount\nNexon Ev"),
+                        Text("Booking Amound Of Nexon Ev"),
                         Text("5000")
                       ],
                     ),

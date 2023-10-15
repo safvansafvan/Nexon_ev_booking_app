@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/core/constant.dart';
+import 'package:nexonev/controller/core/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,10 +26,9 @@ class LocationPopup extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-          ),
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5),
         ],
       ),
       child: Column(
@@ -38,7 +37,7 @@ class LocationPopup extends StatelessWidget {
         children: [
           Container(
             height: 4,
-            width: 35,
+            width: 55,
             decoration: BoxDecoration(
                 color: kBlack38, borderRadius: BorderRadius.circular(10)),
           ),
@@ -48,11 +47,35 @@ class LocationPopup extends StatelessWidget {
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           CustomHeight.heightTen(context),
-          Text("Type: $type"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Type: "),
+              SizedBox(
+                child: Text(type),
+              )
+            ],
+          ),
           CustomHeight.heightTen(context),
-          Text("description: $description"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Description: "),
+              SizedBox(
+                child: Text(description),
+              )
+            ],
+          ),
           CustomHeight.heightTen(context),
-          Text("Created At: $formatedDate"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Created At: "),
+              SizedBox(
+                child: Text(formatedDate),
+              )
+            ],
+          ),
         ],
       ),
     );

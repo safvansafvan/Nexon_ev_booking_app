@@ -1,7 +1,7 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/bookings_provider/test_drive_provider.dart';
-import 'package:bookingapp/presentation/screens/booking_status/widget/test_drive_card.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/bookings_provider/test_drive_provider.dart';
+import 'package:nexonev/presentation/screens/booking_status/widget/test_drive_card.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,32 +16,24 @@ class TestDriveBookingStatusScreen extends StatelessWidget {
     });
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+        title: HeadingTextWidget(
+          text: "Test Drive Status ",
+          color: kBlack,
+          fontWeight: FontWeight.w600,
+          textSize: 17,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: ListView(
+          child: Column(
             children: [
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-                  kWidth,
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: HeadingTextWidget(
-                      text: "Test Drive Status ",
-                      color: kBlack,
-                      fontWeight: FontWeight.w600,
-                      underline: true,
-                      textSize: 17,
-                    ),
-                  ),
-                ],
-              ),
-              CustomHeight.commonHeightz(context),
               Consumer<TestDriveBookingProvider>(builder: (context, value, _) {
                 return value.isLoading
                     ? const Center(
@@ -49,8 +41,7 @@ class TestDriveBookingStatusScreen extends StatelessWidget {
                       )
                     : value.testDriveDetails.isEmpty
                         ? SizedBox(
-                            height: 100,
-                            width: 100,
+                            height: screenSize.height * 0.15,
                             child: Card(
                               elevation: 6,
                               child: Center(

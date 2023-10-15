@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/providers/group_provider/chat_provider.dart';
+import 'package:nexonev/controller/providers/group_provider/chat_provider.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

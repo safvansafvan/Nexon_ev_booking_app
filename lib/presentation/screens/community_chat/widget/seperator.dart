@@ -1,4 +1,4 @@
-import 'package:bookingapp/model/chatmodel.dart';
+import 'package:nexonev/model/chatmodel.dart';
 import 'package:flutter/material.dart';
 
 // ignore: unused_element

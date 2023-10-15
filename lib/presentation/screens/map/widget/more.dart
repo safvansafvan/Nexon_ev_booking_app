@@ -1,11 +1,9 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 
 class PopUpMenuOption extends StatelessWidget {
-  const PopUpMenuOption({
-    super.key,
-  });
+  const PopUpMenuOption({super.key});
 
   @override
   Widget build(BuildContext context) {

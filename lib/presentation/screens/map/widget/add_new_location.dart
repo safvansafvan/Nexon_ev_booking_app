@@ -1,7 +1,7 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/map_provider/map_provider.dart';
-import 'package:bookingapp/presentation/widgets/text_form_common.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/map_provider/map_provider.dart';
+import 'package:nexonev/presentation/widgets/text_form_common.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,36 +29,38 @@ class AddNewLocationWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: radiusTen),
       title: const Text('Add Plot'),
       content: SizedBox(
-        height: 220,
-        child: ListView(children: [
-          TextFormFieldCommon(
-              controller: stationNameCtr,
-              hintText: "Station",
-              keyType: TextInputType.name,
-              size: screenSize),
-          CustomHeight.heightTen(context),
-          TextFormFieldCommon(
-              controller: descriptionCtr,
-              hintText: "Desc",
-              keyType: TextInputType.name,
-              size: screenSize),
-          CustomHeight.heightTen(context),
-          Container(
-            height: 63,
-            decoration: BoxDecoration(
-                border: Border.all(color: kblue), borderRadius: radiusTen),
-            child: Center(
-              child: CustomDropdown(
-                  excludeSelected: true,
-                  fillColor: Colors.transparent,
-                  hintText: "Key",
-                  hintStyle: TextStyle(color: kBlack),
-                  selectedStyle: TextStyle(color: kBlack),
-                  items: const ["KSEB", "Tata Motor", "Ather", "Other"],
-                  controller: keyController),
+        height: screenSize.height * 0.25,
+        child: SingleChildScrollView(
+          child: Column(children: [
+            TextFormFieldCommon(
+                controller: stationNameCtr,
+                hintText: "Station",
+                keyType: TextInputType.name,
+                size: screenSize),
+            CustomHeight.heightTen(context),
+            TextFormFieldCommon(
+                controller: descriptionCtr,
+                hintText: "Desc",
+                keyType: TextInputType.name,
+                size: screenSize),
+            CustomHeight.heightTen(context),
+            Container(
+              height: 63,
+              decoration: BoxDecoration(
+                  border: Border.all(color: kblue), borderRadius: radiusTen),
+              child: Center(
+                child: CustomDropdown(
+                    excludeSelected: true,
+                    fillColor: Colors.transparent,
+                    hintText: "Key",
+                    hintStyle: TextStyle(color: kBlack),
+                    selectedStyle: TextStyle(color: kBlack),
+                    items: const ["KSEB", "Tata Motor", "Ather", "Other"],
+                    controller: keyController),
+              ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
       actions: [
         TextButton(

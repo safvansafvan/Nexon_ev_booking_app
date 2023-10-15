@@ -1,9 +1,9 @@
 import 'dart:developer';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/model/group_model.dart';
-import 'package:bookingapp/presentation/screens/community_chat/screens/change_group_profile.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/model/group_model.dart';
+import 'package:nexonev/presentation/screens/community_chat/screens/change_group_profile.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -12,7 +12,6 @@ class GroupDetailsWidget extends StatelessWidget {
   Group? groupData;
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
     log(groupData!.admin.toString());
     final membersList = groupData!.members.toList();
     String adminName = groupData!.admin.toString();
@@ -22,7 +21,7 @@ class GroupDetailsWidget extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(168, 0, 0, 0),
+        backgroundColor: kblue,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -55,11 +54,9 @@ class GroupDetailsWidget extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            width: double.infinity,
-            height: screenSize.height * 0.35,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(168, 0, 0, 0),
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: kblue,
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
               ),

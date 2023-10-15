@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/presentation/screens/community_chat/community_chat.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
-import 'package:bookingapp/presentation/widgets/succes_dialog.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/screens/community_chat/community_chat.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/presentation/widgets/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';

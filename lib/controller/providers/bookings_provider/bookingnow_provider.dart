@@ -1,5 +1,5 @@
-import 'package:bookingapp/apiservice/booking/booking_now_service.dart';
-import 'package:bookingapp/model/bookings/booking_now/bookings_now_resp.dart';
+import 'package:nexonev/apiservice/booking/booking_now_service.dart';
+import 'package:nexonev/model/bookings/booking_now/bookings_now_resp.dart';
 import 'package:flutter/material.dart';
 
 class BookingNowProvider extends ChangeNotifier {

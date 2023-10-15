@@ -1,19 +1,20 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/authentication/continue_with_google.dart';
-import 'package:bookingapp/presentation/screens/mainscreen/main_screen.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/authentication/continue_with_google.dart';
+import 'package:nexonev/presentation/screens/mainscreen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class SquareFieldWidget extends StatelessWidget {
-  SquareFieldWidget({
-    super.key,
-    required this.imagePath,
-    required this.isContinueGoogle,
-  });
+  SquareFieldWidget(
+      {super.key,
+      required this.imagePath,
+      required this.isContinueGoogle,
+      required this.screenSize});
 
   final String imagePath;
   bool isContinueGoogle;
+  final Size screenSize;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class SquareFieldWidget extends StatelessWidget {
               );
       },
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(screenSize.height * 0.03),
         decoration: BoxDecoration(
             border: Border.all(color: kwhite),
             borderRadius: radiusTen,

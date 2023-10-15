@@ -1,7 +1,7 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/providers/get_user_details.dart';
-import 'package:bookingapp/presentation/screens/booking_status/booking_now_status.dart';
-import 'package:bookingapp/presentation/screens/booking_status/test_drive_status.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/providers/get_user_details.dart';
+import 'package:nexonev/presentation/screens/booking_status/booking_now_status.dart';
+import 'package:nexonev/presentation/screens/booking_status/test_drive_status.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -97,7 +97,7 @@ class DrawerWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "1.0",
+                  "1.1",
                   style: textStyleFuc(weight: null, color: kBlack, size: 14),
                   textAlign: TextAlign.center,
                 )

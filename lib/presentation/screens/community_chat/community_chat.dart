@@ -1,9 +1,9 @@
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/controller/providers/group_provider/get_all_group_provider.dart';
-import 'package:bookingapp/presentation/screens/community_chat/screens/chat_screen.dart';
-import 'package:bookingapp/presentation/widgets/app_bar.dart';
-import 'package:bookingapp/presentation/widgets/text_h.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/controller/providers/group_provider/get_all_group_provider.dart';
+import 'package:nexonev/presentation/screens/community_chat/screens/chat_screen.dart';
+import 'package:nexonev/presentation/widgets/app_bar.dart';
+import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -69,59 +69,69 @@ class CommunityChatScreen extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: value.userGroups.length,
-                              itemBuilder: (context, index) {
-                                final formattedTime =
-                                    DateFormat('h:mm a').format(
-                                  value.userGroups[index].updatedAt.toLocal(),
-                                );
+                          : FutureBuilder(
+                              future: Provider.of<GetAllGroupsProvider>(context,
+                                      listen: false)
+                                  .getUserGroups(context),
+                              builder: (context, snapshot) {
+                                return ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: value.userGroups.length,
+                                  itemBuilder: (context, index) {
+                                    final formattedTime =
+                                        DateFormat('h:mm a').format(
+                                      value.userGroups[index].updatedAt
+                                          .toLocal(),
+                                    );
 
-                                return ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage: value
-                                                .userGroups[index].image !=
-                                            null
-                                        ? NetworkImage(
-                                            Urls.baseUrl +
-                                                value.userGroups[index].image
-                                                    .toString(),
-                                          )
-                                        : const NetworkImage(
-                                            "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
-                                  ),
-                                  title: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(value.userGroups[index].groupName),
-                                      Text(
-                                        "This is the last message",
-                                        style: textStyleFuc(
-                                            weight: FontWeight.w500,
-                                            color: kBlack,
-                                            size: queryData.size.width * 0.03),
+                                    return ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundImage: value
+                                                    .userGroups[index].image !=
+                                                null
+                                            ? NetworkImage(
+                                                Urls.baseUrl +
+                                                    value
+                                                        .userGroups[index].image
+                                                        .toString(),
+                                              )
+                                            : const NetworkImage(
+                                                "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
                                       ),
-                                    ],
-                                  ),
-                                  trailing: Text(formattedTime.toString()),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return ChatScreen(
-                                            data: value.userGroups[index],
-                                          );
-                                        },
+                                      title: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(value
+                                              .userGroups[index].groupName),
+                                          Text(
+                                            "This is the last message",
+                                            style: textStyleFuc(
+                                                weight: FontWeight.w500,
+                                                color: kBlack,
+                                                size: queryData.size.width *
+                                                    0.03),
+                                          ),
+                                        ],
                                       ),
+                                      trailing: Text(formattedTime.toString()),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return ChatScreen(
+                                                data: value.userGroups[index],
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
                                     );
                                   },
                                 );
-                              },
-                            );
+                              });
                 },
               )
             ],

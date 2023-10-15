@@ -1,5 +1,5 @@
-import 'package:bookingapp/apiservice/booking/test_drive_service.dart';
-import 'package:bookingapp/model/bookings/test_drive/test_drive_resp.dart';
+import 'package:nexonev/apiservice/booking/test_drive_service.dart';
+import 'package:nexonev/model/bookings/test_drive/test_drive_resp.dart';
 import 'package:flutter/material.dart';
 
 class TestDriveBookingProvider with ChangeNotifier {

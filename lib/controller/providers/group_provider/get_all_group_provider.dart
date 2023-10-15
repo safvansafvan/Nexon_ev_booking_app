@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
-import 'package:bookingapp/apiservice/group_service/edit_group_service.dart';
-import 'package:bookingapp/apiservice/group_service/get_all_groups_service.dart';
-import 'package:bookingapp/apiservice/group_service/get_user_joined_group_service.dart';
-import 'package:bookingapp/apiservice/group_service/join_group_service.dart';
-import 'package:bookingapp/apiservice/group_service/new_group_service.dart';
-import 'package:bookingapp/model/group_model.dart';
+import 'package:nexonev/apiservice/group_service/edit_group_service.dart';
+import 'package:nexonev/apiservice/group_service/get_all_groups_service.dart';
+import 'package:nexonev/apiservice/group_service/get_user_joined_group_service.dart';
+import 'package:nexonev/apiservice/group_service/join_group_service.dart';
+import 'package:nexonev/apiservice/group_service/new_group_service.dart';
+import 'package:nexonev/model/group_model.dart';
 // ignore: library_prefixes
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,10 +21,10 @@ class GetAllGroupsProvider extends ChangeNotifier {
   bool isLoading = false;
   bool userGroupLoading = false;
   bool msgLoading = false;
-
+  bool joinNewGrpLoading = false;
   bool newGroupLoading = false;
 
-  Future joinGroupButtonClick(context) async {
+  Future joinedGroupButtonClick(context) async {
     isLoading = true;
     userDetails = await GetAllGroupsSerive.getAllGroupsStatus(context);
     isLoading = false;

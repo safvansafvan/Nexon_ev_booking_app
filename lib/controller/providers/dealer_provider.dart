@@ -1,5 +1,5 @@
-import 'package:bookingapp/apiservice/dealer_service.dart';
-import 'package:bookingapp/model/dealer/dealer_model.dart';
+import 'package:nexonev/apiservice/dealer_service.dart';
+import 'package:nexonev/model/dealer/dealer_model.dart';
 import 'package:flutter/material.dart';
 
 class DealerProvider extends ChangeNotifier {

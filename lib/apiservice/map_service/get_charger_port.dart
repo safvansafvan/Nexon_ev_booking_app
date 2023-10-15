@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:bookingapp/controller/core/constant.dart';
-import 'package:bookingapp/controller/core/strings.dart';
-import 'package:bookingapp/model/location/map_model.dart';
-import 'package:bookingapp/presentation/widgets/snack_bar.dart';
+import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/strings.dart';
+import 'package:nexonev/model/location/map_model.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:http/http.dart' as http;
 
 class MapService {

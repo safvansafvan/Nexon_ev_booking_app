@@ -1,4 +1,4 @@
-import 'package:bookingapp/controller/providers/authentication/login.dart';
+import 'package:nexonev/controller/providers/authentication/login.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
