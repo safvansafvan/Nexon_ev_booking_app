@@ -60,7 +60,7 @@ class SettingsFieldWidget extends StatelessWidget {
           } else if (isLogout == true) {
             alertDialog(context);
           } else if (isShare == true) {
-            share("com.example.share_app");
+            share("https://www.amazon.com/gp/product/B0CL4JHM5R");
           }
         },
         title: Text(

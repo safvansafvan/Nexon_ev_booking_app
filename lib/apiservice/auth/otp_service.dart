@@ -42,7 +42,7 @@ class OtpService {
             .trim(),
         username: Provider.of<OtpVerificationAndSignupProvider>(context,
                 listen: false)
-            .emailController
+            .usernameController
             .text
             .trim());
     return body.toJson();

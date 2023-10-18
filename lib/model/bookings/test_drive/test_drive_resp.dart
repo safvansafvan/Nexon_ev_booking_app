@@ -1,4 +1,5 @@
 class GetTestDriveStatus {
+  String? status;
   String? id;
   String? name;
   String? email;
@@ -7,13 +8,11 @@ class GetTestDriveStatus {
   String? state;
   String? model;
   String? dealership;
-  bool? checked;
-  bool? isBanned;
   DateTime? createdAt;
   DateTime? updatedAt;
-  int? v;
 
   GetTestDriveStatus({
+    this.status,
     this.id,
     this.name,
     this.email,
@@ -22,15 +21,13 @@ class GetTestDriveStatus {
     this.state,
     this.model,
     this.dealership,
-    this.checked,
-    this.isBanned,
     this.createdAt,
     this.updatedAt,
-    this.v,
   });
 
   factory GetTestDriveStatus.fromJson(Map<String, dynamic> json) =>
       GetTestDriveStatus(
+        status: json["status"],
         id: json["_id"],
         name: json["name"],
         email: json["email"],
@@ -39,18 +36,16 @@ class GetTestDriveStatus {
         state: json["state"],
         model: json["model"],
         dealership: json["dealership"],
-        checked: json["checked"],
-        isBanned: json["isBanned"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
+        "status": status,
         "_id": id,
         "name": name,
         "email": email,
@@ -59,10 +54,7 @@ class GetTestDriveStatus {
         "state": state,
         "model": model,
         "dealership": dealership,
-        "checked": checked,
-        "isBanned": isBanned,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
-        "__v": v,
       };
 }

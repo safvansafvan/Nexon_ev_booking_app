@@ -38,7 +38,7 @@ class OtpScreen extends StatelessWidget {
                   CustomHeight.commonHeightz(context),
                   Center(
                       child: Lottie.asset(
-                    'assets/animation/otp1.json',
+                    'assets/animations/otp1.json',
                     height: 200,
                     width: 200,
                   )),

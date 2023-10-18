@@ -64,11 +64,33 @@ class TestDriveCard extends StatelessWidget {
                     style: textStyleFuc(
                         weight: FontWeight.w500, color: kBlack, size: 15),
                   ),
-                  Text(
-                    'Date:$date',
-                    style: textStyleFuc(
-                        weight: FontWeight.w500, color: kBlack, size: 15),
-                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Date: $date',
+                        style: textStyleFuc(
+                            weight: FontWeight.bold, color: kBlack, size: 15),
+                      ),
+                      SizedBox(
+                        height: 40,
+                        width: 100,
+                        child: Card(
+                          elevation: 5,
+                          color: kblue,
+                          child: Center(
+                            child: Text(
+                              data.status.toString(),
+                              style: textStyleFuc(
+                                  weight: FontWeight.w500,
+                                  color: kwhite,
+                                  size: 15),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
