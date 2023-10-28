@@ -1,8 +1,10 @@
 import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/providers/authentication/forgot_password.dart';
+import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/presentation/screens/authentication/login.dart';
 import 'package:nexonev/presentation/screens/authentication/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordWidget extends StatelessWidget {
@@ -73,9 +75,7 @@ class ForgotPasswordWidget extends StatelessWidget {
                       CustomHeight.commonHeightz(context),
                       InkWell(
                         onTap: () async {
-                          if (key5.currentState!.validate()) {
-                            await value.inForgotEmailVerifyClick(context);
-                          }
+                          await handleForgotPassword(context, value);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(20),
@@ -132,5 +132,19 @@ class ForgotPasswordWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> handleForgotPassword(ctx, ForgotPasswordProvider value) async {
+    final internetController =
+        Provider.of<InternetController>(ctx, listen: false);
+    if (key5.currentState!.validate()) {
+      await internetController.checkConnection();
+      if (internetController.hasInternet == false) {
+        snackBarWidget(
+            context: ctx, title: 'Enable Internet Connection', clr: kGreen);
+      } else {
+        await value.inForgotEmailVerifyClick(ctx);
+      }
+    }
   }
 }

@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'controller/providers/internet_provider.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
@@ -66,6 +68,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => GetUserDetials(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => InternetController(),
         )
       ],
       child: MaterialApp(

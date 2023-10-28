@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/providers/authentication/login.dart';
+import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/presentation/screens/authentication/forgot_password/forgot_password.dart';
 import 'package:nexonev/presentation/screens/authentication/widget/text_form_field.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
+import 'package:provider/provider.dart';
 
 class LoginFieldCardWidget extends StatelessWidget {
   const LoginFieldCardWidget(
@@ -58,7 +61,7 @@ class LoginFieldCardWidget extends StatelessWidget {
       InkWell(
         onTap: () async {
           if (formKey1.currentState!.validate()) {
-            await value.loginButtonClick(context);
+            await handleLogin(context);
           }
         },
         child: Container(
@@ -77,5 +80,18 @@ class LoginFieldCardWidget extends StatelessWidget {
         ),
       ),
     ]);
+  }
+
+  Future<void> handleLogin(ctx) async {
+    final internetController =
+        Provider.of<InternetController>(ctx, listen: false);
+    await internetController.checkConnection();
+
+    if (internetController.hasInternet == false) {
+      snackBarWidget(
+          context: ctx, title: 'Enable Internet Connection', clr: kGreen);
+    } else {
+      await value.loginButtonClick(ctx);
+    }
   }
 }
