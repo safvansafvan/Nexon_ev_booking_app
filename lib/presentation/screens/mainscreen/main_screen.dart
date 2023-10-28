@@ -1,6 +1,7 @@
 import 'package:nexonev/controller/core/cars_data.dart';
 import 'package:nexonev/controller/providers/dealer_provider.dart';
 import 'package:nexonev/controller/providers/get_user_details.dart';
+import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/controller/providers/map_provider/map_provider.dart';
 import 'package:nexonev/presentation/screens/brochure/brochure.dart';
 import 'package:nexonev/presentation/widgets/app_bar.dart';
@@ -8,6 +9,7 @@ import 'package:nexonev/presentation/widgets/drawer.dart';
 import 'package:nexonev/presentation/widgets/login_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:nexonev/presentation/widgets/page_indicator.dart';
 import 'package:nexonev/presentation/screens/mainscreen/widget/popular_options.dart';
@@ -35,8 +37,17 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<GetUserDetials>(context, listen: false);
+    final internet = Provider.of<InternetController>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await fetchDatas(context);
+      await internet.checkConnection();
+      if (internet.hasInternet == true) {
+        // ignore: use_build_context_synchronously
+        await fetchDatas(context);
+      } else {
+        // ignore: use_build_context_synchronously
+        snackBarWidget(
+            context: context, title: 'Enable Internet Connection', clr: kGreen);
+      }
     });
     List image = [
       "assets/images/primenexon-.png",

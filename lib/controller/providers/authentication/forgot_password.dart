@@ -20,19 +20,19 @@ class ForgotPasswordProvider extends ChangeNotifier {
     isOtpSent = true;
     notifyListeners();
     await ForgotPasswordService.getForgotPasswordStatus(context);
-    clearController();
     isOtpSent = false;
     notifyListeners();
   }
 
   ///this two fun is verify password and otp
   verifyButtonClick(context) async {
+    isOtpVerify = true;
+    notifyListeners();
     final provider =
         Provider.of<ForgotPasswordProvider>(context, listen: false);
-    isOtpVerify = true;
     await ForgotPasswordService.setNewPasswordStatus(context, provider);
-    clearController();
     isOtpVerify = false;
+    clearController();
     notifyListeners();
   }
 

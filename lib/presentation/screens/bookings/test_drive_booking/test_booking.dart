@@ -1,6 +1,8 @@
 import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:provider/provider.dart';
 import '../../../widgets/text_form_common.dart';
 import 'package:nexonev/controller/core/constant.dart';
@@ -147,8 +149,8 @@ class TestDriveBooking extends StatelessWidget {
                                   child: const Text("Cancel")),
                               TextButton(
                                   onPressed: () async {
-                                    await testDriveProvider
-                                        .tesDriveBookingButtonClick(context);
+                                    await handleTestdriveBooking(
+                                        context, testDriveProvider);
                                   },
                                   child: const Text("Ok"))
                             ],
@@ -166,5 +168,16 @@ class TestDriveBooking extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> handleTestdriveBooking(
+      ctx, TestDriveBookingProvider value) async {
+    final internet = Provider.of<InternetController>(ctx, listen: false);
+    if (internet.hasInternet == false) {
+      snackBarWidget(
+          context: ctx, title: 'Enable Internet Connection', clr: kGreen);
+    } else {
+      await value.tesDriveBookingButtonClick(ctx);
+    }
   }
 }

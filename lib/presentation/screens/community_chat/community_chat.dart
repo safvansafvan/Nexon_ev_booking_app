@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/core/strings.dart';
 import 'package:nexonev/controller/providers/group_provider/get_all_group_provider.dart';
 import 'package:nexonev/presentation/screens/community_chat/screens/chat_screen.dart';
-import 'package:nexonev/presentation/widgets/app_bar.dart';
+import 'package:nexonev/presentation/screens/community_chat/widget/more_pop.dart';
 import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -20,32 +21,46 @@ class CommunityChatScreen extends StatelessWidget {
     });
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 50),
-        child: SafeArea(
-          child: AppBarWidget(
-            leading: Icons.arrow_back_ios_new_rounded,
-            menu: false,
-            title: "Community",
-            trailing: Icons.more_vert_outlined,
-            settings: false,
+        preferredSize: const Size(double.infinity, 120),
+        child: ColoredBox(
+          color: kblue,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppBar(
+                backgroundColor: kblue,
+                leading: IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon:
+                        Icon(Icons.arrow_back_ios_new_rounded, color: kwhite)),
+                title: HeadingTextWidget(
+                  text: " Groups",
+                  textSize: 19,
+                  color: kwhite,
+                  fontWeight: FontWeight.w600,
+                ),
+                actions: const [PopUp()],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: CupertinoSearchTextField(
+                  backgroundColor: Colors.amber[50],
+                  placeholderStyle: const TextStyle(
+                    color: Colors.blue,
+                  ),
+                  itemColor: Colors.blue,
+                  style: const TextStyle(color: Colors.blue),
+                ),
+              ),
+            ],
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomHeight.heightTen(context),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: HeadingTextWidget(
-                  text: " Groups",
-                  textSize: 19,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              CustomHeight.heightTen(context),
               Consumer<GetAllGroupsProvider>(
                 builder: (context, value, _) {
                   return value.userGroupLoading

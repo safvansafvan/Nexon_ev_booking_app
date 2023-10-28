@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:nexonev/apiservice/booking/booking_now_service.dart';
 import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:nexonev/presentation/widgets/succes_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,6 +12,7 @@ import 'package:nexonev/presentation/widgets/text_form_common.dart';
 import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../../../controller/providers/bookings_provider/bookingnow_provider.dart';
+import '../../../../controller/providers/internet_provider.dart';
 import '../../../widgets/app_bar.dart';
 
 class BookNowWidget extends StatefulWidget {
@@ -259,9 +261,20 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 child: const Text("Cancel")),
             TextButton(
                 onPressed: () async {
-                  await makePaymet().then((value) async {
-                    await bookingProvider.bookingNowbuttonClick(context);
-                  });
+                  final internet =
+                      Provider.of<InternetController>(context, listen: false);
+                  await internet.checkConnection();
+                  if (internet.hasInternet == false) {
+                    // ignore: use_build_context_synchronously
+                    snackBarWidget(
+                        context: context,
+                        title: 'Enable Internet Connection',
+                        clr: kGreen);
+                  } else {
+                    await makePaymet().then((value) async {
+                      await bookingProvider.bookingNowbuttonClick(context);
+                    });
+                  }
                 },
                 child: const Text("Ok"))
           ],

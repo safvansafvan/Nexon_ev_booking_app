@@ -56,7 +56,7 @@ class NewPasswordScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    "Verify Your Phone Number",
+                    "Verify Your Email Address",
                     style: textStyleFuc(
                         weight: FontWeight.w900, color: kBlack, size: 23),
                   ),

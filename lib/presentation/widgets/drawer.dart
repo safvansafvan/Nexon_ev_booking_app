@@ -1,8 +1,10 @@
 import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/providers/get_user_details.dart';
+import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/presentation/screens/booking_status/booking_now_status.dart';
 import 'package:nexonev/presentation/screens/booking_status/test_drive_status.dart';
 import 'package:flutter/material.dart';
+import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:provider/provider.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -11,6 +13,7 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<GetUserDetials>(context, listen: false);
+    final internet = Provider.of<InternetController>(context, listen: false);
 
     return SafeArea(
       child: SizedBox(
@@ -62,12 +65,19 @@ class DrawerWidget extends StatelessWidget {
                       border: Border.all(color: kblue)),
                   child: ListTile(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BookingStatusScreen(),
-                        ),
-                      );
+                      if (internet.hasInternet == false) {
+                        snackBarWidget(
+                            context: context,
+                            title: 'Enable Internet Connection',
+                            clr: kGreen);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const BookingStatusScreen(),
+                          ),
+                        );
+                      }
                     },
                     title: const Text("Booking Status"),
                   ),
@@ -79,13 +89,20 @@ class DrawerWidget extends StatelessWidget {
                       border: Border.all(color: kblue)),
                   child: ListTile(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const TestDriveBookingStatusScreen(),
-                        ),
-                      );
+                      if (internet.hasInternet == false) {
+                        snackBarWidget(
+                            context: context,
+                            title: 'Enable Internet Connection',
+                            clr: kGreen);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const TestDriveBookingStatusScreen(),
+                          ),
+                        );
+                      }
                     },
                     title: const Text("Test Drive Status"),
                   ),
@@ -97,7 +114,7 @@ class DrawerWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "1.1",
+                  "1.2",
                   style: textStyleFuc(weight: null, color: kBlack, size: 14),
                   textAlign: TextAlign.center,
                 )

@@ -49,9 +49,10 @@ class ForgotPasswordService {
         value.otpController3.text +
         value.otpController4.text;
     final String url = Urls.baseUrl + Urls.verifyAndForgot;
+    log("${value.emailController.text}  ${value.passwordController.text}  $joinedOtp");
     Map<String, dynamic> body = {
       "email": value.emailController.text.trim(),
-      "password": value.passwordController.text.trim(),
+      "password": value.passwordController.text,
       "otp": joinedOtp
     };
     final response = await http.post(Uri.parse(url), body: body);

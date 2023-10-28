@@ -9,9 +9,9 @@ class BrochureGridViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Color myHexColor = const Color.fromARGB(255, 0, 89, 101);
     List pdfImages = [
-      "assets/broumax.jpg",
-      "assets/brouprime4.jpg",
-      "assets/broucdark.jpg"
+      "assets/images/broumax.jpg",
+      "assets/images/brouprime4.jpg",
+      "assets/images/broucdark.jpg"
     ];
     List carNames = ["Nexon Ev Prime", "Nexon Ev Max", "Nexon Prime Black"];
     return Scaffold(
@@ -52,8 +52,8 @@ class BrochureGridViewWidget extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const PdfViewScreen(pdf: "assets/nprime.pdf"),
+                            builder: (context) => const PdfViewScreen(
+                                pdf: "assets/pdf/nprime.pdf"),
                           ),
                         );
                       } else if (index == 1) {
@@ -61,7 +61,7 @@ class BrochureGridViewWidget extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const PdfViewScreen(
-                                pdf: "assets/Nexonprimebrou.pdf"),
+                                pdf: "assets/pdf/Nexonprimebrou.pdf"),
                           ),
                         );
                       } else if (index == 2) {
@@ -69,7 +69,7 @@ class BrochureGridViewWidget extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const PdfViewScreen(
-                                pdf: "assets/Nexon-EV-bro.pdf"),
+                                pdf: "assets/pdf/Nexon-EV-bro.pdf"),
                           ),
                         );
                       }
