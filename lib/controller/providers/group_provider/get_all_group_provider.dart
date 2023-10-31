@@ -14,8 +14,11 @@ import 'package:image_picker/image_picker.dart';
 class GetAllGroupsProvider extends ChangeNotifier {
   List userDetails = [];
   List<Group> userGroups = [];
+  List<Group> stillSearchGroup = [];
 
   final newGroupNameController = TextEditingController();
+  final searchController = TextEditingController();
+
   final editGroupName = TextEditingController();
 
   bool isLoading = false;
@@ -42,6 +45,7 @@ class GetAllGroupsProvider extends ChangeNotifier {
     notifyListeners();
     userGroups =
         await GetUserJoinedGroupService.getUserJoinedGroupStatus(context);
+    stillSearchGroup = userGroups;
     userGroupLoading = false;
     notifyListeners();
   }
@@ -80,5 +84,27 @@ class GetAllGroupsProvider extends ChangeNotifier {
   clearControllers() {
     fileImg = null;
     editGroupName.clear();
+  }
+
+//  bool showCommunity(bool value){
+
+//    return value?
+//  }
+
+  Future<void> searchCommunity(String query) async {
+    List<Group> result = [];
+    if (query.isEmpty) {
+      stillSearchGroup = userGroups;
+      notifyListeners();
+    } else {
+      result = userGroups
+          .where((element) => element.groupName
+              .toLowerCase()
+              .trim()
+              .startsWith(query.toLowerCase().trim()))
+          .toList();
+      stillSearchGroup = result;
+      notifyListeners();
+    }
   }
 }

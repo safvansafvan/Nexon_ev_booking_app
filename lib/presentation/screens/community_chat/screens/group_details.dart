@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:intl/intl.dart';
 import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/core/strings.dart';
 import 'package:nexonev/model/group_model.dart';
@@ -18,6 +19,8 @@ class GroupDetailsWidget extends StatelessWidget {
     RegExp regExp = RegExp(r"name: ([a-zA-Z]+)");
     Match? match = regExp.firstMatch(adminName);
     String name = match?.group(1) ?? "";
+    String createdDate = DateFormat.yMd().format(groupData!.createdAt);
+    String updateddDate = DateFormat.yMd().format(groupData!.updatedAt);
 
     return Scaffold(
       appBar: AppBar(
@@ -89,14 +92,30 @@ class GroupDetailsWidget extends StatelessWidget {
                 ),
                 CustomHeight.heightTen(context),
                 Text(
-                  "Created By:$name",
+                  "Admin:$name",
                   style: textStyleFuc(
                       weight: FontWeight.w500, color: kwhite, size: 14),
                 ),
+                CustomHeight.heightTen(context),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Created At:$createdDate",
+                      style: textStyleFuc(
+                          weight: FontWeight.w500, color: kwhite, size: 14),
+                    ),
+                    Text(
+                      "Updated At:$updateddDate",
+                      style: textStyleFuc(
+                          weight: FontWeight.w500, color: kwhite, size: 14),
+                    ),
+                  ],
+                ),
+                CustomHeight.heightTen(context),
               ],
             ),
           ),
-          CustomHeight.heightTen(context),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: ListView(
@@ -113,12 +132,23 @@ class GroupDetailsWidget extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: membersList.length,
                   itemBuilder: (context, index) {
+                    int displayIndex = index + 1;
                     return Padding(
                       padding: const EdgeInsets.only(top: 5),
-                      child: Text(
-                        membersList[index]['name'].toString(),
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                      child: Row(
+                        children: [
+                          Text(
+                            '$displayIndex',
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                          ),
+                          kWidth,
+                          Text(
+                            membersList[index]['name'].toString(),
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                          ),
+                        ],
                       ),
                     );
                   },

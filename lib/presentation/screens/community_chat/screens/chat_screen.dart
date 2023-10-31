@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/core/strings.dart';
 import 'package:nexonev/presentation/screens/community_chat/screens/group_details.dart';
 import 'package:flutter/material.dart';
@@ -49,52 +50,54 @@ class _ChatScreenState extends State<ChatScreen> {
     });
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 100),
-        child: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
+      appBar: AppBar(
+        backgroundColor: kblue,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new_rounded, color: kwhite)),
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            widget.data.image != null
+                ? CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(
+                      Urls.baseUrl + widget.data.image.toString(),
+                    ),
+                  )
+                : const CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(
+                        "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png")),
+            const SizedBox(width: 10),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GroupDetailsWidget(
+                      groupData: widget.data,
+                    ),
+                  ),
+                );
               },
-              icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-          title: Row(
-            children: [
-              widget.data.image != null
-                  ? CircleAvatar(
-                      radius: 25,
-                      backgroundImage: NetworkImage(
-                        Urls.baseUrl + widget.data.image.toString(),
-                      ),
-                    )
-                  : const CircleAvatar(
-                      radius: 25,
-                      backgroundImage: NetworkImage(
-                          "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png")),
-              const SizedBox(width: 10),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => GroupDetailsWidget(
-                        groupData: widget.data,
-                      ),
-                    ),
-                  );
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.data.groupName),
-                    const Text(
-                      'Click here for group info',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.data.groupName,
+                    style: TextStyle(color: kwhite),
+                  ),
+                  Text(
+                    'Click here for group info',
+                    style: TextStyle(fontSize: 12, color: kwhite),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       body: Consumer<ChatProvider>(builder: (context, value, _) {
