@@ -57,29 +57,6 @@ class NexonEvDetailsAndBookings extends StatelessWidget {
                   pageController: pageController,
                   count: images.length,
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ))),
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => (),
-                      //   ),
-                      // );
-                    },
-                    child: Text(
-                      "Car 360°",
-                      style: TextStyle(color: kblue, fontSize: 16),
-                    ),
-                  ),
-                ),
               ],
             ),
             CustomHeight.heightTen(context),
