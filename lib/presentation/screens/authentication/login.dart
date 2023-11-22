@@ -1,6 +1,6 @@
 import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/providers/authentication/login.dart';
-import 'package:nexonev/presentation/screens/authentication/register/register/register.dart';
+import 'package:nexonev/presentation/screens/authentication/signup/signup/signup.dart';
 import 'package:nexonev/presentation/screens/authentication/widget/login_field_card.dart';
 import 'package:nexonev/presentation/screens/authentication/widget/square_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,9 @@ class LoginPage extends StatelessWidget {
                 width: screenSize.width * 0.27,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/authlogo.png'),
+                    image: AssetImage(
+                      'assets/images/authlogo.png',
+                    ),
                   ),
                 ),
               ),
@@ -71,16 +73,14 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SquareFieldWidget(
-                    screenSize: screenSize,
-                    isContinueGoogle: true,
-                    imagePath: 'assets/images/google.webp',
-                  ),
+                      screenSize: screenSize,
+                      isContinueGoogle: true,
+                      imagePath: 'assets/images/google.webp'),
                   const SizedBox(width: 25),
                   SquareFieldWidget(
-                    screenSize: screenSize,
-                    isContinueGoogle: false,
-                    imagePath: 'assets/images/guest.png',
-                  ),
+                      screenSize: screenSize,
+                      isContinueGoogle: false,
+                      imagePath: 'assets/images/guest.png'),
                 ],
               ),
               SizedBox(

@@ -1,4 +1,5 @@
 import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/controller/providers/get_user_details.dart';
 import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +11,24 @@ import 'package:nexonev/presentation/widgets/text_h.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:nexonev/controller/providers/bookings_provider/test_drive_provider.dart';
 
+// ignore: must_be_immutable
 class TestDriveBooking extends StatelessWidget {
-  const TestDriveBooking({super.key});
+  TestDriveBooking({super.key});
+
+  GlobalKey<FormState> formKey7 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final testDriveProvider =
+    final userDetails = Provider.of<GetUserDetials>(context, listen: false);
+    final tdProvider =
         Provider.of<TestDriveBookingProvider>(context, listen: false);
     final screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 50),
         child: SafeArea(
             child: AppBarWidget(
-                title: "Test Drive Booking",
+                title: "Test Drive Bookings",
                 leading: Icons.arrow_back_ios_rounded,
                 settings: true,
                 menu: false)),
@@ -32,7 +36,7 @@ class TestDriveBooking extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Form(
-          key: testDriveProvider.formKey7,
+          key: formKey7,
           child: ListView(
             children: [
               CustomHeight.heightTen(context),
@@ -45,28 +49,43 @@ class TestDriveBooking extends StatelessWidget {
               CustomHeight.commonHeightz(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.person_outline),
-                  controller: testDriveProvider.nameController,
-                  hintText: "Full Name",
+                  controller: tdProvider.nameController,
+                  hintText: userDetails.userName ?? "Full Name",
                   keyType: TextInputType.name,
                   size: screenSize),
               CustomHeight.heightTen(context),
-              TextFormFieldCommon(
-                  prefixIcon: const Icon(Icons.email_outlined),
-                  controller: testDriveProvider.emailController,
-                  hintText: "Email",
-                  keyType: TextInputType.emailAddress,
-                  size: screenSize),
+              Container(
+                height: screenSize.height * 0.077,
+                decoration: BoxDecoration(
+                    border: Border.all(color: kblue), borderRadius: radiusTen),
+                child: Center(
+                    child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    Icon(Icons.email_outlined, color: kBlack),
+                    const SizedBox(width: 12),
+                    Text(
+                      userDetails.userEmail ?? 'Unknown',
+                      style: TextStyle(
+                        fontSize: screenSize.width * 0.045,
+                        color: kBlack,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                )),
+              ),
               CustomHeight.heightTen(context),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.phone_outlined),
-                  controller: testDriveProvider.phoneController,
+                  controller: tdProvider.phoneController,
                   hintText: "Phone",
                   maxlength: 10,
                   keyType: TextInputType.number,
                   size: screenSize),
               TextFormFieldCommon(
                   prefixIcon: const Icon(Icons.location_city_outlined),
-                  controller: testDriveProvider.cityController,
+                  controller: tdProvider.cityController,
                   hintText: "City",
                   keyType: TextInputType.name,
                   size: screenSize),
@@ -82,7 +101,7 @@ class TestDriveBooking extends StatelessWidget {
                       hintStyle: TextStyle(color: kBlack),
                       selectedStyle: TextStyle(color: kBlack),
                       items: const ["kerala", "Tamilnadu"],
-                      controller: testDriveProvider.stateController),
+                      controller: tdProvider.stateController),
                 ),
               ),
               CustomHeight.heightTen(context),
@@ -102,7 +121,7 @@ class TestDriveBooking extends StatelessWidget {
                         "Nexon Ev Max",
                         "Nexon Ev Dark"
                       ],
-                      controller: testDriveProvider.carModelController),
+                      controller: tdProvider.carModelController),
                 ),
               ),
               CustomHeight.heightTen(context),
@@ -124,7 +143,7 @@ class TestDriveBooking extends StatelessWidget {
                         hintStyle: TextStyle(color: kBlack),
                         selectedStyle: TextStyle(color: kBlack),
                         items: dealerNames,
-                        controller: testDriveProvider.dealerShipController);
+                        controller: tdProvider.dealerShipController);
                   }),
                 ),
               ),
@@ -133,11 +152,13 @@ class TestDriveBooking extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    if (testDriveProvider.formKey7.currentState!.validate()) {
+                    if (formKey7.currentState!.validate()) {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
+                            shape:
+                                RoundedRectangleBorder(borderRadius: radiusTen),
                             title: const Text("Conform Message"),
                             content: const Text(
                                 "Are you sure to continue test drive booking?"),
@@ -150,7 +171,7 @@ class TestDriveBooking extends StatelessWidget {
                               TextButton(
                                   onPressed: () async {
                                     await handleTestdriveBooking(
-                                        context, testDriveProvider);
+                                        context, tdProvider);
                                   },
                                   child: const Text("Ok"))
                             ],

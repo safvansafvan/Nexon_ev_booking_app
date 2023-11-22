@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:nexonev/controller/core/strings.dart';
 import 'package:nexonev/model/dealer/dealer_model.dart';
 import 'package:http/http.dart' as http;

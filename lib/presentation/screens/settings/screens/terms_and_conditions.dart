@@ -19,7 +19,6 @@ class TermsAndConditions extends StatelessWidget {
               menu: false,
               title: "Terms&conditions",
             ),
-            CustomHeight.commonHeightz(context),
             HeadingTextWidget(
               text: "Nexon Ev Booking App",
               color: kBlack,

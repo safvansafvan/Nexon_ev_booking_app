@@ -15,18 +15,19 @@ import 'package:provider/provider.dart';
 
 class TestDriveService {
   static Future<void> testDriveBooking(context) async {
+    final userDetails = Provider.of<GetUserDetials>(context, listen: false);
     final provider =
         Provider.of<TestDriveBookingProvider>(context, listen: false);
     final String url = Urls.baseUrl + Urls.testDriveBooking;
 
     TestDriveBookingModel formData = TestDriveBookingModel(
-        name: provider.nameController.text.trim(),
+        name: provider.nameController.text,
         phone: provider.phoneController.text.trim(),
-        email: provider.emailController.text.trim(),
+        email: userDetails.userEmail,
         city: provider.cityController.text.trim(),
         state: provider.stateController.text.trim(),
-        dealership: provider.dealerShipController.text.trim(),
-        model: provider.carModelController.text.trim(),
+        dealership: provider.dealerShipController.text,
+        model: provider.carModelController.text,
         checked: true);
     var requestBody = json.encode({'formData': formData});
     try {
@@ -54,11 +55,13 @@ class TestDriveService {
         } else {
           var message = data['message'];
           log('Test drive booking failed: $message');
-          snackBarWidget(context: context, title: "Booking Failed", clr: kred);
+          snackBarWidget(context: context, title: message, clr: kred);
+          Navigator.pop(context);
         }
       } else {
         log('Error: ${response.statusCode}');
         snackBarWidget(context: context, title: "Network Issue", clr: kred);
+        Navigator.pop(context);
       }
     } catch (e) {
       log(e.toString());

@@ -15,112 +15,112 @@ class DrawerWidget extends StatelessWidget {
     final provider = Provider.of<GetUserDetials>(context, listen: false);
     final internet = Provider.of<InternetController>(context, listen: false);
 
-    return SafeArea(
-      child: SizedBox(
-        width: 250,
-        child: Drawer(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          backgroundColor: const Color.fromARGB(237, 255, 255, 255),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(
-                      onPressed: () {
-                        Scaffold.of(context).closeDrawer();
-                      },
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: kblue,
+    return SizedBox(
+      width: 250,
+      child: Drawer(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        backgroundColor: const Color.fromARGB(237, 255, 255, 255),
+        child: Column(
+          children: [
+            ColoredBox(
+              color: kblue,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                        onPressed: () {
+                          Scaffold.of(context).closeDrawer();
+                        },
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: kwhite,
+                        )),
+                  ),
+                  CustomHeight.commonHeightz(context),
+                  const CircleAvatar(
+                      radius: 35,
+                      child: Icon(
+                        Icons.person,
+                        size: 35,
+                        color: Colors.black87,
                       )),
-                ),
-                CustomHeight.commonHeightz(context),
-                const CircleAvatar(
-                  radius: 35,
-                  backgroundImage: NetworkImage(
-                      "https://cdn-icons-png.flaticon.com/512/149/149071.png"),
-                ),
-                CustomHeight.commonHeightz(context),
-                Text(
-                  provider.userName ?? "Unknown",
-                  style: textStyleFuc(
-                      weight: FontWeight.w500, color: kBlack, size: 15),
-                ),
-                Text(
-                  provider.userEmail ?? "Unknown",
-                  style: textStyleFuc(
-                      weight: FontWeight.w300, color: kBlack, size: 12),
-                ),
-                CustomHeight.commonHeightz(context),
-                const Divider(
-                  color: Colors.grey,
-                  thickness: 2,
-                ),
-                CustomHeight.commonHeightz(context),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: radiusTen,
-                      border: Border.all(color: kblue)),
-                  child: ListTile(
-                    onTap: () {
-                      if (internet.hasInternet == false) {
-                        snackBarWidget(
-                            context: context,
-                            title: 'Enable Internet Connection',
-                            clr: kGreen);
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const BookingStatusScreen(),
-                          ),
-                        );
-                      }
-                    },
-                    title: const Text("Booking Status"),
+                  CustomHeight.commonHeightz(context),
+                  Text(
+                    provider.userName ?? "Unknown",
+                    style: textStyleFuc(
+                        weight: FontWeight.w500, color: kwhite, size: 15),
                   ),
-                ),
-                CustomHeight.commonHeightz(context),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: radiusTen,
-                      border: Border.all(color: kblue)),
-                  child: ListTile(
-                    onTap: () {
-                      if (internet.hasInternet == false) {
-                        snackBarWidget(
-                            context: context,
-                            title: 'Enable Internet Connection',
-                            clr: kGreen);
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const TestDriveBookingStatusScreen(),
-                          ),
-                        );
-                      }
-                    },
-                    title: const Text("Test Drive Status"),
+                  Text(
+                    provider.userEmail ?? "Unknown",
+                    style: textStyleFuc(
+                        weight: FontWeight.w300, color: kwhite, size: 12),
                   ),
-                ),
-                const Spacer(),
-                Text(
-                  "Version",
-                  style: textStyleFuc(weight: null, color: kBlack, size: 16),
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  "1.2",
-                  style: textStyleFuc(weight: null, color: kBlack, size: 14),
-                  textAlign: TextAlign.center,
-                )
-              ],
+                  CustomHeight.commonHeightz(context),
+                ],
+              ),
             ),
-          ),
+            CustomHeight.commonHeightz(context),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                  borderRadius: radiusTen, border: Border.all(color: kblue)),
+              child: ListTile(
+                onTap: () {
+                  if (internet.hasInternet == false) {
+                    snackBarWidget(
+                        context: context,
+                        title: 'Enable Internet Connection',
+                        clr: kGreen);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BookingStatusScreen(),
+                      ),
+                    );
+                  }
+                },
+                title: const Text("Booking Status"),
+              ),
+            ),
+            CustomHeight.commonHeightz(context),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                  borderRadius: radiusTen, border: Border.all(color: kblue)),
+              child: ListTile(
+                onTap: () {
+                  if (internet.hasInternet == false) {
+                    snackBarWidget(
+                        context: context,
+                        title: 'Enable Internet Connection',
+                        clr: kGreen);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const TestDriveBookingStatusScreen(),
+                      ),
+                    );
+                  }
+                },
+                title: const Text("Test Drive Status"),
+              ),
+            ),
+            const Spacer(),
+            Text(
+              "Version",
+              style: textStyleFuc(weight: null, color: kBlack, size: 16),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              "1.2",
+              style: textStyleFuc(weight: null, color: kBlack, size: 14),
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
       ),
     );

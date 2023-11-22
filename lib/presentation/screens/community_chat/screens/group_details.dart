@@ -14,7 +14,7 @@ class GroupDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log(groupData!.admin.toString());
-    final membersList = groupData!.members.toList();
+    List membersList = groupData!.members.toList();
     String adminName = groupData!.admin.toString();
     RegExp regExp = RegExp(r"name: ([a-zA-Z]+)");
     Match? match = regExp.firstMatch(adminName);
@@ -132,25 +132,22 @@ class GroupDetailsWidget extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: membersList.length,
                   itemBuilder: (context, index) {
-                    int displayIndex = index + 1;
+                    final lists = membersList[index];
                     return Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Row(
-                        children: [
-                          Text(
-                            '$displayIndex',
+                        padding: const EdgeInsets.only(top: 5),
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            child: Icon(
+                              Icons.person,
+                              size: 30,
+                            ),
+                          ),
+                          title: Text(
+                            lists['name'].toString(),
                             style: const TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w600),
                           ),
-                          kWidth,
-                          Text(
-                            membersList[index]['name'].toString(),
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    );
+                        ));
                   },
                 )
               ],

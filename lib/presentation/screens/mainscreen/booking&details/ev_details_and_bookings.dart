@@ -89,10 +89,9 @@ class NexonEvDetailsAndBookings extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 1,
-                  child: Container(
+                  child: SizedBox(
                     height: screenSize.height * 0.1,
                     width: screenSize.height * 0.15,
-                    decoration: BoxDecoration(borderRadius: radiusTen),
                     child: Column(
                       children: [
                         HeadingTextWidget(
@@ -101,6 +100,7 @@ class NexonEvDetailsAndBookings extends StatelessWidget {
                           textSize: 17,
                         ),
                         CustomDropdown(
+                          hintText: data['colors'][0],
                           items: data['colors'],
                           controller: nullContr,
                         )

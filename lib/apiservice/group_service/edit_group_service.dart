@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/functions.dart';
 import 'package:nexonev/presentation/screens/community_chat/community_chat.dart';
 import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:nexonev/presentation/widgets/succes_dialog.dart';
@@ -10,16 +11,13 @@ import 'package:http_parser/http_parser.dart';
 // ignore: depend_on_referenced_packages
 import 'package:mime/mime.dart';
 import 'dart:io';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../controller/core/strings.dart';
 
 class EditGroupProfileService {
   static Future changeGroupInfo(
       context, groupId, groupName, File? imageFile, fistImg) async {
-    final pref = await SharedPreferences.getInstance();
-    final token = pref.getString('ACCESS_TOKEN');
+    final token = await getStoredData('ACCESS_TOKEN');
     final url = Urls.baseUrl + Urls.group + Urls.upgradeGroup;
-
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.headers['x-access-token'] = token.toString();

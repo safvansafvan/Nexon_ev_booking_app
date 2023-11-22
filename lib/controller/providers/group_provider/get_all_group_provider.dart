@@ -12,13 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class GetAllGroupsProvider extends ChangeNotifier {
-  List userDetails = [];
+  List<Group> userDetails = [];
   List<Group> userGroups = [];
   List<Group> stillSearchGroup = [];
 
   final newGroupNameController = TextEditingController();
   final searchController = TextEditingController();
-
   final editGroupName = TextEditingController();
 
   bool isLoading = false;
@@ -27,7 +26,7 @@ class GetAllGroupsProvider extends ChangeNotifier {
   bool joinNewGrpLoading = false;
   bool newGroupLoading = false;
 
-  Future joinedGroupButtonClick(context) async {
+  Future availableGroups(context) async {
     isLoading = true;
     userDetails = await GetAllGroupsSerive.getAllGroupsStatus(context);
     isLoading = false;
@@ -35,8 +34,11 @@ class GetAllGroupsProvider extends ChangeNotifier {
   }
 
   Future joinGroup(context, groupId, groupName) async {
+    joinNewGrpLoading = true;
+    notifyListeners();
     await JoinGroupService.joinGroupStatus(
         context: context, groupId: groupId, groupName: groupName);
+    joinNewGrpLoading = false;
     notifyListeners();
   }
 
@@ -85,11 +87,6 @@ class GetAllGroupsProvider extends ChangeNotifier {
     fileImg = null;
     editGroupName.clear();
   }
-
-//  bool showCommunity(bool value){
-
-//    return value?
-//  }
 
   Future<void> searchCommunity(String query) async {
     List<Group> result = [];

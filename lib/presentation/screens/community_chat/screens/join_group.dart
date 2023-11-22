@@ -18,7 +18,7 @@ class _JoinGroupScreenState extends State<JoinGroupScreen> {
   void initState() {
     super.initState();
     Provider.of<GetAllGroupsProvider>(context, listen: false)
-        .joinedGroupButtonClick(context);
+        .availableGroups(context);
   }
 
   @override
@@ -41,47 +41,53 @@ class _JoinGroupScreenState extends State<JoinGroupScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Consumer<GetAllGroupsProvider>(
-                  builder: (context, value, _) {
-                    return value.isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: value.userDetails.length,
-                            itemBuilder: (context, index) {
-                              final grpDetails = value.userDetails[index];
-                              final groupId = grpDetails['_id'];
-                              final imageUrl = grpDetails['image'];
+                FutureBuilder(
+                    future: Provider.of<GetAllGroupsProvider>(context,
+                            listen: false)
+                        .availableGroups(context),
+                    builder: (context, item) {
+                      return Consumer<GetAllGroupsProvider>(
+                        builder: (context, value, _) {
+                          return value.isLoading
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: value.userDetails.length,
+                                  itemBuilder: (context, index) {
+                                    final grpDetails = value.userDetails[index];
+                                    final groupId = grpDetails.id;
+                                    final imageUrl = grpDetails.image;
 
-                              return ListTile(
-                                leading: CircleAvatar(
-                                    backgroundImage: imageUrl != null
-                                        ? NetworkImage(
-                                            Urls.baseUrl + imageUrl,
-                                          )
-                                        : const NetworkImage(
-                                            "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png")),
-                                title: Text(
-                                  grpDetails['groupName'],
-                                  style: textStyleFuc(
-                                      weight: FontWeight.w600,
-                                      color: kBlack,
-                                      size: 16),
-                                ),
-                                trailing: IconButton(
-                                    onPressed: () async {
-                                      showDialogPop(context,
-                                          grpDetails['groupName'], groupId);
-                                    },
-                                    icon: const Icon(Icons.add_outlined)),
-                              );
-                            },
-                          );
-                  },
-                )
+                                    return ListTile(
+                                      leading: CircleAvatar(
+                                          backgroundImage: imageUrl != null
+                                              ? NetworkImage(
+                                                  Urls.baseUrl + imageUrl,
+                                                )
+                                              : const NetworkImage(
+                                                  "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png")),
+                                      title: Text(
+                                        grpDetails.groupName,
+                                        style: textStyleFuc(
+                                            weight: FontWeight.w600,
+                                            color: kBlack,
+                                            size: 16),
+                                      ),
+                                      trailing: IconButton(
+                                          onPressed: () async {
+                                            showDialogPop(context,
+                                                grpDetails.groupName, groupId);
+                                          },
+                                          icon: const Icon(Icons.add_outlined)),
+                                    );
+                                  },
+                                );
+                        },
+                      );
+                    })
               ],
             ),
           ),

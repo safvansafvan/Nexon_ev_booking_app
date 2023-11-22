@@ -1,7 +1,7 @@
 import 'package:lottie/lottie.dart';
 import 'package:nexonev/controller/providers/authentication/otp_provider.dart';
 import 'package:nexonev/controller/providers/internet_provider.dart';
-import 'package:nexonev/presentation/screens/authentication/register/otp/widget/header_widget.dart';
+import 'package:nexonev/presentation/screens/authentication/signup/otp/widget/header_widget.dart';
 import 'package:nexonev/presentation/screens/authentication/widget/otp_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +9,10 @@ import '../../../../../controller/core/constant.dart';
 import '../../../../../controller/providers/authentication/otpverify_signup.dart';
 import '../../../../widgets/snack_bar.dart';
 
+// ignore: must_be_immutable
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  OtpScreen({super.key});
+  GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class OtpScreen extends StatelessWidget {
           child: Consumer<OtpVerificationAndSignupProvider>(
               builder: (context, value, _) {
             return Form(
-              key: otpProvider.formKey3,
+              key: formKey3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -59,7 +61,9 @@ class OtpScreen extends StatelessWidget {
                   CustomHeight.commonHeightz(context),
                   InkWell(
                     onTap: () async {
-                      await handleOtpVerify(otpProvider, value, context);
+                      if (formKey3.currentState!.validate()) {
+                        await handleOtpVerify(otpProvider, value, context);
+                      }
                     },
                     child: Container(
                       padding: const EdgeInsets.all(20),
@@ -92,14 +96,13 @@ class OtpScreen extends StatelessWidget {
       OtpVerificationAndSignupProvider value, ctx) async {
     final internetController =
         Provider.of<InternetController>(ctx, listen: false);
-    if (otpProvider.formKey3.currentState!.validate()) {
-      await internetController.checkConnection();
-      if (internetController.hasInternet == false) {
-        snackBarWidget(
-            context: ctx, title: 'Enable Internet Connection', clr: kGreen);
-      } else {
-        await value.getOtpVerificationButtonClick(ctx);
-      }
+
+    await internetController.checkConnection();
+    if (internetController.hasInternet == false) {
+      snackBarWidget(
+          context: ctx, title: 'Enable Internet Connection', clr: kGreen);
+    } else {
+      await value.getOtpVerificationButtonClick(ctx);
     }
   }
 }

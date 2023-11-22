@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/functions.dart';
 import 'package:nexonev/model/group_model.dart';
 import 'package:nexonev/presentation/widgets/snack_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../controller/core/strings.dart';
 
 class GetUserJoinedGroupService {
   static Future<List<Group>> getUserJoinedGroupStatus(context) async {
-    final pref = await SharedPreferences.getInstance();
-    final id = pref.getString('Id');
-    final token = pref.getString('ACCESS_TOKEN');
+    final id = await getStoredData('Id');
+    final token = await getStoredData('ACCESS_TOKEN');
     Map<String, dynamic> body = {"id": id};
     log(id.toString());
     log(token.toString());

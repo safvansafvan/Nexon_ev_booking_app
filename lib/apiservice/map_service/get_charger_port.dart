@@ -34,7 +34,6 @@ class MapService {
         }
       } catch (error) {
         log(error.toString());
-        snackBarWidget(context: ctx, title: error.toString(), clr: kred);
       }
     }
     return [];

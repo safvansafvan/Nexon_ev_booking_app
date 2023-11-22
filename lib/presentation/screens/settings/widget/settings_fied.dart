@@ -76,8 +76,7 @@ class SettingsFieldWidget extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          shape: RoundedRectangleBorder(borderRadius: radiusTen),
           title: const Text("Logout"),
           content: const Text("Are you sure you would like to LOGOUT?"),
           actions: [

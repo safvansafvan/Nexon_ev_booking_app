@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:nexonev/apiservice/booking/booking_now_service.dart';
 import 'package:nexonev/controller/providers/dealer_provider.dart';
+import 'package:nexonev/controller/providers/get_user_details.dart';
 import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:nexonev/presentation/widgets/succes_dialog.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final userDetails = Provider.of<GetUserDetials>(context, listen: false);
     var screenSize = MediaQuery.of(context).size;
     final bookingProvider = context.watch<BookingNowProvider>();
     return Scaffold(
@@ -43,7 +45,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
         preferredSize: const Size(double.infinity, 50),
         child: SafeArea(
             child: AppBarWidget(
-                title: "Ev Booking",
+                title: "Ev Bookings",
                 leading: Icons.arrow_back_ios_rounded,
                 settings: true,
                 menu: false)),
@@ -59,24 +61,45 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 HeadingTextWidget(text: "  Please fill your deatails"),
                 CustomHeight.heightTen(context),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.person_outline),
                     controller: bookingProvider.firstNameController,
-                    hintText: "First Name",
+                    hintText: userDetails.userName ?? 'First Name',
                     keyType: TextInputType.name,
                     size: screenSize),
                 CustomHeight.heightTen(context),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.person_outline),
                     controller: bookingProvider.lastNameController,
                     hintText: "Last Name",
                     keyType: TextInputType.name,
                     size: screenSize),
                 CustomHeight.heightTen(context),
-                TextFormFieldCommon(
-                    controller: bookingProvider.emailController,
-                    hintText: "Email",
-                    keyType: TextInputType.emailAddress,
-                    size: screenSize),
+                Container(
+                  height: screenSize.height * 0.077,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kblue),
+                      borderRadius: radiusTen),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 10),
+                        Icon(Icons.email_outlined, color: kBlack),
+                        const SizedBox(width: 12),
+                        Text(
+                          userDetails.userEmail ?? 'Unknown',
+                          style: TextStyle(
+                            fontSize: screenSize.width * 0.045,
+                            color: kBlack,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 CustomHeight.heightTen(context),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.phone_outlined),
                     controller: bookingProvider.phoneController,
                     hintText: "Phone",
                     maxlength: 10,
@@ -102,24 +125,28 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                 ),
                 CustomHeight.heightTen(context),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.location_city_outlined),
                     controller: bookingProvider.cityController,
                     hintText: "City",
                     keyType: TextInputType.name,
                     size: screenSize),
                 CustomHeight.heightTen(context),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.location_on_outlined),
                     controller: bookingProvider.address1Controller,
                     hintText: "Address1",
                     maxlength: 15,
                     keyType: TextInputType.name,
                     size: screenSize),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.location_on_outlined),
                     controller: bookingProvider.address2Controller,
                     hintText: "Address2",
                     maxlength: 15,
                     keyType: TextInputType.name,
                     size: screenSize),
                 TextFormFieldCommon(
+                    prefixIcon: const Icon(Icons.pin),
                     controller: bookingProvider.pincodeController,
                     hintText: "Pincode",
                     maxlength: 6,
@@ -251,6 +278,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: radiusTen),
           title: const Text("Conform Message"),
           content: const Text("Are you sure to continue Ev booking?"),
           actions: [

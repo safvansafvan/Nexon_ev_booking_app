@@ -1,16 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:nexonev/controller/core/constant.dart';
+import 'package:nexonev/controller/core/functions.dart';
 import 'package:nexonev/controller/core/strings.dart';
 import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GetAllGroupsSerive {
   static Future getAllGroupsStatus(context) async {
-    final pref = await SharedPreferences.getInstance();
-    final id = pref.getString('Id');
-    final token = pref.getString('ACCESS_TOKEN');
+    final id = await getStoredData('Id');
+    final token = await getStoredData('ACCESS_TOKEN');
     Map<String, dynamic> body = {"id": id};
     final url = Urls.baseUrl + Urls.group + Urls.getGroup;
     final respose = await http.post(Uri.parse(url),

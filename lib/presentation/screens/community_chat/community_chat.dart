@@ -79,18 +79,13 @@ class _CommunityChatScreenState extends State<CommunityChatScreen> {
                                 : const NetworkImage(
                                     "https://w7.pngwing.com/pngs/429/584/png-transparent-three-person-s-illustrations-computer-icons-symbol-people-network-icon-s-good-pix-gallery-miscellaneous-blue-hand-thumbnail.png"),
                           ),
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(value.stillSearchGroup[index].groupName),
-                              Text(
-                                "This is the last message",
-                                style: textStyleFuc(
-                                    weight: FontWeight.w500,
-                                    color: kBlack,
-                                    size: screenSize.width * 0.03),
-                              ),
-                            ],
+                          title: Text(value.stillSearchGroup[index].groupName),
+                          subtitle: Text(
+                            "This is the last message",
+                            style: textStyleFuc(
+                                weight: FontWeight.w500,
+                                color: kBlack,
+                                size: screenSize.width * 0.03),
                           ),
                           trailing: Text(formattedTime.toString()),
                           onTap: () {

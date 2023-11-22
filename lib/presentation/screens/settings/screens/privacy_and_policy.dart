@@ -19,7 +19,6 @@ class PrivacyAndPolicyWidget extends StatelessWidget {
               menu: false,
               title: "Privacy&Policy",
             ),
-            CustomHeight.commonHeightz(context),
             HeadingTextWidget(
               text: "Nexon Ev Booking App",
               color: kBlack,

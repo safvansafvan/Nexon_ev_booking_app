@@ -7,7 +7,6 @@ class OtpProvider extends ChangeNotifier {
   TextEditingController otpNumTwo = TextEditingController();
   TextEditingController otpNumThree = TextEditingController();
   TextEditingController otpNumFour = TextEditingController();
-  GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
 
   otp() {
     String joinedOtp =

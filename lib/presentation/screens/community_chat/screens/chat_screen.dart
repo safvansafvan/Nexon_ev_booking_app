@@ -25,11 +25,26 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   @override
+  void initState() {
+    getUsername();
+    Provider.of<ChatProvider>(context, listen: false).groupId = widget.data.id;
+    Provider.of<ChatProvider>(context, listen: false).connect();
+    Provider.of<ChatProvider>(context, listen: false).getMessages(context);
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       Provider.of<ChatProvider>(context, listen: false).getMessages(context);
     });
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   late Timer timer;
@@ -40,21 +55,14 @@ class _ChatScreenState extends State<ChatScreen> {
   // @override
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      getUsername();
-      Provider.of<ChatProvider>(context, listen: false).groupId =
-          widget.data.id;
-      Provider.of<ChatProvider>(context, listen: false).connect();
-      await Provider.of<ChatProvider>(context, listen: false)
-          .getMessages(context);
-    });
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kblue,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              if (mounted) {
+                Navigator.pop(context);
+              }
             },
             icon: Icon(Icons.arrow_back_ios_new_rounded, color: kwhite)),
         title: Row(
@@ -181,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  getUsername() async {
+  Future getUsername() async {
     final pref = await SharedPreferences.getInstance();
     userName = pref.getString("USER_NAME").toString();
     log(userName, name: "functions");

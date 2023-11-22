@@ -18,21 +18,22 @@ class BookingNowService {
 
   ///userBooking now service
   static Future<void> bookingStatus(BuildContext context) async {
+    final userDetails = Provider.of<GetUserDetials>(context, listen: false);
     final provider = Provider.of<BookingNowProvider>(context, listen: false);
     final navigator = Navigator.of(context);
 
     BookingNowModel formData = BookingNowModel(
-      names: provider.firstNameController.text.trim(),
-      lastName: provider.lastNameController.text.trim(),
+      names: provider.firstNameController.text,
+      lastName: provider.lastNameController.text,
       phone: provider.phoneController.text.trim(),
-      email: provider.emailController.text.trim(),
-      address1: provider.address1Controller.text.trim(),
-      address2: provider.address2Controller.text.trim(),
+      email: userDetails.userEmail,
+      address1: provider.address1Controller.text,
+      address2: provider.address2Controller.text,
       city: provider.cityController.text.trim(),
       pincode: provider.pincodeController.text.trim(),
-      dealer: provider.dealerController.text.trim(),
-      state: provider.stateController.text.trim(),
-      model: provider.carModelController.text.trim(),
+      dealer: provider.dealerController.text,
+      state: provider.stateController.text,
+      model: provider.carModelController.text,
       bookingPrice: "5000",
     );
     var requestBody = {'formData': formData.toJson()};

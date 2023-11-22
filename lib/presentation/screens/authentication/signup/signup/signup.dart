@@ -2,7 +2,7 @@ import 'package:nexonev/controller/core/constant.dart';
 import 'package:nexonev/controller/providers/authentication/otp_provider.dart';
 import 'package:nexonev/controller/providers/internet_provider.dart';
 import 'package:nexonev/presentation/screens/authentication/login.dart';
-import 'package:nexonev/presentation/screens/authentication/register/register/widget/register_fields.dart';
+import 'package:nexonev/presentation/screens/authentication/signup/signup/widget/register_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:nexonev/presentation/widgets/snack_bar.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,9 @@ class RegisterScreen extends StatelessWidget {
                       RegisterFieldWidget(screenHeight: screenHeight),
                       InkWell(
                         onTap: () async {
-                          await handleRegistration(context);
+                          if (formKey2.currentState!.validate()) {
+                            await handleSignup(context);
+                          }
                         },
                         child: Container(
                           padding: const EdgeInsets.all(20),
@@ -103,18 +105,16 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Future<void> handleRegistration(ctx) async {
+  Future<void> handleSignup(ctx) async {
     final internetController =
         Provider.of<InternetController>(ctx, listen: false);
-    if (formKey2.currentState!.validate()) {
-      await internetController.checkConnection();
-      if (internetController.hasInternet == false) {
-        snackBarWidget(
-            context: ctx, title: 'Enable Internet Connection', clr: kGreen);
-      } else {
-        await Provider.of<OtpProvider>(ctx, listen: false)
-            .signUpButtonClick(ctx);
-      }
+
+    await internetController.checkConnection();
+    if (internetController.hasInternet == false) {
+      snackBarWidget(
+          context: ctx, title: 'Enable Internet Connection', clr: kGreen);
+    } else {
+      await Provider.of<OtpProvider>(ctx, listen: false).signUpButtonClick(ctx);
     }
   }
 }

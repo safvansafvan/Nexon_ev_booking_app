@@ -37,10 +37,7 @@ class SquareFieldWidget extends StatelessWidget {
             border: Border.all(color: kwhite),
             borderRadius: radiusTen,
             color: Colors.grey[200]),
-        child: Image.asset(
-          imagePath,
-          height: 50,
-        ),
+        child: Image.asset(imagePath, height: 50),
       ),
     );
   }
